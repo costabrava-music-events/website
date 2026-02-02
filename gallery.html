@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+
+    <title>Galería — Costa Brava Music Events</title>
+    <meta
+      name="description"
+      content="Galería de momentos: conciertos, DJ sets y experiencias musicales en la Costa Brava."
+    />
+    <link rel="icon" href="./assets/img/brand-mark.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui"],
+              display: ["Manrope", "Inter", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              cb: {
+                deep: "#061428",
+                sea: "#0EA5E9",
+                aqua: "#22D3EE",
+                dusk: "#A78BFA",
+                sunset: "#FB7185",
+                amber: "#FBBF24",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  </head>
+
+  <body
+    class="h-full bg-slate-50 text-slate-900 antialiased dark:bg-[#050B16] dark:text-slate-100"
+    x-data="cbmeApp()"
+  >
+    <a
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:shadow"
+      href="#contenido"
+      >Saltar al contenido</a
+    >
+
+    <header class="fixed inset-x-0 top-0 z-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="mt-3 flex items-center justify-between rounded-2xl border border-slate-200/60 bg-white/70 px-3 py-2 shadow-sm backdrop-blur dark:border-slate-700/40 dark:bg-slate-950/40"
+        >
+          <a href="./index.html" class="group flex items-center gap-2">
+            <span
+              class="inline-grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-cb-aqua/25 to-cb-dusk/25 ring-1 ring-cb-aqua/30 dark:from-cb-aqua/20 dark:to-cb-sunset/15"
+              aria-hidden="true"
+            >
+              <span class="h-2.5 w-2.5 rounded-full bg-cb-aqua shadow-[0_0_18px_rgba(34,211,238,.85)]"></span>
+            </span>
+            <div class="leading-tight">
+              <div class="font-display text-sm font-extrabold tracking-tight">Costa Brava</div>
+              <div class="-mt-0.5 text-xs text-slate-600 dark:text-slate-300">Music Events</div>
+            </div>
+          </a>
+
+          <nav class="hidden items-center gap-1 md:flex" aria-label="Principal">
+            <a class="cbme-underline rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" href="./about.html">Quiénes somos</a>
+            <a class="cbme-underline rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" href="./gallery.html" aria-current="page">Galería</a>
+            <a class="cbme-underline rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" href="./contact.html">Contacto</a>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/70 bg-white/60 text-slate-800 shadow-sm transition hover:bg-white dark:border-slate-700/50 dark:bg-slate-950/30 dark:text-slate-100 md:hidden"
+              @click="openMenu = !openMenu; lockBody(openMenu)"
+              :aria-expanded="openMenu ? 'true' : 'false'"
+              aria-controls="menu-movil"
+              aria-label="Abrir menú"
+            >
+              <svg x-show="!openMenu" x-cloak xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg x-show="openMenu" x-cloak xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="menu-movil"
+          x-show="openMenu"
+          x-cloak
+          x-transition.opacity.duration.150ms
+          class="mt-2 rounded-2xl border border-slate-200/60 bg-white/85 p-3 shadow-lg backdrop-blur dark:border-slate-700/40 dark:bg-slate-950/55 md:hidden"
+          @click.outside="openMenu = false; lockBody(false)"
+        >
+          <nav class="grid gap-1" aria-label="Menú móvil">
+            <a class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-slate-900/40" href="./about.html" @click="openMenu=false; lockBody(false)">Quiénes somos</a>
+            <a class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-slate-900/40" href="./gallery.html" @click="openMenu=false; lockBody(false)">Galería</a>
+            <a class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-slate-900/40" href="./contact.html" @click="openMenu=false; lockBody(false)">Contacto</a>
+            <a class="mt-2 inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-extrabold text-white shadow transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100" href="./index.html" @click="openMenu=false; lockBody(false)">Volver al inicio</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido" class="pt-24">
+      <section class="relative overflow-hidden">
+        <div class="absolute inset-0">
+          <div
+            class="absolute inset-0 bg-[radial-gradient(1000px_circle_at_25%_10%,rgba(34,211,238,.18),transparent_45%),radial-gradient(1000px_circle_at_80%_0%,rgba(167,139,250,.16),transparent_45%),linear-gradient(180deg,#020617_0%,#050B16_55%,#020617_100%)]"
+          ></div>
+          <div class="cbme-noise"></div>
+        </div>
+        <div class="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div class="max-w-3xl" data-aos="fade-up">
+            <div class="text-xs font-extrabold tracking-wide text-white/75">Momentos</div>
+            <h1 class="mt-3 font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+              Galería
+            </h1>
+            <p class="mt-4 text-base text-white/80 sm:text-lg">
+              Carrusel + grid tipo masonry (sin frameworks). Sustituye las imágenes por las tuyas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="swiper js-gallery-swiper" data-aos="fade-up">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <figure class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                <picture>
+                  <source type="image/avif" srcset="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=60&fm=avif 900w, https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=60&fm=avif 1400w" sizes="(min-width: 1024px) 33vw, 80vw" />
+                  <source type="image/webp" srcset="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=60&fm=webp 900w, https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=60&fm=webp 1400w" sizes="(min-width: 1024px) 33vw, 80vw" />
+                  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60" alt="Música al atardecer" class="h-72 w-full object-cover sm:h-80" loading="lazy" decoding="async" />
+                </picture>
+                <figcaption class="p-5">
+                  <div class="text-sm font-extrabold">Atardecer</div>
+                  <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">La hora dorada con groove.</div>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="swiper-slide">
+              <figure class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                <picture>
+                  <source type="image/avif" srcset="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=60&fm=avif 900w, https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=60&fm=avif 1400w" sizes="(min-width: 1024px) 33vw, 80vw" />
+                  <source type="image/webp" srcset="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=60&fm=webp 900w, https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=60&fm=webp 1400w" sizes="(min-width: 1024px) 33vw, 80vw" />
+                  <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=60" alt="DJ set con luces" class="h-72 w-full object-cover sm:h-80" loading="lazy" decoding="async" />
+                </picture>
+                <figcaption class="p-5">
+                  <div class="text-sm font-extrabold">Noche</div>
+                  <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Sonido limpio, estética minimal.</div>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="swiper-slide">
+              <figure class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                <picture>
+                  <source type="image/avif" srcset="https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=900&q=60&fm=avif 900w, https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=1400&q=60&fm=avif 1400w" sizes="(min-width: 1024px) 33vw, 80vw" />
+                  <source type="image/webp" srcset="https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=900&q=60&fm=webp 900w, https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=1400&q=60&fm=webp 1400w" sizes="(min-width: 1024px) 33vw, 80vw" />
+                  <img src="https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=1200&q=60" alt="Público bailando en exterior" class="h-72 w-full object-cover sm:h-80" loading="lazy" decoding="async" />
+                </picture>
+                <figcaption class="p-5">
+                  <div class="text-sm font-extrabold">Exterior</div>
+                  <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Un destino que se siente.</div>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="mt-6 flex items-center justify-between gap-4">
+            <div class="swiper-pagination !static"></div>
+            <div class="flex items-center gap-2">
+              <button class="swiper-button-prev !static !m-0 !h-10 !w-10 !rounded-xl !border !border-slate-200 !bg-white !text-slate-900 !shadow-sm after:!text-sm dark:!border-slate-700/60 dark:!bg-slate-950/20 dark:!text-white" aria-label="Anterior"></button>
+              <button class="swiper-button-next !static !m-0 !h-10 !w-10 !rounded-xl !border !border-slate-200 !bg-white !text-slate-900 !shadow-sm after:!text-sm dark:!border-slate-700/60 dark:!bg-slate-950/20 dark:!text-white" aria-label="Siguiente"></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simple masonry-like grid (CSS columns via Tailwind utilities) -->
+        <div class="mt-12" data-aos="fade-up">
+          <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
+            <figure class="mb-4 break-inside-avoid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+              <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=60" alt="Luces y escenario" loading="lazy" decoding="async" class="w-full object-cover" />
+              <figcaption class="p-4 text-sm text-slate-600 dark:text-slate-300">Luces con intención.</figcaption>
+            </figure>
+            <figure class="mb-4 break-inside-avoid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+              <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=60" alt="Ambiente de festival boutique" loading="lazy" decoding="async" class="w-full object-cover" />
+              <figcaption class="p-4 text-sm text-slate-600 dark:text-slate-300">Boutique, humano, real.</figcaption>
+            </figure>
+            <figure class="mb-4 break-inside-avoid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+              <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1200&q=60" alt="Público en concierto" loading="lazy" decoding="async" class="w-full object-cover" />
+              <figcaption class="p-4 text-sm text-slate-600 dark:text-slate-300">Energía sin exceso.</figcaption>
+            </figure>
+            <figure class="mb-4 break-inside-avoid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+              <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1200&q=60" alt="Escenario y gente" loading="lazy" decoding="async" class="w-full object-cover" />
+              <figcaption class="p-4 text-sm text-slate-600 dark:text-slate-300">Diseño de experiencia.</figcaption>
+            </figure>
+            <figure class="mb-4 break-inside-avoid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+              <img src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1200&q=60" alt="Show de luces" loading="lazy" decoding="async" class="w-full object-cover" />
+              <figcaption class="p-4 text-sm text-slate-600 dark:text-slate-300">Noche mediterránea.</figcaption>
+            </figure>
+            <figure class="mb-4 break-inside-avoid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+              <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1200&q=60" alt="Playa al atardecer" loading="lazy" decoding="async" class="w-full object-cover" />
+              <figcaption class="p-4 text-sm text-slate-600 dark:text-slate-300">Costa, luz, mar.</figcaption>
+            </figure>
+          </div>
+          <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">
+            Nota: si quieres máxima performance y control, puedo dejarte una versión con imágenes locales en `assets/img/` + `srcset` generable.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200/70 dark:border-slate-800/70">
+      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-3 text-xs text-slate-500 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© <span x-text="new Date().getFullYear()"></span> Costa Brava Music Events.</p>
+          <p><a class="hover:text-slate-900 dark:hover:text-white" href="./index.html">Volver al inicio</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
+
