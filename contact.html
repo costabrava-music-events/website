@@ -73,7 +73,6 @@
           </a>
 
           <nav class="hidden items-center gap-1 md:flex" aria-label="Principal">
-            <a class="cbme-underline rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" href="./gallery.html">Galería</a>
             <a class="cbme-underline rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" href="./contact.html" aria-current="page">Contacto</a>
           </nav>
 
@@ -105,7 +104,6 @@
           @click.outside="openMenu = false; lockBody(false)"
         >
           <nav class="grid gap-1" aria-label="Menú móvil">
-            <a class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-slate-900/40" href="./gallery.html" @click="openMenu=false; lockBody(false)">Galería</a>
             <a class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-slate-900/40" href="./contact.html" @click="openMenu=false; lockBody(false)">Contacto</a>
             <a class="mt-2 inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-extrabold text-white shadow transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100" href="./index.html" @click="openMenu=false; lockBody(false)">Volver al inicio</a>
           </nav>

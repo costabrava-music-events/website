@@ -30,26 +30,47 @@
   // eslint-disable-next-line no-new
   new Swiper(el, {
     loop: true,
-    speed: 700,
+    speed: 1800,
     slidesPerView: 1.15,
     spaceBetween: 16,
-    centeredSlides: true,
+    centeredSlides: false,
     autoplay: {
-      delay: 3500,
+      delay: 1400,
       disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      pauseOnMouseEnter: true,
     },
     breakpoints: {
-      640: { slidesPerView: 1.6, spaceBetween: 18 },
-      1024: { slidesPerView: 2.4, spaceBetween: 22 },
-      1280: { slidesPerView: 3.0, spaceBetween: 24 },
+      640: { slidesPerView: 2.0, spaceBetween: 16 },
+      1024: { slidesPerView: 3.0, spaceBetween: 18 },
+      1280: { slidesPerView: 4.0, spaceBetween: 20 },
+    },
+  });
+})();
+
+/**
+ * Swiper init (artists/partners)
+ */
+(() => {
+  const el = document.querySelector(".js-partners-swiper");
+  if (!el || typeof Swiper === "undefined") return;
+
+  // eslint-disable-next-line no-new
+  new Swiper(el, {
+    loop: true,
+    speed: 1200,
+    slidesPerView: 1.15,
+    spaceBetween: 16,
+    centeredSlides: false,
+    autoplay: {
+      delay: 700,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    allowTouchMove: true,
+    breakpoints: {
+      640: { slidesPerView: 2.0, spaceBetween: 16 },
+      1024: { slidesPerView: 3.0, spaceBetween: 18 },
+      1280: { slidesPerView: 4.0, spaceBetween: 20 },
     },
   });
 })();
@@ -82,4 +103,3 @@ window.cbmeApp = function cbmeApp() {
     },
   };
 };
-
