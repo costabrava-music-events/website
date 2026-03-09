@@ -125,6 +125,58 @@ window.cbmeApp = function cbmeApp() {
       url: "https://costabravamusicevents.com/?lang=en",
     },
   };
+  const seoLinks = {
+    dj_bodas: {
+      es: "./es/dj-bodas-costa-brava.html",
+      ca: "./ca/dj-bodas-costa-brava.html",
+      en: "./en/dj-bodas-costa-brava.html",
+    },
+    musica_privados: {
+      es: "./es/musica-eventos-privados-girona.html",
+      ca: "./ca/musica-eventos-privados-girona.html",
+      en: "./en/musica-eventos-privados-girona.html",
+    },
+    bandas_aniversarios: {
+      es: "./es/bandas-en-vivo-aniversarios-inauguraciones.html",
+      ca: "./ca/bandas-en-vivo-aniversarios-inauguraciones.html",
+      en: "./en/bandas-en-vivo-aniversarios-inauguraciones.html",
+    },
+    sonido_fiestas: {
+      es: "./es/sonido-iluminacion-fiestas-mayores.html",
+      ca: "./ca/sonido-iluminacion-fiestas-mayores.html",
+      en: "./en/sonido-iluminacion-fiestas-mayores.html",
+    },
+    decoracion: {
+      es: "./es/decoracion-eventos-costa-brava.html",
+      ca: "./ca/decoracion-eventos-costa-brava.html",
+      en: "./en/decoracion-eventos-costa-brava.html",
+    },
+    dj_privadas: {
+      es: "./es/dj-fiestas-privadas-costa-brava.html",
+      ca: "./ca/dj-fiestas-privadas-costa-brava.html",
+      en: "./en/dj-fiestas-privadas-costa-brava.html",
+    },
+    musica_vivo_bodas: {
+      es: "./es/musica-en-vivo-bodas-girona.html",
+      ca: "./ca/musica-en-vivo-bodas-girona.html",
+      en: "./en/musica-en-vivo-bodas-girona.html",
+    },
+    alquiler_sonido: {
+      es: "./es/alquiler-sonido-eventos-girona.html",
+      ca: "./ca/alquiler-sonido-eventos-girona.html",
+      en: "./en/alquiler-sonido-eventos-girona.html",
+    },
+    iluminacion_bodas: {
+      es: "./es/iluminacion-ambiental-bodas-costa-brava.html",
+      ca: "./ca/iluminacion-ambiental-bodas-costa-brava.html",
+      en: "./en/iluminacion-ambiental-bodas-costa-brava.html",
+    },
+    animacion_coctel: {
+      es: "./es/animacion-musical-coctel-ceremonia.html",
+      ca: "./ca/animacion-musical-coctel-ceremonia.html",
+      en: "./en/animacion-musical-coctel-ceremonia.html",
+    },
+  };
 
   const translations = {
     es: {
@@ -402,6 +454,12 @@ window.cbmeApp = function cbmeApp() {
       const key = node.getAttribute("data-i18n-html");
       if (!key || !dict[key]) return;
       node.innerHTML = dict[key];
+    });
+
+    document.querySelectorAll("[data-seo-link]").forEach((node) => {
+      const key = node.getAttribute("data-seo-link");
+      if (!key || !seoLinks[key] || !seoLinks[key][locale]) return;
+      node.setAttribute("href", seoLinks[key][locale]);
     });
 
     try {
