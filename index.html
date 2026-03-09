@@ -158,49 +158,50 @@
     class="h-full bg-slate-50 text-slate-900 antialiased dark:bg-[#050B16] dark:text-slate-100"
     x-data="cbmeApp()"
   >
-    <a
-      href="https://instagram.com/costabrava_music_events"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Instagram Costa Brava Music Events"
-      class="fixed left-4 top-4 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/55 bg-[linear-gradient(135deg,#f58529_0%,#feda77_28%,#dd2a7b_58%,#8134af_78%,#515bd4_100%)] text-white shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/35 transition duration-200 hover:scale-105 hover:shadow-[0_12px_30px_rgba(0,0,0,0.42)] sm:left-6 sm:top-6"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="h-6 w-6"
-        aria-hidden="true"
-      >
-        <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
-        <circle cx="12" cy="12" r="4.5"></circle>
-        <circle cx="17.5" cy="6.5" r="1"></circle>
-      </svg>
-    </a>
-
     <div class="fixed right-3 top-3 z-[80] sm:right-6 sm:top-6">
-      <div
-        id="language-selector"
-        class="cbme-lang-switch inline-flex items-center gap-1 rounded-xl border border-white/35 bg-black/40 p-1 text-white shadow-lg backdrop-blur-md"
-        role="group"
-        aria-label="Seleccionar idioma"
-      >
-        <button type="button" class="cbme-lang-btn" data-lang="es" aria-label="Español">
-          <span class="cbme-flag cbme-flag-es" aria-hidden="true"></span>
-          <span>Español</span>
-        </button>
-        <button type="button" class="cbme-lang-btn" data-lang="ca" aria-label="Català">
-          <span class="cbme-flag cbme-flag-ca" aria-hidden="true"></span>
-          <span>Català</span>
-        </button>
-        <button type="button" class="cbme-lang-btn" data-lang="en" aria-label="English">
-          <span aria-hidden="true">🇬🇧</span>
-          <span>English</span>
-        </button>
+      <div class="flex items-center gap-2">
+        <a
+          href="https://instagram.com/costabrava_music_events"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Instagram Costa Brava Music Events"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/55 bg-[linear-gradient(135deg,#f58529_0%,#feda77_28%,#dd2a7b_58%,#8134af_78%,#515bd4_100%)] text-white shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/35 transition duration-200 hover:scale-105 hover:shadow-[0_12px_30px_rgba(0,0,0,0.42)]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.9"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
+            <circle cx="12" cy="12" r="4.5"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+        </a>
+        <div
+          id="language-selector"
+          class="cbme-lang-switch inline-flex items-center gap-1 rounded-xl border border-white/35 bg-black/40 p-1 text-white shadow-lg backdrop-blur-md"
+          role="group"
+          aria-label="Seleccionar idioma"
+        >
+          <button type="button" class="cbme-lang-btn" data-lang="es" aria-label="Español">
+            <span class="cbme-flag cbme-flag-es" aria-hidden="true"></span>
+            <span>Español</span>
+          </button>
+          <button type="button" class="cbme-lang-btn" data-lang="ca" aria-label="Català">
+            <span class="cbme-flag cbme-flag-ca" aria-hidden="true"></span>
+            <span>Català</span>
+          </button>
+          <button type="button" class="cbme-lang-btn" data-lang="en" aria-label="English">
+            <span aria-hidden="true">🇬🇧</span>
+            <span>English</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -294,7 +295,7 @@
                   data-aos-delay="100"
                 >
                   <p data-i18n-html="hero_intro">
-                    Somos <span class="text-lg font-extrabold sm:text-xl">Costa Brava Music Events</span>, tu partner de confianza para bodas, eventos privados, cumpleaños, aniversarios, inauguraciones, fiestas mayores y verbenas en la Costa Brava.
+                    Somos <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span>, tu partner de confianza para bodas, eventos privados, cumpleaños, aniversarios, inauguraciones, fiestas mayores y verbenas.
                   </p>
                   <p class="mt-3" data-i18n="hero_offers_title">Ofrecemos:</p>
                   <ul class="list-disc pl-10 sm:pl-12">
@@ -302,9 +303,10 @@
                     <li data-i18n="hero_bullet_2">Bandas y propuestas en vivo (pop/rock, flamenco, rumba, boleros y más)</li>
                     <li data-i18n="hero_bullet_3">Equipos de sonido premium adaptados a cada espacio</li>
                     <li data-i18n="hero_bullet_4">Iluminación creativa y ambiental para crear el ambiente perfecto</li>
+                    <li data-i18n="hero_bullet_5">Decoración personalizada para cada espacio y estilo de evento</li>
                   </ul>
                   <p class="mt-3" data-i18n="hero_outro">Diseñamos cada evento a medida, cuidando cada detalle para que tú solo te ocupes de disfrutar.</p>
-                  <p class="mt-2 text-center" data-i18n="hero_signature">La Costa Brava suena mejor con nosotros.</p>
+                  <p class="mt-2 text-center" data-i18n="hero_signature">Tu evento suena mejor con nosotros.</p>
                 </div>
 
               </div>
@@ -479,7 +481,7 @@
                 <span data-i18n="moments_title">Momentos</span>
               </h2>
               <p class="mt-2 text-slate-600 dark:text-slate-300 sm:whitespace-nowrap">
-                <span data-i18n="moments_copy">Momentos reales de nuestros eventos: música en directo, energía en pista y puesta en escena cuidada.</span>
+                <span data-i18n="moments_copy">Así suenan y se viven nuestros eventos: música en vivo, ritmo en la pista y momentos que nadie olvida.</span>
               </p>
             </div>
           </div>
