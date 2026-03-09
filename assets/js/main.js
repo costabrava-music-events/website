@@ -111,6 +111,20 @@ window.cbmeApp = function cbmeApp() {
   const selector = document.querySelector("#language-selector");
   const langButtons = Array.from(document.querySelectorAll("[data-lang]"));
   if (!selector || langButtons.length === 0) return;
+  const langSeo = {
+    es: {
+      locale: "es_ES",
+      url: "https://costabravamusicevents.com/",
+    },
+    ca: {
+      locale: "ca_ES",
+      url: "https://costabravamusicevents.com/?lang=ca",
+    },
+    en: {
+      locale: "en_GB",
+      url: "https://costabravamusicevents.com/?lang=en",
+    },
+  };
 
   const translations = {
     es: {
@@ -360,6 +374,21 @@ window.cbmeApp = function cbmeApp() {
     const metaOgDescription = document.querySelector("#meta-og-description");
     if (metaOgDescription) metaOgDescription.setAttribute("content", dict.meta_og_description);
 
+    const metaTwitterTitle = document.querySelector("#meta-twitter-title");
+    if (metaTwitterTitle) metaTwitterTitle.setAttribute("content", dict.meta_og_title);
+
+    const metaTwitterDescription = document.querySelector("#meta-twitter-description");
+    if (metaTwitterDescription) metaTwitterDescription.setAttribute("content", dict.meta_og_description);
+
+    const canonical = document.querySelector("link[rel='canonical']");
+    if (canonical) canonical.setAttribute("href", langSeo[locale].url);
+
+    const metaOgUrl = document.querySelector("#meta-og-url");
+    if (metaOgUrl) metaOgUrl.setAttribute("content", langSeo[locale].url);
+
+    const metaOgLocale = document.querySelector("#meta-og-locale");
+    if (metaOgLocale) metaOgLocale.setAttribute("content", langSeo[locale].locale);
+
     document.querySelectorAll("[data-i18n]").forEach((node) => {
       const key = node.getAttribute("data-i18n");
       if (!key || !dict[key]) return;
@@ -377,9 +406,27 @@ window.cbmeApp = function cbmeApp() {
     } catch (_error) {
       // ignore localStorage errors
     }
+
+    try {
+      const url = new URL(window.location.href);
+      if (locale === "es") {
+        url.searchParams.delete("lang");
+      } else {
+        url.searchParams.set("lang", locale);
+      }
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    } catch (_error) {
+      // ignore URL/history errors
+    }
   };
 
   const getInitialLanguage = () => {
+    try {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      if (urlLang && translations[urlLang]) return urlLang;
+    } catch (_error) {
+      // ignore URLSearchParams errors
+    }
     try {
       const saved = localStorage.getItem("cbme_lang");
       if (saved && translations[saved]) return saved;
