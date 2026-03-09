@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
 
-    <title>Costa Brava Music Events — Eventos musicales en la Costa Brava</title>
+    <title id="page-title">Costa Brava Music Events — Eventos musicales en la Costa Brava</title>
     <meta
+      id="meta-description"
       name="description"
       content="Música, sonido e iluminación que hacen vibrar tu evento"
     />
     <link rel="icon" href="./assets/img/LOGO TRANSPARENTE.png" type="image/png" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Costa Brava Music Events" />
+    <meta id="meta-og-title" property="og:title" content="Costa Brava Music Events" />
     <meta
+      id="meta-og-description"
       property="og:description"
       content="Música, sonido e iluminación que hacen vibrar tu evento"
     />
@@ -75,10 +77,57 @@
     class="h-full bg-slate-50 text-slate-900 antialiased dark:bg-[#050B16] dark:text-slate-100"
     x-data="cbmeApp()"
   >
+    <a
+      href="https://instagram.com/costabrava_music_events"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Instagram Costa Brava Music Events"
+      class="fixed left-4 top-4 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/55 bg-[linear-gradient(135deg,#f58529_0%,#feda77_28%,#dd2a7b_58%,#8134af_78%,#515bd4_100%)] text-white shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-white/35 transition duration-200 hover:scale-105 hover:shadow-[0_12px_30px_rgba(0,0,0,0.42)] sm:left-6 sm:top-6"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-6 w-6"
+        aria-hidden="true"
+      >
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <circle cx="17.5" cy="6.5" r="1"></circle>
+      </svg>
+    </a>
+
+    <div class="fixed right-4 top-4 z-[80] sm:right-6 sm:top-6">
+      <div
+        id="language-selector"
+        class="cbme-lang-switch inline-flex items-center gap-1 rounded-xl border border-white/35 bg-black/40 p-1 text-white shadow-lg backdrop-blur-md"
+        role="group"
+        aria-label="Seleccionar idioma"
+      >
+        <button type="button" class="cbme-lang-btn" data-lang="es" aria-label="Español">
+          <span class="cbme-flag cbme-flag-es" aria-hidden="true"></span>
+          <span>Español</span>
+        </button>
+        <button type="button" class="cbme-lang-btn" data-lang="ca" aria-label="Català">
+          <span class="cbme-flag cbme-flag-ca" aria-hidden="true"></span>
+          <span>Català</span>
+        </button>
+        <button type="button" class="cbme-lang-btn" data-lang="en" aria-label="English">
+          <span aria-hidden="true">🇬🇧</span>
+          <span>English</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Skip link (a11y) -->
     <a
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:shadow"
       href="#contenido"
+      data-i18n="skip_to_content"
       >Saltar al contenido</a
     >
 
@@ -155,7 +204,7 @@
                   data-aos="fade-up"
                   data-aos-delay="50"
                 >
-                  Música, sonido e iluminación que hacen vibrar tu evento
+                  <span data-i18n="hero_title">Música, sonido e iluminación que hacen vibrar tu evento</span>
                 </h1>
 
                 <div
@@ -163,18 +212,18 @@
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <p>
+                  <p data-i18n-html="hero_intro">
                     Somos <span class="text-lg font-extrabold sm:text-xl">Costa Brava Music Events</span>, tu partner de confianza para bodas, eventos privados, cumpleaños, aniversarios, inauguraciones, fiestas mayores y verbenas en la Costa Brava.
                   </p>
-                  <p class="mt-3">Ofrecemos:</p>
+                  <p class="mt-3" data-i18n="hero_offers_title">Ofrecemos:</p>
                   <ul class="list-disc pl-10 sm:pl-12">
-                    <li>DJs profesionales y selección musical personalizada</li>
-                    <li>Bandas y propuestas en vivo (pop/rock, flamenco, rumba, boleros y más)</li>
-                    <li>Equipos de sonido premium adaptados a cada espacio</li>
-                    <li>Iluminación creativa y ambiental para crear el ambiente perfecto</li>
+                    <li data-i18n="hero_bullet_1">DJs profesionales y selección musical personalizada</li>
+                    <li data-i18n="hero_bullet_2">Bandas y propuestas en vivo (pop/rock, flamenco, rumba, boleros y más)</li>
+                    <li data-i18n="hero_bullet_3">Equipos de sonido premium adaptados a cada espacio</li>
+                    <li data-i18n="hero_bullet_4">Iluminación creativa y ambiental para crear el ambiente perfecto</li>
                   </ul>
-                  <p class="mt-3">Diseñamos cada evento a medida, cuidando cada detalle para que tú solo te ocupes de disfrutar.</p>
-                  <p class="mt-2 text-center">La Costa Brava suena mejor con nosotros.</p>
+                  <p class="mt-3" data-i18n="hero_outro">Diseñamos cada evento a medida, cuidando cada detalle para que tú solo te ocupes de disfrutar.</p>
+                  <p class="mt-2 text-center" data-i18n="hero_signature">La Costa Brava suena mejor con nosotros.</p>
                 </div>
 
               </div>
@@ -195,17 +244,17 @@
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
                 <h3 class="font-display text-xl font-extrabold">
-                  ¿Quieres una propuesta a medida?
+                  <span data-i18n="proposal_title">¿Quieres una propuesta a medida?</span>
                 </h3>
                 <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                  Ponte contacto con nosotros, estaremos encantados de darte un presupuesto personalizado
+                  <span data-i18n="proposal_copy">Ponte en contacto con nosotros, estaremos encantados de darte un presupuesto personalizado</span>
                 </p>
               </div>
               <a
                 href="#contacto"
                 class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-extrabold text-white shadow transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
               >
-                Solicitar propuesta
+                <span data-i18n="proposal_cta">Solicitar propuesta</span>
               </a>
             </div>
           </div>
@@ -217,10 +266,10 @@
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div data-aos="fade-up">
             <h2 class="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Artistas & partners
+              <span data-i18n="partners_title">Artistas & partners</span>
             </h2>
             <p class="mt-2 text-slate-600 dark:text-slate-300">
-              Colaboramos con DJs, bandas y propuestas en vivo para crear experiencias musicales a medida en cada evento.
+              <span data-i18n="partners_copy">Colaboramos con DJs, bandas y propuestas en vivo para crear experiencias musicales a medida en cada evento.</span>
             </p>
           </div>
 
@@ -235,9 +284,9 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">DJ</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_dj">DJ</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Alb3rt Bit</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Dj Profesional</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_dj_pro">DJ profesional</div>
                   </div>
                 </div>
 <div class="swiper-slide">
@@ -250,10 +299,10 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Banda</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
                     <div class="mt-2 font-display text-xl font-extrabold">One Day Djs</div>
                     <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                      Musica 80/90's con percusión y batería en directo
+                      <span data-i18n="style_oneday">Música 80/90 con percusión y batería en directo</span>
                     </div>
                   </div>
                 </div>
@@ -267,9 +316,9 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">DJ</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_dj">DJ</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Dani Homs</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Dj Profesional</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_dj_pro">DJ profesional</div>
                   </div>
                 </div>
 <div class="swiper-slide">
@@ -281,9 +330,9 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Banda</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Barcelona Flamenco</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Rumba Catalana</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_rumba">Rumba Catalana</div>
                   </div>
                 </div>
 <div class="swiper-slide">
@@ -295,9 +344,9 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Banda</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Litus al cub</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Versiones de Pop/Rock (U2, REM, Queen, Beatles y Oasis)</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_litus">Versiones de Pop/Rock (U2, REM, Queen, Beatles y Oasis)</div>
                   </div>
                 </div>
 <div class="swiper-slide">
@@ -309,16 +358,16 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Baile</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_dance">Baile</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Barcelona Flamenco</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Bailaoras de Flamenco</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_bailaoras">Bailaoras de Flamenco</div>
                   </div>
                 </div>
 <div class="swiper-slide">
                   <div class="flex h-[360px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Artista</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_artist">Artista</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Inma Ortiz</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Boleros, chill y música mediterránea</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_inma">Boleros, chill y música mediterránea</div>
                   </div>
                 </div>
 <div class="swiper-slide">
@@ -330,9 +379,9 @@
                       loading="lazy"
                       decoding="async"
                     />
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Banda</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
                     <div class="mt-2 font-display text-xl font-extrabold">Barcelona Flamenco</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Flamenco tradicional</div>
+                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_flamenco_trad">Flamenco tradicional</div>
                   </div>
                 </div></div>
             </div>
@@ -346,10 +395,10 @@
           <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div data-aos="fade-up">
               <h2 class="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Momentos
+                <span data-i18n="moments_title">Momentos</span>
               </h2>
-              <p class="mt-2 max-w-3xl text-slate-600 dark:text-slate-300">
-                Momentos reales de nuestros eventos: música en directo, energía en pista y puesta en escena cuidada.
+              <p class="mt-2 text-slate-600 dark:text-slate-300 sm:whitespace-nowrap">
+                <span data-i18n="moments_copy">Momentos reales de nuestros eventos: música en directo, energía en pista y puesta en escena cuidada.</span>
               </p>
             </div>
           </div>
@@ -373,9 +422,9 @@
                       <source src="./assets/video/momento-1.mp4" type="video/mp4" />
                     </video>
                     <figcaption class="flex-1 p-5">
-                      <div class="text-sm font-extrabold">Boda</div>
+                      <div class="text-sm font-extrabold" data-i18n="moment_1_title">Boda</div>
                       <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                        El Jardi de Can Marc (Begur - Costa Brava)
+                        <span data-i18n="moment_1_desc">El Jardí de Can Marc (Begur - Costa Brava)</span>
                       </div>
                     </figcaption>
                   </figure>
@@ -399,7 +448,7 @@
                     <figcaption class="flex-1 p-5">
                       <div class="text-sm font-extrabold">Flamenco Barcelona</div>
                       <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                        Actuación en directo de Bailaoras de Flamenco y trío flamenco tradicional
+                        <span data-i18n="moment_2_desc">Actuación en directo de Bailaoras de Flamenco y trío flamenco tradicional</span>
                       </div>
                     </figcaption>
                   </figure>
@@ -423,7 +472,7 @@
                     <figcaption class="flex-1 p-5">
                       <div class="text-sm font-extrabold">One Day Djs</div>
                       <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                        Versiones electrónicas 80/90s con percusión y dj en directo
+                        <span data-i18n="moment_3_desc">Versiones electrónicas 80/90s con percusión y dj en directo</span>
                       </div>
                     </figcaption>
                   </figure>
@@ -446,7 +495,7 @@
                     <figcaption class="flex-1 p-5">
                       <div class="text-sm font-extrabold">Inma Ortiz</div>
                       <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                        Boleros, chill y música mediterránea
+                        <span data-i18n="moment_4_desc">Boleros, chill y música mediterránea</span>
                       </div>
                     </figcaption>
                   </figure>
@@ -464,10 +513,10 @@
           <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div data-aos="fade-up">
               <h2 class="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Servicios
+                <span data-i18n="services_title">Servicios</span>
               </h2>
               <p class="mt-2 text-slate-600 dark:text-slate-300">
-                Diseñamos música personalizada para tu evento, adaptada a tu estilo y a tus invitados. Trabajamos todos los géneros musicales, con equipos de sonido ajustados al espacio e iluminación con ambiente de discoteca y decorativa para los diferentes espacios.
+                <span data-i18n="services_copy">Diseñamos música personalizada para tu evento, adaptada a tu estilo y a tus invitados. Trabajamos todos los géneros musicales, con equipos de sonido ajustados al espacio e iluminación con ambiente de discoteca y decoración adaptada a los diferentes espacios.</span>
               </p>
             </div>
           </div>
@@ -487,9 +536,9 @@
               <div class="absolute inset-0 bg-gradient-to-b from-white/30 to-white/55 dark:from-slate-950/25 dark:to-slate-950/55"></div>
               <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-cb-aqua/15 blur-3xl"></div>
               <div class="relative z-10">
-                <h3 class="mt-3 font-display text-xl font-extrabold">DJs y Grupos Musicales</h3>
+                <h3 class="mt-3 font-display text-xl font-extrabold" data-i18n="service_card_1_title">DJs y Grupos Musicales</h3>
                 <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                  Selección de DJs y grupos musicales adaptados a tu evento, con repertorio pensado para tu estilo y tus invitados.
+                  <span data-i18n="service_card_1_desc">Selección de DJs y grupos musicales adaptados a tu evento, con repertorio pensado para tu estilo y tus invitados.</span>
                 </p>
               </div>
             </article>
@@ -510,10 +559,10 @@
               <div class="absolute -left-16 -bottom-16 h-40 w-40 rounded-full bg-cb-dusk/15 blur-3xl"></div>
               <div class="relative z-10">
                 <h3 class="mt-3 font-display text-xl font-extrabold">
-                  Sonido & iluminación
+                  <span data-i18n="service_card_2_title">Sonido & iluminación</span>
                 </h3>
                 <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                  Sistema de sonido ajustado al recinto, cabina DJ y propuesta de iluminación decorativa y de fiesta.
+                  <span data-i18n="service_card_2_desc">Sistema de sonido ajustado al recinto, cabina DJ y propuesta de iluminación decorativa y de fiesta.</span>
                 </p>
               </div>
             </article>
@@ -533,9 +582,9 @@
               <div class="absolute inset-0 bg-gradient-to-b from-white/30 to-white/55 dark:from-slate-950/25 dark:to-slate-950/55"></div>
               <div class="absolute -right-16 -bottom-16 h-40 w-40 rounded-full bg-cb-amber/15 blur-3xl"></div>
               <div class="relative z-10">
-                <h3 class="mt-3 font-display text-xl font-extrabold">Decoración</h3>
+                <h3 class="mt-3 font-display text-xl font-extrabold" data-i18n="service_card_3_title">Decoración</h3>
                 <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                  Ofrecemos servicios de decoración para tu evento: flores, globos, fuego frío, confeti y más, adaptados a tu estilo.
+                  <span data-i18n="service_card_3_desc">Ofrecemos servicios de decoración para tu evento: flores, globos, fuego frío, confeti y más, adaptados a tu estilo.</span>
                 </p>
               </div>
             </article>
@@ -550,7 +599,7 @@
           <div class="grid gap-10 lg:grid-cols-12">
             <div class="lg:col-span-5" data-aos="fade-up">
               <h2 class="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Contacto / Reserva
+                <span data-i18n="contact_title">Contacto / Reserva</span>
               </h2>
 
               <div class="mt-6 grid gap-3">
@@ -560,7 +609,7 @@
                 >
                   <div>
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">
-                      Email
+                      <span data-i18n="contact_email">Email</span>
                     </div>
                     <div class="mt-1 text-sm font-extrabold">
                       costabravamusicevents@gmail.com
@@ -576,7 +625,7 @@
                 >
                   <div>
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">
-                      Teléfono de contacto
+                      <span data-i18n="contact_phone">Teléfono de contacto</span>
                     </div>
                     <div class="mt-1 text-sm font-extrabold">619840602</div>
                   </div>
@@ -589,7 +638,7 @@
                   rel="noreferrer"
                 >
                   <div>
-                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300">Teléfono de contacto</div>
+                    <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="contact_phone">Teléfono de contacto</div>
                     <div class="mt-1 text-sm font-extrabold">687962905</div>
                   </div>
                   <span class="text-slate-400 transition group-hover:translate-x-0.5">→</span>
@@ -604,11 +653,11 @@
                 method="POST"
               >
                 <div class="flex items-center justify-between gap-4">
-                  <h3 class="font-display text-xl font-extrabold">Envíanos un mensaje</h3>                </div>
+                  <h3 class="font-display text-xl font-extrabold" data-i18n="form_title">Envíanos un mensaje</h3>                </div>
 
                 <div class="mt-6 grid gap-4 sm:grid-cols-2">
                   <label class="grid gap-2 text-sm font-semibold">
-                    Nombre
+                    <span data-i18n="form_name">Nombre</span>
                     <input
                       name="name"
                       type="text"
@@ -618,7 +667,7 @@
                     />
                   </label>
                   <label class="grid gap-2 text-sm font-semibold">
-                    Email
+                    <span data-i18n="form_email">Email</span>
                     <input
                       name="email"
                       type="email"
@@ -628,7 +677,7 @@
                     />
                   </label>
                 <label class="mt-4 grid gap-2 text-sm font-semibold">
-                  Teléfono
+                  <span data-i18n="form_phone">Teléfono</span>
                   <input
                     name="phone"
                     type="tel"
@@ -637,7 +686,7 @@
                   />
                 </label>
                 <label class="mt-4 grid gap-2 text-sm font-semibold">
-                  Ubicación del evento
+                  <span data-i18n="form_location">Ubicación del evento</span>
                   <input
                     name="event_location"
                     type="text"
@@ -646,7 +695,7 @@
                   />
                 </label>
                 <label class="mt-4 grid gap-2 text-sm font-semibold">
-                  Fecha del Evento
+                  <span data-i18n="form_date">Fecha del evento</span>
                   <input
                     name="event_date"
                     type="date"
@@ -654,7 +703,7 @@
                   />
                 </label>
                 <label class="mt-4 grid gap-2 text-sm font-semibold">
-                  Número de invitados
+                  <span data-i18n="form_guests">Número de invitados</span>
                   <input
                     name="guest_count"
                     type="number"
@@ -664,20 +713,20 @@
                   />
                 </label>
                 <label class="mt-4 grid gap-2 text-sm font-semibold">
-                  Tipo de evento
+                  <span data-i18n="form_event_type">Tipo de evento</span>
                   <select
                     name="event_type"
                     class="h-11 rounded-2xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none transition focus:border-cb-aqua/60 focus:ring-4 focus:ring-cb-aqua/15 dark:border-slate-700/60 dark:bg-slate-950/20"
                   >
-                    <option>Boda</option>
-                    <option>Evento Privado</option>
-                    <option>Aniversario</option>
-                    <option>Fiesta Mayor</option>
+                    <option data-i18n="event_wedding">Boda</option>
+                    <option data-i18n="event_private">Evento Privado</option>
+                    <option data-i18n="event_anniversary">Aniversario</option>
+                    <option data-i18n="event_fiesta">Fiesta Mayor</option>
                   </select>
                 </label>
               </div>
               <label class="mt-4 grid gap-2 text-sm font-semibold">
-                Mensaje
+                <span data-i18n="form_message">Mensaje</span>
                   <textarea
                     name="message"
                     rows="5"
@@ -691,7 +740,7 @@
                     type="submit"
                     class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-extrabold text-white shadow transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
                   >
-                    Enviar
+                    <span data-i18n="form_submit">Enviar</span>
                   </button>
                 </div>
               </form>
@@ -705,15 +754,15 @@
       <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div class="grid gap-8 md:grid-cols-12">
           <div class="md:col-span-12 text-center">
-            <div class="font-display text-xl font-extrabold">Costa Brava Music Events</div>
+            <div class="font-display text-xl font-extrabold" data-i18n="footer_brand">Costa Brava Music Events</div>
             <p class="mx-auto mt-2 max-w-md text-sm text-slate-600 dark:text-slate-300">
-              Música, sonido e iluminación que hacen vibrar tu evento
+              <span data-i18n="footer_tagline">Música, sonido e iluminación que hacen vibrar tu evento</span>
             </p>
           </div>
         </div>
 
         <div class="mt-10 flex flex-col gap-3 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-500 dark:border-slate-800/70 dark:text-slate-400">
-          <p>© <span x-text="new Date().getFullYear()"></span> Costa Brava Music Events. Todos los derechos reservados.</p>
+          <p data-i18n-html="footer_rights">© <span x-text="new Date().getFullYear()"></span> Costa Brava Music Events. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
