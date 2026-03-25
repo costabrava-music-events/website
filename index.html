@@ -253,20 +253,19 @@
 
           <!-- “Photo” layer: external, easy to replace with your own (uses <picture> + srcset) -->
           <div
-            class="absolute inset-0 opacity-100"
+            class="absolute inset-0 opacity-60"
             style="transform: translateY(var(--parallax))"
             aria-hidden="true"
           >
             <picture>
               <img
-                src="./assets/img/hero-beach-1600.jpg"
+                src="./assets/img/hero-dj-mixer.jpg"
                 srcset="
-                  ./assets/img/hero-beach-900.jpg 900w,
-                  ./assets/img/hero-beach-1600.jpg 1600w
+                  ./assets/img/hero-dj-mixer.jpg 1024w
                 "
                 sizes="100vw"
                 alt=""
-                class="h-full w-full object-cover"
+                class="h-full w-full object-cover object-[47.2%_center]"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
@@ -283,11 +282,11 @@
           <div class="mx-auto max-w-7xl px-4 pb-8 pt-0 sm:px-6 lg:px-8">
             <div class="flex justify-center">
               <div class="mx-auto max-w-4xl text-left">
-                <div class="-mb-14 -mt-8 flex justify-center sm:-mt-12" data-aos="fade-up">
+                <div class="-mb-20 -mt-2 flex justify-center sm:-mt-6" data-aos="fade-up">
                   <img
                     src="./assets/img/LOGO TRANSPARENTE.png"
                     alt="Costa Brava Music Events"
-                    class="h-80 w-auto object-contain drop-shadow-[0_12px_40px_rgba(0,0,0,0.45)] sm:h-[30rem]"
+                    class="h-[27rem] w-auto object-contain opacity-80 drop-shadow-[0_12px_40px_rgba(0,0,0,0.45)] sm:h-[38rem]"
                     loading="eager"
                     decoding="async"
                   />
@@ -370,7 +369,7 @@
           <div class="mt-10" data-aos="fade-up">
             <div class="swiper js-partners-swiper">
               <div class="swiper-wrapper"><div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/albert_bit_dj.JPG"
                       alt="DJ Alb3rt Bit actuando en evento privado"
@@ -379,12 +378,25 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_dj">DJ</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Alb3rt Bit</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_dj_pro">DJ profesional</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Alb3rt Bit</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_dj_pro">DJ profesional</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url=""
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/onedaydj.jpg"
                       alt="Banda One Day Djs con percusión y batería en directo"
@@ -394,14 +406,27 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">One Day Djs</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                      <span data-i18n="style_oneday">Música 80/90 con percusión y batería en directo</span>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">One Day Djs</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                        <span data-i18n="style_oneday">Música 80/90 con percusión y batería en directo</span>
+                      </div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url="https://instagram.com/onedaydjs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
                     </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/danihoms.jpg"
                       alt="DJ Dani Homs en sesión musical para evento"
@@ -411,12 +436,25 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_dj">DJ</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Dani Homs</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_dj_pro">DJ profesional</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Dani Homs</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_dj_pro">DJ profesional</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url="https://instagram.com/homsdani"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/RumbaCatalana.jpeg"
                       alt="Banda de rumba catalana en actuación en vivo"
@@ -425,12 +463,25 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Barcelona Flamenco</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_rumba">Rumba Catalana</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Barcelona Flamenco</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_rumba">Rumba Catalana</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url=""
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/50 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/litus.jpeg"
                       alt="Banda Litus al cub interpretando versiones pop rock en directo"
@@ -439,12 +490,25 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Litus al cub</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_litus">Versiones de Pop/Rock (U2, REM, Queen, Beatles y Oasis)</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Litus al cub</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_litus">Versiones de Pop/Rock (U2, REM, Queen, Beatles y Oasis)</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url="https://instagram.com/litusalcub"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/bailaoras.jpeg"
                       alt="Actuación de Barcelona Flamenco con bailaoras en evento"
@@ -453,12 +517,25 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_dance">Baile</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Barcelona Flamenco</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_bailaoras">Bailaoras de Flamenco</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Barcelona Flamenco</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_bailaoras">Bailaoras de Flamenco</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url="https://instagram.com/barcelonaflamenco"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/inma-ortiz.jpeg"
                       alt="Inma Ortiz interpretando boleros y música mediterránea en directo"
@@ -467,12 +544,25 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_artist">Artista</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Inma Ortiz</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_inma">Boleros, chill y música mediterránea</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Inma Ortiz</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_inma">Boleros, chill y música mediterránea</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url="https://instagram.com/inmasinger"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 <div class="swiper-slide">
-                  <div class="flex h-[360px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
+                  <div class="flex h-[400px] flex-col rounded-3xl border border-dashed border-slate-300 bg-white/80 p-6 shadow-sm dark:border-slate-600/60 dark:bg-slate-950/20">
                     <img
                       src="./assets/img/flamenco.jpg"
                       alt="Actuación de Barcelona Flamenco en evento"
@@ -481,8 +571,21 @@
                       decoding="async"
                     />
                     <div class="text-xs font-extrabold text-slate-500 dark:text-slate-300" data-i18n="role_band">Banda</div>
-                    <div class="mt-2 font-display text-xl font-extrabold">Barcelona Flamenco</div>
-                    <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_flamenco_trad">Flamenco tradicional</div>
+                    <div class="mt-2 flex min-h-[4.75rem] flex-col">
+                      <div class="font-display text-xl font-extrabold">Barcelona Flamenco</div>
+                      <div class="mt-1 text-sm text-slate-600 dark:text-slate-300" data-i18n="style_flamenco_trad">Flamenco tradicional</div>
+                    </div>
+                    <div class="mt-auto flex min-h-11 items-end justify-center pt-12 pb-4">
+                      <a
+                        data-instagram-link
+                        data-instagram-url=""
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm font-bold text-pink-700 transition hover:border-pink-300 hover:bg-pink-100 dark:border-pink-500/30 dark:bg-pink-500/10 dark:text-pink-200 dark:hover:border-pink-400/40 dark:hover:bg-pink-500/20"
+                      >
+                        <span data-i18n="partners_instagram_cta">Ver Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div></div>
             </div>

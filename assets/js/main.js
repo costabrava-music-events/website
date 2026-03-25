@@ -157,6 +157,7 @@ window.cbmeApp = function cbmeApp() {
       partners_title: "Artistas & partners",
       partners_copy:
         "Colaboramos con DJs, bandas y propuestas en vivo para crear experiencias musicales a medida en cada evento.",
+      partners_instagram_cta: "Ver Instagram",
       role_dj: "DJ",
       role_band: "Banda",
       role_dance: "Baile",
@@ -233,6 +234,7 @@ window.cbmeApp = function cbmeApp() {
       proposal_cta: "Sol·licitar proposta",
       partners_title: "Artistes & partners",
       partners_copy: "Col·laborem amb DJs, bandes i propostes en directe per crear experiències musicals a mida a cada esdeveniment.",
+      partners_instagram_cta: "Veure Instagram",
       role_dj: "DJ",
       role_band: "Banda",
       role_dance: "Ball",
@@ -306,6 +308,7 @@ window.cbmeApp = function cbmeApp() {
       proposal_cta: "Request proposal",
       partners_title: "Artists & partners",
       partners_copy: "We collaborate with DJs, bands and live acts to create tailor-made music experiences for every event.",
+      partners_instagram_cta: "View Instagram",
       role_dj: "DJ",
       role_band: "Band",
       role_dance: "Dance",
@@ -460,4 +463,18 @@ window.cbmeApp = function cbmeApp() {
   });
 
   applyLanguage(getInitialLanguage());
+})();
+
+/**
+ * Optional Instagram links for artist/partner cards.
+ * Show the CTA only when a URL is present in `data-instagram-url`.
+ */
+(() => {
+  document.querySelectorAll("[data-instagram-link]").forEach((link) => {
+    const href = (link.getAttribute("data-instagram-url") || "").trim();
+    if (!href) return;
+
+    link.setAttribute("href", href);
+    link.classList.remove("hidden");
+  });
 })();

@@ -44,7 +44,7 @@
       return;
     }
 
-    if (href.includes("instagram.com/costabrava_music_events")) {
+    if (href.includes("instagram.com/")) {
       track("instagram_click", { link_url: href, link_text: label });
       return;
     }
