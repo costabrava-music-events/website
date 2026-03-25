@@ -253,19 +253,20 @@
 
           <!-- “Photo” layer: external, easy to replace with your own (uses <picture> + srcset) -->
           <div
-            class="absolute inset-0 opacity-60"
+            class="absolute inset-0 opacity-100"
             style="transform: translateY(var(--parallax))"
             aria-hidden="true"
           >
             <picture>
               <img
-                src="./assets/img/hero-dj-mixer.jpg"
+                src="./assets/img/hero-beach-1600.jpg"
                 srcset="
-                  ./assets/img/hero-dj-mixer.jpg 1024w
+                  ./assets/img/hero-beach-900.jpg 900w,
+                  ./assets/img/hero-beach-1600.jpg 1600w
                 "
                 sizes="100vw"
                 alt=""
-                class="h-full w-full object-cover object-[47.2%_center]"
+                class="h-full w-full object-cover"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
