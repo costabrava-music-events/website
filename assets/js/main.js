@@ -130,6 +130,11 @@ window.cbmeApp = function cbmeApp() {
     ca: "./ca/guies-locals.html",
     en: "./en/local-guides.html",
   };
+  const blogHub = {
+    es: "./es/blog.html",
+    ca: "./ca/blog.html",
+    en: "./en/blog.html",
+  };
 
   const translations = {
     es: {
@@ -207,6 +212,7 @@ window.cbmeApp = function cbmeApp() {
       form_message: "Mensaje",
       form_submit: "Enviar",
       footer_local_guides: "Guías locales",
+      footer_blog: "Blog",
       footer_brand: "Costa Brava Music Events",
       footer_tagline: "Música, sonido e iluminación que hacen vibrar tu evento",
       footer_rights:
@@ -280,6 +286,7 @@ window.cbmeApp = function cbmeApp() {
       form_message: "Missatge",
       form_submit: "Enviar",
       footer_local_guides: "Guies locals",
+      footer_blog: "Blog",
       footer_brand: "Costa Brava Music Events",
       footer_tagline: "Música, so i il·luminació que fan vibrar el teu esdeveniment",
       footer_rights:
@@ -357,6 +364,7 @@ window.cbmeApp = function cbmeApp() {
       form_message: "Message",
       form_submit: "Send",
       footer_local_guides: "Local guides",
+      footer_blog: "Blog",
       footer_brand: "Costa Brava Music Events",
       footer_tagline: "Music, sound and lighting that make your event come alive",
       footer_rights:
@@ -417,6 +425,8 @@ window.cbmeApp = function cbmeApp() {
 
     const guidesLink = document.querySelector("#local-guides-link");
     if (guidesLink) guidesLink.setAttribute("href", guidesHub[locale]);
+    const blogLink = document.querySelector("#blog-link");
+    if (blogLink) blogLink.setAttribute("href", blogHub[locale]);
 
     try {
       localStorage.setItem("cbme_lang", locale);
