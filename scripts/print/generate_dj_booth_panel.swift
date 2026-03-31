@@ -19,16 +19,28 @@ let spec = PanelSpec(widthMM: 500, heightMM: 400, dpi: 300)
 let fm = FileManager.default
 let cwd = URL(fileURLWithPath: fm.currentDirectoryPath)
 let outDir = cwd.appendingPathComponent("assets/print", isDirectory: true)
-let logoURL = cwd.appendingPathComponent("assets/img/logo-transparente.png")
+let lightLogoURL = cwd.appendingPathComponent("assets/img/logo-transparente.png")
+let darkLogoURL = cwd.appendingPathComponent("assets/img/logo-hero-white-text.png")
 try fm.createDirectory(at: outDir, withIntermediateDirectories: true)
 
-guard let logo = NSImage(contentsOf: logoURL) else {
-    fputs("No se pudo cargar el logo\n", stderr)
+guard let lightLogo = NSImage(contentsOf: lightLogoURL),
+      let darkLogo = NSImage(contentsOf: darkLogoURL) else {
+    fputs("No se pudo cargar alguno de los logos\n", stderr)
     exit(1)
 }
 
 let web = "www.costabravamusicevents.com"
 let instagram = "@costabrava_music_events"
+
+struct PanelTheme {
+    let logo: NSImage
+    let textColor: NSColor
+    let backgroundColor: NSColor?
+    let webFontSize: CGFloat
+    let instagramFontSize: CGFloat
+    let webYOffset: CGFloat
+    let instagramYOffset: CGFloat
+}
 
 func font(_ name: String, _ size: CGFloat, weight: NSFont.Weight = .regular) -> NSFont {
     NSFont(name: name, size: size) ?? NSFont.systemFont(ofSize: size, weight: weight)
@@ -46,10 +58,10 @@ func centeredText(_ text: String, in rect: CGRect, attrs: [NSAttributedString.Ke
     attr.draw(in: drawRect)
 }
 
-func drawPanel(backgroundColor: NSColor?) {
+func drawPanel(theme: PanelTheme) {
     let canvas = CGRect(origin: .zero, size: spec.sizePt)
 
-    (backgroundColor ?? NSColor.clear).setFill()
+    (theme.backgroundColor ?? NSColor.clear).setFill()
     canvas.fill()
 
     let logoWidth = canvas.width * 1.42
@@ -59,32 +71,32 @@ func drawPanel(backgroundColor: NSColor?) {
         width: logoWidth,
         height: logoWidth
     )
-    logo.draw(in: logoRect)
+    theme.logo.draw(in: logoRect)
 
     let webRect = CGRect(
         x: canvas.width * 0.015,
-        y: canvas.height * 0.055,
+        y: canvas.height * theme.webYOffset,
         width: canvas.width * 0.97,
         height: 72
     )
     centeredText(web, in: webRect, attrs: [
-        .font: font("Avenir Next Heavy", 68),
-        .foregroundColor: NSColor.black
+        .font: font("Avenir Next Heavy", theme.webFontSize),
+        .foregroundColor: theme.textColor
     ])
 
     let instagramRect = CGRect(
         x: canvas.width * 0.015,
-        y: canvas.height * 0.012,
+        y: canvas.height * theme.instagramYOffset,
         width: canvas.width * 0.97,
         height: 58
     )
     centeredText(instagram, in: instagramRect, attrs: [
-        .font: font("Avenir Next Demi Bold", 54),
-        .foregroundColor: NSColor.black
+        .font: font("Avenir Next Demi Bold", theme.instagramFontSize),
+        .foregroundColor: theme.textColor
     ])
 }
 
-func renderPNG(to url: URL, backgroundColor: NSColor?) throws {
+func renderPNG(to url: URL, theme: PanelTheme) throws {
     guard let rep = NSBitmapImageRep(
         bitmapDataPlanes: nil,
         pixelsWide: spec.pxWidth,
@@ -111,7 +123,7 @@ func renderPNG(to url: URL, backgroundColor: NSColor?) throws {
     let ns = NSGraphicsContext(cgContext: ctx, flipped: false)
     NSGraphicsContext.saveGraphicsState()
     NSGraphicsContext.current = ns
-    drawPanel(backgroundColor: backgroundColor)
+    drawPanel(theme: theme)
     NSGraphicsContext.restoreGraphicsState()
 
     guard let data = rep.representation(using: .png, properties: [:]) else {
@@ -120,7 +132,7 @@ func renderPNG(to url: URL, backgroundColor: NSColor?) throws {
     try data.write(to: url)
 }
 
-func renderPreview(to url: URL, backgroundColor: NSColor?) throws {
+func renderPreview(to url: URL, theme: PanelTheme) throws {
     let previewWidth = 1800
     let previewHeight = Int((Double(previewWidth) * Double(spec.pxHeight) / Double(spec.pxWidth)).rounded())
 
@@ -150,7 +162,7 @@ func renderPreview(to url: URL, backgroundColor: NSColor?) throws {
     let ns = NSGraphicsContext(cgContext: ctx, flipped: false)
     NSGraphicsContext.saveGraphicsState()
     NSGraphicsContext.current = ns
-    drawPanel(backgroundColor: backgroundColor)
+    drawPanel(theme: theme)
     NSGraphicsContext.restoreGraphicsState()
 
     guard let data = rep.representation(using: .png, properties: [:]) else {
@@ -163,13 +175,62 @@ let finalPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm.png"
 let previewPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-preview.png")
 let transparentPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-transparent.png")
 let transparentPreviewPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-transparent-preview.png")
+let blackPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-black.png")
+let blackPreviewPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-black-preview.png")
+let blackAirPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-black-air.png")
+let blackAirPreviewPNG = outDir.appendingPathComponent("cbme-dj-booth-panel-500x400mm-black-air-preview.png")
 
-try renderPNG(to: finalPNG, backgroundColor: .white)
-try renderPreview(to: previewPNG, backgroundColor: .white)
-try renderPNG(to: transparentPNG, backgroundColor: nil)
-try renderPreview(to: transparentPreviewPNG, backgroundColor: nil)
+let lightTheme = PanelTheme(
+    logo: lightLogo,
+    textColor: .black,
+    backgroundColor: .white,
+    webFontSize: 68,
+    instagramFontSize: 54,
+    webYOffset: 0.055,
+    instagramYOffset: 0.012
+)
+let darkTheme = PanelTheme(
+    logo: darkLogo,
+    textColor: .white,
+    backgroundColor: .black,
+    webFontSize: 68,
+    instagramFontSize: 54,
+    webYOffset: 0.055,
+    instagramYOffset: 0.012
+)
+let darkAirTheme = PanelTheme(
+    logo: darkLogo,
+    textColor: .white,
+    backgroundColor: .black,
+    webFontSize: 62,
+    instagramFontSize: 50,
+    webYOffset: 0.07,
+    instagramYOffset: 0.022
+)
+let transparentTheme = PanelTheme(
+    logo: lightLogo,
+    textColor: .black,
+    backgroundColor: nil,
+    webFontSize: 68,
+    instagramFontSize: 54,
+    webYOffset: 0.055,
+    instagramYOffset: 0.012
+)
+
+try renderPNG(to: finalPNG, theme: lightTheme)
+try renderPreview(to: previewPNG, theme: lightTheme)
+try renderPNG(to: transparentPNG, theme: transparentTheme)
+try renderPreview(to: transparentPreviewPNG, theme: transparentTheme)
+try renderPNG(to: blackPNG, theme: darkTheme)
+try renderPreview(to: blackPreviewPNG, theme: darkTheme)
+try renderPNG(to: blackAirPNG, theme: darkAirTheme)
+try renderPreview(to: blackAirPreviewPNG, theme: darkAirTheme)
 
 print(finalPNG.path)
 print(previewPNG.path)
 print(transparentPNG.path)
 print(transparentPreviewPNG.path)
+print(blackPNG.path)
+print(blackPreviewPNG.path)
+print(blackAirPNG.path)
+print(blackAirPreviewPNG.path)
