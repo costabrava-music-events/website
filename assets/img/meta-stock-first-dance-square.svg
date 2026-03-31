@@ -1,0 +1,46 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="overlay" x1="540" y1="0" x2="540" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1020" stop-opacity="0.12"/>
+      <stop offset="0.58" stop-color="#0D1423" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#09111D" stop-opacity="0.88"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="140" y1="654" x2="950" y2="966" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09121D" stop-opacity="0.80"/>
+      <stop offset="1" stop-color="#0A121C" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <image href="stock/pexels-indoor-dance.jpg" x="0" y="0" width="1080" height="1080" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="1080" height="1080" fill="url(#overlay)"/>
+  <rect x="54" y="54" width="972" height="972" rx="42" fill="#FFFFFF" fill-opacity="0.03" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <image href="logo-transparente.png" x="292" y="56" width="496" height="292" preserveAspectRatio="xMidYMid meet"/>
+  <text x="92" y="430" fill="#FFFFFF" font-size="82" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.4">
+    Un primer baile
+  </text>
+  <text x="92" y="510" fill="#FFFFFF" font-size="82" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.4">
+    que s&#237; se
+  </text>
+  <text x="92" y="590" fill="#FFFFFF" font-size="82" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.4">
+    recuerda
+  </text>
+  <rect x="140" y="654" width="800" height="246" rx="36" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity="0.16"/>
+  <text x="184" y="730" fill="#E2E8F0" font-size="35" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600">
+    Cuidamos la m&#250;sica, los tiempos y el ambiente
+  </text>
+  <text x="184" y="774" fill="#E2E8F0" font-size="35" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600">
+    para que cada momento tenga su sitio.
+  </text>
+  <rect x="184" y="808" width="182" height="46" rx="23" fill="#60A5FA" fill-opacity="0.16" stroke="#93C5FD" stroke-opacity="0.42"/>
+  <text x="275" y="838" text-anchor="middle" fill="#DBEAFE" font-size="21" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">Primer baile</text>
+  <rect x="384" y="808" width="164" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.10" stroke="#FFFFFF" stroke-opacity="0.18"/>
+  <text x="466" y="838" text-anchor="middle" fill="#F8FAFC" font-size="21" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">Momentos clave</text>
+  <rect x="566" y="808" width="140" height="46" rx="23" fill="#A78BFA" fill-opacity="0.12" stroke="#C4B5FD" stroke-opacity="0.28"/>
+  <text x="636" y="838" text-anchor="middle" fill="#EDE9FE" font-size="21" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">Emoci&#243;n</text>
+  <rect x="184" y="930" width="712" height="84" rx="42" fill="url(#cta)"/>
+  <text x="540" y="984" text-anchor="middle" fill="#FFFFFF" font-size="34" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800">RESERVA TU FECHA</text>
+  <text x="540" y="1038" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.74" font-size="23" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">www.costabravamusicevents.com</text>
+</svg>

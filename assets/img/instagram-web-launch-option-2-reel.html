@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Instagram Reel Export</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #081a2d;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .frame {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 32% 25%, rgba(34, 211, 238, 0.44), transparent 26%),
+          radial-gradient(circle at 68% 25%, rgba(251, 146, 60, 0.46), transparent 28%),
+          linear-gradient(180deg, #081a2d 0%, #0b2138 58%, #09131f 100%);
+      }
+
+      .card {
+        position: absolute;
+        inset: 56px;
+        border-radius: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .logo {
+        position: absolute;
+        top: 170px;
+        left: 50%;
+        width: 700px;
+        transform: translateX(-50%);
+      }
+
+      .title-top,
+      .title-main,
+      .copy,
+      .url {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: #fff;
+      }
+
+      .title-top {
+        top: 1040px;
+        margin: 0;
+        font-size: 66px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+      }
+
+      .title-main {
+        top: 1115px;
+        margin: 0;
+        font-size: 138px;
+        font-weight: 800;
+        letter-spacing: 1.6px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .copy {
+        top: 1305px;
+        width: 820px;
+        margin: 0;
+        font-size: 46px;
+        font-weight: 500;
+        line-height: 1.42;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .url-wrap {
+        position: absolute;
+        left: 50%;
+        bottom: 256px;
+        width: 800px;
+        height: 96px;
+        transform: translateX(-50%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 48px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .url {
+        bottom: 286px;
+        margin: 0;
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="card"></div>
+      <img class="logo" src="./logo-transparente.png" alt="Costa Brava Music Events" />
+      <h1 class="title-top">Nuestra nueva web</h1>
+      <p class="title-main">YA SUENA</p>
+      <p class="copy">Descúbrela y escríbenos<br />desde el formulario de contacto</p>
+      <div class="url-wrap"></div>
+      <p class="url">www.costabravamusicevents.com</p>
+    </div>
+  </body>
+</html>

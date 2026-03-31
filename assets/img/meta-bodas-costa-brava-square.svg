@@ -1,0 +1,87 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="overlay" x1="540" y1="0" x2="540" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071423" stop-opacity="0.32"/>
+      <stop offset="0.5" stop-color="#071423" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#04111E" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="160" y1="512" x2="881" y2="952" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081A2D" stop-opacity="0.84"/>
+      <stop offset="1" stop-color="#07111D" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <filter id="shadow" x="112" y="540" width="856" height="402" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feOffset dy="22"/>
+      <feGaussianBlur stdDeviation="22"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0117647 0 0 0 0 0.0470588 0 0 0 0 0.0901961 0 0 0 0.42 0"/>
+    </filter>
+    <filter id="blurA" x="-80" y="182" width="500" height="500" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="72"/>
+    </filter>
+    <filter id="blurB" x="706" y="16" width="420" height="420" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="66"/>
+    </filter>
+  </defs>
+
+  <image href="hero-beach-900.jpg" x="0" y="0" width="1080" height="1080" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="1080" height="1080" fill="url(#overlay)"/>
+
+  <g filter="url(#blurA)">
+    <circle cx="170" cy="432" r="106" fill="#22D3EE" fill-opacity="0.34"/>
+  </g>
+  <g filter="url(#blurB)">
+    <circle cx="916" cy="226" r="84" fill="#FDBA74" fill-opacity="0.24"/>
+  </g>
+
+  <rect x="54" y="54" width="972" height="972" rx="42" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.16"/>
+
+  <image href="logo-transparente.png" x="210" y="52" width="660" height="390" preserveAspectRatio="xMidYMid meet"/>
+
+  <text x="92" y="450" fill="#FFFFFF" font-size="90" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.8">
+    M&#250;sica
+  </text>
+  <text x="92" y="540" fill="#FFFFFF" font-size="90" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.8">
+    a medida
+  </text>
+  <text x="92" y="630" fill="#FFFFFF" font-size="90" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.8">
+    para tu boda
+  </text>
+
+  <g filter="url(#shadow)">
+    <rect x="156" y="584" width="768" height="314" rx="38" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity="0.16"/>
+  </g>
+
+  <text x="196" y="666" fill="#E2E8F0" font-size="34" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600">
+    Ceremonia, c&#243;ctel, cena y fiesta
+  </text>
+  <text x="196" y="710" fill="#E2E8F0" font-size="34" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600">
+    con propuesta personalizada y coordinaci&#243;n real.
+  </text>
+
+  <rect x="196" y="750" width="202" height="50" rx="25" fill="#22D3EE" fill-opacity="0.14" stroke="#67E8F9" stroke-opacity="0.42"/>
+  <text x="297" y="783" text-anchor="middle" fill="#CFFAFE" font-size="23" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">
+    DJ + directo
+  </text>
+
+  <rect x="414" y="750" width="172" height="50" rx="25" fill="#FDBA74" fill-opacity="0.12" stroke="#FDBA74" stroke-opacity="0.36"/>
+  <text x="500" y="783" text-anchor="middle" fill="#FFEDD5" font-size="23" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">
+    Iluminaci&#243;n
+  </text>
+
+  <rect x="602" y="750" width="282" height="50" rx="25" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.16"/>
+  <text x="743" y="783" text-anchor="middle" fill="#F8FAFC" font-size="23" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">
+    Coordinaci&#243;n integral
+  </text>
+
+  <rect x="196" y="838" width="688" height="82" rx="41" fill="url(#cta)"/>
+  <text x="540" y="890" text-anchor="middle" fill="#FFF8F3" font-size="34" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="0.7">
+    PIDE PROPUESTA PARA TU BODA
+  </text>
+
+  <text x="540" y="980" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.72" font-size="24" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700" letter-spacing="0.5">
+    www.costabravamusicevents.com
+  </text>
+</svg>

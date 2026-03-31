@@ -1,0 +1,61 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgOverlay" x1="540" y1="0" x2="540" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21160C" stop-opacity="0.08"/>
+      <stop offset="0.56" stop-color="#140E0B" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#0B0908" stop-opacity="0.84"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="140" y1="614" x2="950" y2="954" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111B" stop-opacity="0.70"/>
+      <stop offset="1" stop-color="#0C1523" stop-opacity="0.84"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <filter id="cardShadow" x="108" y="624" width="864" height="290" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feOffset dy="14"/>
+      <feGaussianBlur stdDeviation="16"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0196078 0 0 0 0 0.0470588 0 0 0 0 0.0941176 0 0 0 0.28 0"/>
+    </filter>
+  </defs>
+
+  <image href="stock/pexels-soft-dance.jpg" x="0" y="0" width="1080" height="1080" preserveAspectRatio="xMidYMid slice" opacity="0.74"/>
+  <rect width="1080" height="1080" fill="url(#bgOverlay)"/>
+  <rect x="54" y="54" width="972" height="972" rx="42" fill="#FFFFFF" fill-opacity="0.03" stroke="#FFFFFF" stroke-opacity="0.14"/>
+
+  <image href="logo-transparente.png" x="110" y="-26" width="860" height="508" preserveAspectRatio="xMidYMid meet"/>
+
+  <text x="540" y="486" text-anchor="middle" fill="#FFFFFF" font-size="82" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.4">
+    Del altar al
+  </text>
+  <text x="540" y="572" text-anchor="middle" fill="#FFFFFF" font-size="82" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800" letter-spacing="-1.4">
+    fiest&#243;n
+  </text>
+
+  <g filter="url(#cardShadow)">
+    <rect x="140" y="626" width="800" height="250" rx="36" fill="url(#panel)" stroke="#FFF7ED" stroke-opacity="0.16"/>
+  </g>
+  <rect x="164" y="650" width="752" height="1" rx="0.5" fill="#FFFFFF" fill-opacity="0.10"/>
+  <text x="184" y="698" fill="#F8FAFC" font-size="35" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600" textLength="712" lengthAdjust="spacing">
+    Desde la emoci&#243;n de la ceremonia hasta
+  </text>
+  <text x="184" y="742" fill="#F8FAFC" font-size="35" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600" textLength="712" lengthAdjust="spacing">
+    una pista llena al final. Coordinamos la
+  </text>
+  <text x="184" y="786" fill="#F8FAFC" font-size="35" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600" textLength="712" lengthAdjust="spacing">
+    m&#250;sica para que vuestra boda vaya de
+  </text>
+  <text x="184" y="830" fill="#F8FAFC" font-size="35" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="600">
+    menos a m&#225;s y termine arriba.
+  </text>
+
+  <rect x="184" y="930" width="712" height="84" rx="42" fill="url(#cta)"/>
+  <text x="540" y="984" text-anchor="middle" fill="#FFFFFF" font-size="34" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="800">
+    HABLEMOS DE VUESTRA BODA
+  </text>
+
+  <text x="540" y="1038" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.74" font-size="23" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-weight="700">
+    www.costabravamusicevents.com
+  </text>
+</svg>
