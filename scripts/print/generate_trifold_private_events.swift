@@ -37,8 +37,26 @@ struct Palette {
 let fm = FileManager.default
 let cwd = URL(fileURLWithPath: fm.currentDirectoryPath)
 let outputDir = cwd.appendingPathComponent("assets/print", isDirectory: true)
-let logoURL = cwd.appendingPathComponent("assets/img/logo-transparente.png")
-let eventPhotoURL = cwd.appendingPathComponent("assets/img/stock/pexels-dj-vinyl.jpg")
+let logoURL = cwd.appendingPathComponent("assets/img/logo-hero-white-text.png")
+
+/// Uso: `swift generate_trifold_private_events.swift` (imagen por defecto)
+///       `swift … [rutaImagenRelativaAlRepo] [sufijoSalida]` → previews con sufijo en el nombre de archivo.
+let cliArgs = Array(CommandLine.arguments.dropFirst())
+func resolveAssetPath(_ arg: String) -> URL {
+    if arg.hasPrefix("/") { return URL(fileURLWithPath: arg) }
+    return cwd.appendingPathComponent(arg)
+}
+let defaultEventImageURL = cwd.appendingPathComponent("assets/img/abstract-venue-card.png")
+let eventPhotoURL: URL = {
+    guard let first = cliArgs.first, !first.isEmpty else { return defaultEventImageURL }
+    let candidate = resolveAssetPath(first)
+    return fm.fileExists(atPath: candidate.path) ? candidate : defaultEventImageURL
+}()
+let outputSlug: String = {
+    guard cliArgs.count >= 2 else { return "" }
+    let s = cliArgs[1].replacingOccurrences(of: " ", with: "-")
+    return s
+}()
 
 try fm.createDirectory(at: outputDir, withIntermediateDirectories: true)
 
@@ -50,9 +68,9 @@ guard let logo = NSImage(contentsOf: logoURL) else {
 let eventPhoto = NSImage(contentsOf: eventPhotoURL)
 
 let brand = "Costa Brava Music Events"
-let title = "Eventos privados\ndeep-house & chillout"
+let title = "Tu partner de confianza\npara tu evento"
 let subtitle = "Música, sonido e iluminación para villas, terrazas, jardines y celebraciones con personalidad."
-let contactCopy = "Cuéntanos la fecha, el espacio y el tipo de público. Te preparamos una propuesta clara, elegante y adaptada al ambiente que buscas."
+let contactCopy = "Cuéntanos la fecha, el espacio y el tipo de evento. Te preparamos una propuesta clara, elegante y adaptada al ambiente que buscas."
 let web = "www.costabravamusicevents.com"
 let instagram = "@costabrava_music_events"
 let email = "info@costabravamusicevents.com"
@@ -182,7 +200,7 @@ func drawBulletRow(symbol: String, title: String, text: String, rect: CGRect, da
     ])
 
     drawText(text, in: CGRect(x: rect.minX + 30, y: rect.minY, width: rect.width - 30, height: rect.height - 20), attributes: [
-        .font: font("Avenir Next Medium", size: 9.8),
+        .font: font("Avenir Next Medium", size: 9.4),
         .foregroundColor: bodyColor,
         .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.5)
     ])
@@ -199,14 +217,14 @@ func drawStageCard(symbol: String, title: String, text: String, rect: CGRect) {
     ])
 
     drawText(title, in: CGRect(x: rect.minX + 46, y: rect.maxY - 28, width: rect.width - 58, height: 18), attributes: [
-        .font: font("Avenir Next Demi Bold", size: 11.4),
+        .font: font("Avenir Next Demi Bold", size: 10.0),
         .foregroundColor: NSColor.white
     ])
 
     drawText(text, in: CGRect(x: rect.minX + 46, y: rect.minY + 8, width: rect.width - 58, height: rect.height - 42), attributes: [
-        .font: font("Avenir Next Medium", size: 8.9),
+        .font: font("Avenir Next Medium", size: 7.8),
         .foregroundColor: NSColor.white.withAlphaComponent(0.84),
-        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.4)
+        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.2)
     ])
 }
 
@@ -270,8 +288,15 @@ func drawOutside(_ ctx: CGContext) {
         band.draw(in: topBand, angle: -90)
     }
 
+    let middlePanelRect = CGRect(x: middle.minX, y: middle.minY, width: middle.width, height: middle.height)
+
     fillRoundedRect(CGRect(x: left.minX, y: left.minY, width: left.width, height: left.height), radius: 24, color: Palette.paper)
-    fillRoundedRect(CGRect(x: middle.minX, y: middle.minY, width: middle.width, height: middle.height), radius: 24, color: NSColor.white.withAlphaComponent(0.06))
+    if let photo = eventPhoto {
+        drawImageAspectFill(photo, in: middlePanelRect, cornerRadius: 24)
+        fillRoundedRect(middlePanelRect, radius: 24, color: Palette.night.withAlphaComponent(0.56))
+    } else {
+        fillRoundedRect(middlePanelRect, radius: 24, color: NSColor.white.withAlphaComponent(0.06))
+    }
     fillRoundedRect(CGRect(x: right.minX, y: right.minY, width: right.width, height: right.height), radius: 24, color: NSColor.black.withAlphaComponent(0.10))
 
     let leftLabelAttrs: [NSAttributedString.Key: Any] = [
@@ -321,9 +346,9 @@ func drawOutside(_ ctx: CGContext) {
         .kern: 1.8
     ]
     let middleTitleAttrs: [NSAttributedString.Key: Any] = [
-        .font: font("Avenir Next Heavy", size: 15.6),
+        .font: font("Avenir Next Heavy", size: 14.8),
         .foregroundColor: NSColor.white,
-        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.0, minimumLineHeight: 17)
+        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.0, minimumLineHeight: 16)
     ]
     let middleBodyAttrs: [NSAttributedString.Key: Any] = [
         .font: font("Avenir Next Medium", size: 10.1),
@@ -331,28 +356,30 @@ func drawOutside(_ ctx: CGContext) {
         .paragraphStyle: paragraph(alignment: .left, lineSpacing: 2)
     ]
 
-    drawText("ATMÓSFERA", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 10, width: middleContent.width, height: 12), attributes: middleLabelAttrs)
-    drawText("Groove elegante, energía medida", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 78, width: middleContent.width, height: 52), attributes: middleTitleAttrs)
-    drawText("No pinchamos en piloto automático. Diseñamos la energía del evento para que todo fluya: bienvenida suave, sunset elegante, groove cálido y una subida final con intención.", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 170, width: middleContent.width, height: 84), attributes: middleBodyAttrs)
+    drawText("TRAYECTORIA", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 10, width: middleContent.width, height: 12), attributes: middleLabelAttrs)
+    drawText("Experiencia en eventos", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 96, width: middleContent.width, height: 28), attributes: middleTitleAttrs)
+    drawText("Con más de una década organizando eventos musicales, en Costa Brava Music Events combinamos solvencia técnica impecable y criterio musical exigente.", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 168, width: middleContent.width, height: 78), attributes: middleBodyAttrs)
 
-    drawCompactPill("Villas privadas", origin: CGPoint(x: middleContent.minX, y: middleContent.maxY - 198), dark: true)
-    drawCompactPill("Rooftops", origin: CGPoint(x: middleContent.minX + 74, y: middleContent.maxY - 198), dark: true)
-    drawCompactPill("Jardines", origin: CGPoint(x: middleContent.minX + 132, y: middleContent.maxY - 198), dark: true)
-    drawCompactPill("Beach houses", origin: CGPoint(x: middleContent.minX, y: middleContent.maxY - 224), dark: true)
-    drawCompactPill("Celebraciones con estilo", origin: CGPoint(x: middleContent.minX + 72, y: middleContent.maxY - 224), dark: true)
-    drawCompactPill("Private sessions", origin: CGPoint(x: middleContent.minX, y: middleContent.maxY - 250), dark: true)
-    drawCompactPill("Costa Brava", origin: CGPoint(x: middleContent.minX + 86, y: middleContent.maxY - 250), dark: true)
-
-    let quoteRect = CGRect(x: middleContent.minX, y: middleContent.minY, width: middleContent.width, height: 94)
-    fillRoundedRect(quoteRect, radius: 18, color: NSColor.white.withAlphaComponent(0.07))
-    drawText("Una selección musical bien pensada cambia por completo cómo se siente un evento privado.", in: quoteRect.insetBy(dx: 16, dy: 14), attributes: [
-        .font: font("Avenir Next Demi Bold", size: 10.9),
-        .foregroundColor: NSColor.white,
-        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.8)
-    ])
+    let refLabelAttrs: [NSAttributedString.Key: Any] = [
+        .font: font("Avenir Next Demi Bold", size: 8.4),
+        .foregroundColor: NSColor.white.withAlphaComponent(0.70),
+        .kern: 1.6
+    ]
+    drawText("REFERENCIAS", in: CGRect(x: middleContent.minX, y: middleContent.minY + 336, width: middleContent.width, height: 12), attributes: refLabelAttrs)
+    drawCompactPill("FC Barcelona", origin: CGPoint(x: middleContent.minX, y: middleContent.minY + 308), dark: true)
+    drawCompactPill("Sea Sea Club", origin: CGPoint(x: middleContent.minX + 88, y: middleContent.minY + 308), dark: true)
+    drawCompactPill("Red Fish", origin: CGPoint(x: middleContent.minX, y: middleContent.minY + 282), dark: true)
+    drawCompactPill("BCN en las Alturas", origin: CGPoint(x: middleContent.minX + 66, y: middleContent.minY + 282), dark: true)
+    drawCompactPill("Can Marc", origin: CGPoint(x: middleContent.minX, y: middleContent.minY + 256), dark: true)
+    drawCompactPill("Cap Sa Sal", origin: CGPoint(x: middleContent.minX + 66, y: middleContent.minY + 256), dark: true)
+    drawCompactPill("La Ruïna", origin: CGPoint(x: middleContent.minX + 132, y: middleContent.minY + 256), dark: true)
+    drawCompactPill("Lincoln", origin: CGPoint(x: middleContent.minX, y: middleContent.minY + 230), dark: true)
+    drawCompactPill("Venteo Platja d'Aro", origin: CGPoint(x: middleContent.minX + 58, y: middleContent.minY + 230), dark: true)
+    drawCompactPill("Bellport", origin: CGPoint(x: middleContent.minX, y: middleContent.minY + 204), dark: true)
+    drawCompactPill("Ajuntament de Palamós", origin: CGPoint(x: middleContent.minX + 66, y: middleContent.minY + 204), dark: true)
 
     let rightLabelAttrs: [NSAttributedString.Key: Any] = [
-        .font: font("Avenir Next Demi Bold", size: 8.6),
+        .font: font("Avenir Next Heavy", size: 9.2),
         .foregroundColor: NSColor.white.withAlphaComponent(0.70),
         .kern: 1.8
     ]
@@ -367,26 +394,22 @@ func drawOutside(_ ctx: CGContext) {
         .paragraphStyle: paragraph(alignment: .left, lineSpacing: 2)
     ]
 
-    let logoPlateRect = CGRect(
-        x: right.midX - 114,
-        y: rightContent.maxY - 182,
-        width: 228,
-        height: 166
-    )
-    fillRoundedRect(logoPlateRect, radius: 34, color: NSColor.white.withAlphaComponent(0.08))
-
-    let logoSize: CGFloat = 228
+    let logoSize: CGFloat = 214
     let logoRect = CGRect(
-        x: logoPlateRect.midX - logoSize / 2,
-        y: logoPlateRect.midY - logoSize / 2 + 4,
+        x: right.midX - logoSize / 2,
+        y: rightContent.maxY - 182,
         width: logoSize,
         height: logoSize
     )
     logo.draw(in: logoRect)
 
-    drawText(brand.uppercased(), in: CGRect(x: rightContent.minX, y: rightContent.maxY - 214, width: rightContent.width, height: 12), attributes: rightLabelAttrs)
-    drawText(title, in: CGRect(x: rightContent.minX, y: rightContent.maxY - 344, width: rightContent.width, height: 118), attributes: rightTitleAttrs)
-    drawText(subtitle, in: CGRect(x: rightContent.minX, y: rightContent.maxY - 420, width: rightContent.width, height: 78), attributes: rightBodyAttrs)
+    drawText(brand.uppercased(), in: CGRect(x: rightContent.minX, y: rightContent.maxY - 214, width: rightContent.width, height: 14), attributes: rightLabelAttrs)
+    drawText(title, in: CGRect(x: rightContent.minX, y: rightContent.maxY - 344, width: rightContent.width, height: 132), attributes: rightTitleAttrs)
+    drawText(subtitle, in: CGRect(x: rightContent.minX, y: rightContent.maxY - 418, width: rightContent.width, height: 96), attributes: [
+        .font: font("Avenir Next Demi Bold", size: 11.8),
+        .foregroundColor: NSColor.white.withAlphaComponent(0.88),
+        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 2.2)
+    ])
 
 }
 
@@ -404,13 +427,24 @@ func drawInside(_ ctx: CGContext) {
     drawOrb(center: CGPoint(x: pageRect.width * 0.88, y: pageRect.height * 0.18), radius: 170, colors: [Palette.amber.withAlphaComponent(0.14), .clear])
 
     let middlePanelRect = CGRect(x: middle.minX, y: middle.minY, width: middle.width, height: middle.height)
-    fillRoundedRect(middlePanelRect, radius: 24, color: Palette.night)
-    drawRoundedGradient(
-        in: middlePanelRect,
-        radius: 24,
-        colors: [Palette.cyan.withAlphaComponent(0.18), .clear],
-        angle: -90
-    )
+    if let photo = eventPhoto {
+        drawImageAspectFill(photo, in: middlePanelRect, cornerRadius: 24)
+        fillRoundedRect(middlePanelRect, radius: 24, color: Palette.night.withAlphaComponent(0.50))
+        drawRoundedGradient(
+            in: middlePanelRect,
+            radius: 24,
+            colors: [Palette.amber.withAlphaComponent(0.14), Palette.coral.withAlphaComponent(0.08), .clear],
+            angle: -35
+        )
+    } else {
+        fillRoundedRect(middlePanelRect, radius: 24, color: Palette.night)
+        drawRoundedGradient(
+            in: middlePanelRect,
+            radius: 24,
+            colors: [Palette.cyan.withAlphaComponent(0.18), .clear],
+            angle: -90
+        )
+    }
 
     let smallLabelAttrs: [NSAttributedString.Key: Any] = [
         .font: font("Avenir Next Demi Bold", size: 8.4),
@@ -422,18 +456,18 @@ func drawInside(_ ctx: CGContext) {
         .foregroundColor: Palette.navy
     ]
 
-    drawText("QUÉ HACEMOS", in: CGRect(x: left.minX, y: left.maxY - 16, width: left.width, height: 12), attributes: smallLabelAttrs)
-    drawText("Diseñamos la música y el ambiente del evento", in: CGRect(x: left.minX, y: left.maxY - 78, width: left.width, height: 56), attributes: sectionTitleAttrs)
-    drawText("Trabajamos eventos privados donde el sonido debe elevar el espacio sin robarle elegancia. Seleccionamos repertorio, niveles, transiciones y atmósfera según el tipo de público y el momento del evento.", in: CGRect(x: left.minX, y: left.maxY - 154, width: left.width, height: 80), attributes: [
+    drawText("QUÉ APORTAMOS", in: CGRect(x: left.minX, y: left.maxY - 16, width: left.width, height: 12), attributes: smallLabelAttrs)
+    drawText("Oficio, lectura de sala y criterio de evento", in: CGRect(x: left.minX, y: left.maxY - 78, width: left.width, height: 56), attributes: sectionTitleAttrs)
+    drawText("Llevamos al evento la experiencia de haber trabajado en celebraciones privadas, venues, clubs y espacios institucionales donde la ejecución tiene que salir bien de verdad.", in: CGRect(x: left.minX, y: left.maxY - 150, width: left.width, height: 74), attributes: [
         .font: font("Avenir Next Medium", size: 10.1),
         .foregroundColor: Palette.slate,
         .paragraphStyle: paragraph(alignment: .left, lineSpacing: 2)
     ])
 
-    drawBulletRow(symbol: "01", title: "Selección musical personalizada", text: "Nada de sets genéricos. Adaptamos el recorrido musical al tono del evento y al perfil de invitados.", rect: CGRect(x: left.minX, y: left.maxY - 236, width: left.width, height: 66))
-    drawBulletRow(symbol: "02", title: "Sonido premium", text: "Equipos ajustados al espacio para que todo suene limpio, elegante y sin excesos.", rect: CGRect(x: left.minX, y: left.maxY - 310, width: left.width, height: 56))
-    drawBulletRow(symbol: "03", title: "Iluminación con intención", text: "Luz ambiental y de fiesta pensada para acompañar la arquitectura y el ambiente.", rect: CGRect(x: left.minX, y: left.maxY - 388, width: left.width, height: 56))
-    drawBulletRow(symbol: "04", title: "Coordinación integral", text: "Nos coordinamos con venue y proveedores para que tú solo te ocupes de disfrutar.", rect: CGRect(x: left.minX, y: left.maxY - 466, width: left.width, height: 56))
+    drawBulletRow(symbol: "01", title: "Dirección musical personalizada", text: "Adaptamos el recorrido musical al tono del evento, al espacio y al tipo de invitados.", rect: CGRect(x: left.minX, y: left.maxY - 228, width: left.width, height: 60))
+    drawBulletRow(symbol: "02", title: "Solvencia técnica", text: "Sonido, niveles y ejecución pensados para que todo funcione con limpieza y seguridad.", rect: CGRect(x: left.minX, y: left.maxY - 298, width: left.width, height: 54))
+    drawBulletRow(symbol: "03", title: "Experiencia en venues reales", text: "Trabajar en espacios exigentes da criterio para resolver con calma y leer el momento.", rect: CGRect(x: left.minX, y: left.maxY - 368, width: left.width, height: 54))
+    drawBulletRow(symbol: "04", title: "Visión de conjunto", text: "Nos coordinamos con venue y proveedores para que la música acompañe el evento.", rect: CGRect(x: left.minX, y: left.maxY - 438, width: left.width, height: 54))
 
     let darkLabelAttrs: [NSAttributedString.Key: Any] = [
         .font: font("Avenir Next Demi Bold", size: 8.4),
@@ -450,77 +484,64 @@ func drawInside(_ ctx: CGContext) {
         .paragraphStyle: paragraph(alignment: .left, lineSpacing: 2)
     ]
 
-    drawText("LA SESIÓN", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 4, width: middleContent.width, height: 12), attributes: darkLabelAttrs)
-    drawText("Deep-house y chillout con progresión real", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 78, width: middleContent.width, height: 56), attributes: darkTitleAttrs)
-    drawText("Buscamos una energía cuidada, sofisticada y nada estridente. El evento respira mejor cuando la música acompaña cada tramo con naturalidad.", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 146, width: middleContent.width, height: 62), attributes: darkBodyAttrs)
-
+    drawText("REFERENCIAS", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 4, width: middleContent.width, height: 12), attributes: darkLabelAttrs)
+    drawText("Espacios y eventos que dan contexto al proyecto", in: CGRect(x: middleContent.minX, y: middleContent.maxY - 86, width: middleContent.width, height: 70), attributes: darkTitleAttrs)
     let stageCardWidth = middleContent.width
-    let stage1 = CGRect(x: middleContent.minX, y: middleContent.maxY - 226, width: stageCardWidth, height: 70)
-    let stage2 = CGRect(x: middleContent.minX, y: middleContent.maxY - 304, width: stageCardWidth, height: 70)
-    let stage3 = CGRect(x: middleContent.minX, y: middleContent.maxY - 382, width: stageCardWidth, height: 70)
+    let stage1 = CGRect(x: middleContent.minX, y: middleContent.maxY - 208, width: stageCardWidth, height: 74)
+    let stage2 = CGRect(x: middleContent.minX, y: middleContent.maxY - 290, width: stageCardWidth, height: 74)
+    let stage3 = CGRect(x: middleContent.minX, y: middleContent.maxY - 380, width: stageCardWidth, height: 84)
 
-    drawStageCard(symbol: "A", title: "Warm-up", text: "Recepción, cóctel o primer tramo con textura elegante y tempo relajado.", rect: stage1)
-    drawStageCard(symbol: "B", title: "Sunset groove", text: "Deep-house cálido y sofisticado para acompañar el momento alto.", rect: stage2)
-    drawStageCard(symbol: "C", title: "Late session", text: "Subida controlada para seguir disfrutando, bailar y cerrar con estilo.", rect: stage3)
-
-    let quote = CGRect(x: middleContent.minX, y: middleContent.minY + 6, width: middleContent.width, height: 90)
-    fillRoundedRect(quote, radius: 18, color: NSColor.white.withAlphaComponent(0.07))
-    drawText("El objetivo no es sonar fuerte. Es hacer que el espacio, la gente y el momento encajen.", in: quote.insetBy(dx: 16, dy: 14), attributes: [
-        .font: font("Avenir Next Demi Bold", size: 12.2),
-        .foregroundColor: NSColor.white,
-        .paragraphStyle: paragraph(alignment: .left, lineSpacing: 2.4)
-    ])
+    drawStageCard(symbol: "A", title: "Gran formato y corporativo", text: "FC Barcelona aporta coordinación y técnica en máxima exigencia.", rect: stage1)
+    drawStageCard(symbol: "B", title: "Celebración privada y venue", text: "Cap Sa Sal, Can Marc y Bellport conectan con bodas y eventos cuidados.", rect: stage2)
+    drawStageCard(symbol: "C", title: "Nightlife y acto público", text: "Lincoln, Venteo, Red Fish, Sea Sea Club y Ajuntament de Palamós muestran versatilidad.", rect: stage3)
 
     let rightTitleAttrs: [NSAttributedString.Key: Any] = [
         .font: font("Avenir Next Heavy", size: 16.2),
         .foregroundColor: Palette.navy
     ]
 
-    drawText("IDEAL PARA", in: CGRect(x: right.minX, y: right.maxY - 16, width: right.width, height: 12), attributes: smallLabelAttrs)
-    drawText("Espacios y eventos con estilo", in: CGRect(x: right.minX, y: right.maxY - 72, width: right.width, height: 44), attributes: rightTitleAttrs)
+    drawText("ESPACIOS DESTACADOS", in: CGRect(x: right.minX, y: right.maxY - 16, width: right.width, height: 12), attributes: smallLabelAttrs)
+    drawText("Referencias que ayudan a situar el proyecto", in: CGRect(x: right.minX, y: right.maxY - 76, width: right.width, height: 48), attributes: rightTitleAttrs)
 
     let idealItems = [
-        "Fiestas privadas",
-        "Villas, jardines y terrazas con personalidad",
-        "Pool parties elegantes y sunset sessions",
-        "Aniversarios, cumpleaños especiales e inauguraciones",
-        "Eventos donde el ambiente importa tanto como la música"
+        "FC Barcelona · entorno corporativo y técnico",
+        "Red Fish y Sea Sea Club · eventos corporativos y celebraciones privadas",
+        "Can Marc · bodas y aniversarios",
+        "Cap Sa Sal y Bellport · vermuts y tardeos",
+        "La Ruïna y Lincoln · nightlife con lectura de pista",
+        "BCN en las Alturas · markets con DJ's y música en directo",
+        "Venteo Platja d'Aro · energía Costa Brava",
+        "Ajuntament de Palamós · acto público y contexto institucional"
     ]
 
     for (index, item) in idealItems.enumerated() {
-        drawBulletListItem(item, rect: CGRect(x: right.minX, y: right.maxY - 114 - CGFloat(index) * 30, width: right.width, height: 24))
+        drawBulletListItem(item, rect: CGRect(x: right.minX, y: right.maxY - 110 - CGFloat(index) * 32, width: right.width, height: 28))
     }
 
-    let photoRect = CGRect(x: right.minX, y: right.minY + 168, width: right.width, height: 110)
-    if let eventPhoto {
-        drawImageAspectFill(eventPhoto, in: photoRect, cornerRadius: 18)
-        strokeRoundedRect(photoRect, radius: 18, color: Palette.line, lineWidth: 0.8)
-    }
-
-    let ctaCard = CGRect(x: right.minX, y: right.minY + 8, width: right.width, height: 132)
+    let ctaCard = CGRect(x: right.minX, y: right.minY + 8, width: right.width, height: 122)
     let ctaFill = NSColor(calibratedRed: 232 / 255, green: 240 / 255, blue: 247 / 255, alpha: 1)
     fillRoundedRect(ctaCard, radius: 20, color: ctaFill)
     strokeRoundedRect(ctaCard, radius: 20, color: Palette.slate.withAlphaComponent(0.34), lineWidth: 1.2)
 
-    drawText("Pide propuesta personalizada", in: CGRect(x: ctaCard.minX + 16, y: ctaCard.maxY - 34, width: ctaCard.width - 32, height: 22), attributes: [
+    drawText("Pide propuesta personalizada", in: CGRect(x: ctaCard.minX + 16, y: ctaCard.maxY - 32, width: ctaCard.width - 32, height: 22), attributes: [
         .font: font("Avenir Next Heavy", size: 16),
         .foregroundColor: Palette.navy
     ])
-    drawText("Te orientamos según espacio, horario, volumen, estilo musical y tipo de invitados.", in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 66, width: ctaCard.width - 32, height: 30), attributes: [
+    drawText("Te orientamos según espacio, horario, volumen, estilo musical y tipo de invitados.", in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 58, width: ctaCard.width - 32, height: 32), attributes: [
         .font: font("Avenir Next Medium", size: 9.8),
         .foregroundColor: Palette.slate,
         .paragraphStyle: paragraph(alignment: .left, lineSpacing: 1.8)
     ])
 
-    drawText(phone1 + " / " + phone2, in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 38, width: ctaCard.width - 32, height: 16), attributes: [
+    drawText(phone1 + " / " + phone2, in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 32, width: ctaCard.width - 32, height: 16), attributes: [
         .font: font("Avenir Next Demi Bold", size: 10.2),
         .foregroundColor: Palette.navy
     ])
-    drawText(email, in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 22, width: ctaCard.width - 32, height: 16), attributes: [
+    drawText(email, in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 18, width: ctaCard.width - 32, height: 16), attributes: [
         .font: font("Avenir Next Medium", size: 9.8),
         .foregroundColor: Palette.navy
     ])
-    drawText(web, in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 8, width: ctaCard.width - 32, height: 16), attributes: [
+    drawText(web, in: CGRect(x: ctaCard.minX + 16, y: ctaCard.minY + 6, width: ctaCard.width - 32, height: 16), attributes: [
         .font: font("Avenir Next Medium", size: 9.8),
         .foregroundColor: Palette.navy
     ])
@@ -581,18 +602,47 @@ func renderPNG(to url: URL, draw: (CGContext) -> Void) throws {
     try data.write(to: url)
 }
 
-func renderCombinedPDF(to url: URL) throws {
+func renderCombinedPreviewPDF(to url: URL, outsideImage: NSImage, insideImage: NSImage) throws {
     var mediaBox = CGRect(origin: .zero, size: TrifoldSpec.pageSize)
     guard let ctx = CGContext(url as CFURL, mediaBox: &mediaBox, nil) else {
         throw NSError(domain: "trifold", code: 5, userInfo: [NSLocalizedDescriptionKey: "No se pudo crear el PDF combinado"])
     }
 
-    for drawer in [drawOutside, drawInside] {
+    ctx.beginPDFPage(nil)
+    var graphics = NSGraphicsContext(cgContext: ctx, flipped: false)
+    NSGraphicsContext.saveGraphicsState()
+    NSGraphicsContext.current = graphics
+    outsideImage.draw(in: CGRect(origin: .zero, size: TrifoldSpec.pageSize))
+    NSGraphicsContext.restoreGraphicsState()
+    ctx.endPDFPage()
+
+    ctx.beginPDFPage(nil)
+    graphics = NSGraphicsContext(cgContext: ctx, flipped: false)
+    NSGraphicsContext.saveGraphicsState()
+    NSGraphicsContext.current = graphics
+    ctx.saveGState()
+    ctx.translateBy(x: TrifoldSpec.pageSize.width, y: TrifoldSpec.pageSize.height)
+    ctx.rotate(by: .pi)
+    insideImage.draw(in: CGRect(origin: .zero, size: TrifoldSpec.pageSize))
+    ctx.restoreGState()
+    NSGraphicsContext.restoreGraphicsState()
+    ctx.endPDFPage()
+
+    ctx.closePDF()
+}
+
+func renderPreviewPDF(to url: URL, outsideImage: NSImage, insideImage: NSImage) throws {
+    var mediaBox = CGRect(origin: .zero, size: TrifoldSpec.pageSize)
+    guard let ctx = CGContext(url as CFURL, mediaBox: &mediaBox, nil) else {
+        throw NSError(domain: "trifold", code: 6, userInfo: [NSLocalizedDescriptionKey: "No se pudo crear el PDF de previews"])
+    }
+
+    for image in [outsideImage, insideImage] {
         ctx.beginPDFPage(nil)
         let graphics = NSGraphicsContext(cgContext: ctx, flipped: false)
         NSGraphicsContext.saveGraphicsState()
         NSGraphicsContext.current = graphics
-        drawer(ctx)
+        image.draw(in: CGRect(origin: .zero, size: TrifoldSpec.pageSize))
         NSGraphicsContext.restoreGraphicsState()
         ctx.endPDFPage()
     }
@@ -600,20 +650,26 @@ func renderCombinedPDF(to url: URL) throws {
     ctx.closePDF()
 }
 
-let outsidePDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-outside-print.pdf")
-let insidePDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-inside-print.pdf")
-let combinedPDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-print.pdf")
-let outsidePNG = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-outside-preview.png")
-let insidePNG = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-inside-preview.png")
+let previewSuffix = outputSlug.isEmpty ? "" : "-\(outputSlug)"
+let outsidePDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-outside-print\(previewSuffix).pdf")
+let insidePDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-inside-print\(previewSuffix).pdf")
+let combinedPDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-print\(previewSuffix).pdf")
+let outsidePNG = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-outside-preview\(previewSuffix).png")
+let insidePNG = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-inside-preview\(previewSuffix).png")
+let previewPDF = outputDir.appendingPathComponent("cbme-trifold-private-events-deep-house-chillout-preview-pages\(previewSuffix).pdf")
 
 try renderPDF(to: outsidePDF, draw: drawOutside)
 try renderPDF(to: insidePDF, draw: drawInside)
-try renderCombinedPDF(to: combinedPDF)
 try renderPNG(to: outsidePNG, draw: drawOutside)
 try renderPNG(to: insidePNG, draw: drawInside)
+if let outsidePreview = NSImage(contentsOf: outsidePNG), let insidePreview = NSImage(contentsOf: insidePNG) {
+    try renderCombinedPreviewPDF(to: combinedPDF, outsideImage: outsidePreview, insideImage: insidePreview)
+    try renderPreviewPDF(to: previewPDF, outsideImage: outsidePreview, insideImage: insidePreview)
+}
 
 print(outsidePDF.path)
 print(insidePDF.path)
 print(combinedPDF.path)
 print(outsidePNG.path)
 print(insidePNG.path)
+print(previewPDF.path)

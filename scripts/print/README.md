@@ -5,6 +5,7 @@ Current generators:
 - `generate_business_card_variants.swift`: alternate business card concepts.
 - `generate_business_cards_qr_tuned.swift`: QR-focused business card variant.
 - `generate_dj_booth_panel.swift`: metacrilato / DJ booth panel artwork.
+- `generate_vermut_hitster_poster.swift`: reusable Instagram Story poster generator for event promos.
 
 For convenience, the files in `/scripts` keep the original names as symlinks
 to these canonical copies, so existing commands still work.
