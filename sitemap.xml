@@ -6,11 +6,13 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://costabravamusicevents.com/" />
-    <xhtml:link rel="alternate" hreflang="ca" href="https://costabravamusicevents.com/?lang=ca" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://costabravamusicevents.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://costabravamusicevents.com/ca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://costabravamusicevents.com/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://costabravamusicevents.com/" />
   </url>
-  <url><loc>https://costabravamusicevents.com/contact.html</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://costabravamusicevents.com/ca/</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://costabravamusicevents.com/en/</loc><lastmod>2026-05-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://costabravamusicevents.com/contact.html</loc><lastmod>2026-05-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://costabravamusicevents.com/es/guias-locales.html</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://costabravamusicevents.com/ca/guies-locals.html</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://costabravamusicevents.com/en/local-guides.html</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
