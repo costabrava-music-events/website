@@ -125,9 +125,20 @@ window.cbmeApp = function cbmeApp() {
       url: "https://costabravamusicevents.com/en/",
     },
   };
+  const canUseCanonicalUrls = () =>
+    window.location.protocol === "http:" || window.location.protocol === "https:";
+  const isStaticLocalePath = (path) =>
+    path.endsWith("/ca/") || path.endsWith("/ca/index.html") || path.endsWith("/en/") || path.endsWith("/en/index.html");
+  const goToCanonicalLocale = (locale, mode = "assign") => {
+    if (!canUseCanonicalUrls()) return false;
+    const target = langSeo[locale] && langSeo[locale].url;
+    if (!target || window.location.href === target) return false;
+    window.location[mode](target);
+    return true;
+  };
   const localPrefix = () => {
     const path = window.location.pathname || "";
-    return path.endsWith("/ca/") || path.endsWith("/ca/index.html") || path.endsWith("/en/") || path.endsWith("/en/index.html") ? "../" : "./";
+    return isStaticLocalePath(path) ? "../" : "./";
   };
   const localHref = (path) => `${localPrefix()}${path}`;
   const guidesHub = {
@@ -457,8 +468,7 @@ window.cbmeApp = function cbmeApp() {
 
     try {
       const url = new URL(window.location.href);
-      const staticLocalePath = url.pathname.endsWith("/ca/") || url.pathname.endsWith("/ca/index.html") || url.pathname.endsWith("/en/") || url.pathname.endsWith("/en/index.html");
-      if (!staticLocalePath) {
+      if (!canUseCanonicalUrls() && !isStaticLocalePath(url.pathname)) {
         if (locale === "es") {
           url.searchParams.delete("lang");
         } else {
@@ -474,7 +484,10 @@ window.cbmeApp = function cbmeApp() {
   const getInitialLanguage = () => {
     try {
       const urlLang = new URLSearchParams(window.location.search).get("lang");
-      if (urlLang && translations[urlLang]) return urlLang;
+      if (urlLang && translations[urlLang]) {
+        goToCanonicalLocale(urlLang, "replace");
+        return urlLang;
+      }
     } catch (_error) {
       // ignore URLSearchParams errors
     }
@@ -492,14 +505,22 @@ window.cbmeApp = function cbmeApp() {
       // ignore localStorage errors
     }
     const nav = (navigator.language || "es").toLowerCase();
-    if (nav.startsWith("ca")) return "ca";
-    if (nav.startsWith("en")) return "en";
+    if (nav.startsWith("ca")) {
+      goToCanonicalLocale("ca", "replace");
+      return "ca";
+    }
+    if (nav.startsWith("en")) {
+      goToCanonicalLocale("en", "replace");
+      return "en";
+    }
     return "es";
   };
 
   langButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      applyLanguage(button.getAttribute("data-lang"));
+      const locale = button.getAttribute("data-lang");
+      if (goToCanonicalLocale(translations[locale] ? locale : "es")) return;
+      applyLanguage(locale);
     });
   });
 
