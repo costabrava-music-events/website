@@ -62,7 +62,7 @@
     spaceBetween: 16,
     centeredSlides: false,
     autoplay: {
-      delay: 700,
+      delay: 3200,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
@@ -118,30 +118,40 @@ window.cbmeApp = function cbmeApp() {
     },
     ca: {
       locale: "ca_ES",
-      url: "https://costabravamusicevents.com/?lang=ca",
+      url: "https://costabravamusicevents.com/ca/",
     },
     en: {
       locale: "en_GB",
-      url: "https://costabravamusicevents.com/?lang=en",
+      url: "https://costabravamusicevents.com/en/",
     },
   };
+  const localPrefix = () => {
+    const path = window.location.pathname || "";
+    return path.endsWith("/ca/") || path.endsWith("/ca/index.html") || path.endsWith("/en/") || path.endsWith("/en/index.html") ? "../" : "./";
+  };
+  const localHref = (path) => `${localPrefix()}${path}`;
   const guidesHub = {
-    es: "./es/guias-locales.html",
-    ca: "./ca/guies-locals.html",
-    en: "./en/local-guides.html",
+    es: "es/guias-locales.html",
+    ca: "ca/guies-locals.html",
+    en: "en/local-guides.html",
   };
   const blogHub = {
-    es: "./es/blog.html",
-    ca: "./ca/blog.html",
-    en: "./en/blog.html",
+    es: "es/blog.html",
+    ca: "ca/blog.html",
+    en: "en/blog.html",
+  };
+  const serviceLinks = {
+    es: { dj: "es/dj-bodas-costa-brava.html", sound: "es/alquiler-sonido-eventos-girona.html", decor: "es/decoracion-eventos-costa-brava.html" },
+    ca: { dj: "ca/dj-bodas-costa-brava.html", sound: "ca/alquiler-sonido-eventos-girona.html", decor: "ca/decoracion-eventos-costa-brava.html" },
+    en: { dj: "en/dj-bodas-costa-brava.html", sound: "en/alquiler-sonido-eventos-girona.html", decor: "en/decoracion-eventos-costa-brava.html" },
   };
 
   const translations = {
     es: {
-      page_title: "Costa Brava Music Events — Eventos musicales en la Costa Brava",
-      meta_description: "Música, sonido e iluminación que hacen vibrar tu evento",
-      meta_og_title: "Costa Brava Music Events",
-      meta_og_description: "Música, sonido e iluminación que hacen vibrar tu evento",
+      page_title: "DJ, música y sonido para eventos en Costa Brava | CBME",
+      meta_description: "DJ, música en vivo, sonido e iluminación para bodas y eventos privados en Costa Brava y Girona. Producción técnica y musical a medida.",
+      meta_og_title: "DJ, música y sonido para eventos en Costa Brava | CBME",
+      meta_og_description: "DJ, música en vivo, sonido e iluminación para bodas y eventos privados en Costa Brava y Girona. Producción técnica y musical a medida.",
       skip_to_content: "Saltar al contenido",
       hero_title: "Música, sonido e iluminación que hacen vibrar tu evento",
       hero_intro:
@@ -198,6 +208,7 @@ window.cbmeApp = function cbmeApp() {
       contact_email: "Email",
       contact_phone: "Teléfono de contacto",
       form_title: "Envíanos un mensaje",
+      form_note: "Respondemos normalmente en menos de 24 horas laborables.",
       form_name: "Nombre",
       form_email: "Email",
       form_phone: "Teléfono",
@@ -211,6 +222,7 @@ window.cbmeApp = function cbmeApp() {
       event_fiesta: "Fiesta mayor",
       form_message: "Mensaje",
       form_submit: "Enviar",
+      form_privacy: "Usaremos tus datos solo para responder a tu solicitud.",
       footer_local_guides: "Guías locales",
       footer_blog: "Blog",
       footer_brand: "Costa Brava Music Events",
@@ -219,10 +231,10 @@ window.cbmeApp = function cbmeApp() {
         '© <span x-text="new Date().getFullYear()"></span> Costa Brava Music Events. Todos los derechos reservados.',
     },
     ca: {
-      page_title: "Costa Brava Music Events — Esdeveniments musicals a la Costa Brava",
-      meta_description: "Música, so i il·luminació que fan vibrar el teu esdeveniment",
-      meta_og_title: "Costa Brava Music Events",
-      meta_og_description: "Música, so i il·luminació que fan vibrar el teu esdeveniment",
+      page_title: "DJ, música i so per a esdeveniments a Costa Brava | CBME",
+      meta_description: "DJ, música en directe, so i il·luminació per a casaments i esdeveniments privats a Costa Brava i Girona.",
+      meta_og_title: "DJ, música i so per a esdeveniments a Costa Brava | CBME",
+      meta_og_description: "DJ, música en directe, so i il·luminació per a casaments i esdeveniments privats a Costa Brava i Girona.",
       skip_to_content: "Vés al contingut",
       hero_title: "Música, so i il·luminació que fan vibrar el teu esdeveniment",
       hero_intro:
@@ -272,6 +284,7 @@ window.cbmeApp = function cbmeApp() {
       contact_email: "Correu electrònic",
       contact_phone: "Telèfon de contacte",
       form_title: "Envia'ns un missatge",
+      form_note: "Normalment responem en menys de 24 hores laborables.",
       form_name: "Nom",
       form_email: "Correu electrònic",
       form_phone: "Telèfon",
@@ -285,6 +298,7 @@ window.cbmeApp = function cbmeApp() {
       event_fiesta: "Festa major",
       form_message: "Missatge",
       form_submit: "Enviar",
+      form_privacy: "Farem servir les teves dades només per respondre la sol·licitud.",
       footer_local_guides: "Guies locals",
       footer_blog: "Blog",
       footer_brand: "Costa Brava Music Events",
@@ -293,10 +307,10 @@ window.cbmeApp = function cbmeApp() {
         '© <span x-text="new Date().getFullYear()"></span> Costa Brava Music Events. Tots els drets reservats.',
     },
     en: {
-      page_title: "Costa Brava Music Events — Music events on the Costa Brava",
-      meta_description: "Music, sound and lighting that make your event come alive",
-      meta_og_title: "Costa Brava Music Events",
-      meta_og_description: "Music, sound and lighting that make your event come alive",
+      page_title: "DJ, live music and sound for Costa Brava events | CBME",
+      meta_description: "DJ, live music, sound and lighting for weddings and private events in Costa Brava and Girona. Tailored technical production.",
+      meta_og_title: "DJ, live music and sound for Costa Brava events | CBME",
+      meta_og_description: "DJ, live music, sound and lighting for weddings and private events in Costa Brava and Girona. Tailored technical production.",
       skip_to_content: "Skip to content",
       hero_title: "Music, sound and lighting that make your event come alive",
       hero_intro:
@@ -350,6 +364,7 @@ window.cbmeApp = function cbmeApp() {
       contact_email: "Email",
       contact_phone: "Contact phone",
       form_title: "Send us a message",
+      form_note: "We usually reply within one business day.",
       form_name: "Name",
       form_email: "Email",
       form_phone: "Phone",
@@ -363,6 +378,7 @@ window.cbmeApp = function cbmeApp() {
       event_fiesta: "Local festival",
       form_message: "Message",
       form_submit: "Send",
+      form_privacy: "We will only use your details to respond to your request.",
       footer_local_guides: "Local guides",
       footer_blog: "Blog",
       footer_brand: "Costa Brava Music Events",
@@ -424,9 +440,14 @@ window.cbmeApp = function cbmeApp() {
     });
 
     const guidesLink = document.querySelector("#local-guides-link");
-    if (guidesLink) guidesLink.setAttribute("href", guidesHub[locale]);
+    if (guidesLink) guidesLink.setAttribute("href", localHref(guidesHub[locale]));
     const blogLink = document.querySelector("#blog-link");
-    if (blogLink) blogLink.setAttribute("href", blogHub[locale]);
+    if (blogLink) blogLink.setAttribute("href", localHref(blogHub[locale]));
+    document.querySelectorAll("[data-service-link]").forEach((node) => {
+      const key = node.getAttribute("data-service-link");
+      const href = serviceLinks[locale] && serviceLinks[locale][key];
+      if (href) node.setAttribute("href", localHref(href));
+    });
 
     try {
       localStorage.setItem("cbme_lang", locale);
@@ -436,12 +457,15 @@ window.cbmeApp = function cbmeApp() {
 
     try {
       const url = new URL(window.location.href);
-      if (locale === "es") {
-        url.searchParams.delete("lang");
-      } else {
-        url.searchParams.set("lang", locale);
+      const staticLocalePath = url.pathname.endsWith("/ca/") || url.pathname.endsWith("/ca/index.html") || url.pathname.endsWith("/en/") || url.pathname.endsWith("/en/index.html");
+      if (!staticLocalePath) {
+        if (locale === "es") {
+          url.searchParams.delete("lang");
+        } else {
+          url.searchParams.set("lang", locale);
+        }
+        window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
       }
-      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
     } catch (_error) {
       // ignore URL/history errors
     }
@@ -453,6 +477,13 @@ window.cbmeApp = function cbmeApp() {
       if (urlLang && translations[urlLang]) return urlLang;
     } catch (_error) {
       // ignore URLSearchParams errors
+    }
+    try {
+      const path = window.location.pathname;
+      if (path.endsWith("/ca/") || path.endsWith("/ca/index.html")) return "ca";
+      if (path.endsWith("/en/") || path.endsWith("/en/index.html")) return "en";
+    } catch (_error) {
+      // ignore path errors
     }
     try {
       const saved = localStorage.getItem("cbme_lang");
