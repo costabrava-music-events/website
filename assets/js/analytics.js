@@ -1,5 +1,10 @@
 /* Costa Brava Music Events — GA4 + conversion events */
 (() => {
+  if (window.location.hostname === "www.costabravamusicevents.com") {
+    window.location.replace(`https://costabravamusicevents.com${window.location.pathname}${window.location.search}${window.location.hash}`);
+    return;
+  }
+
   // Set your real GA4 Measurement ID, e.g. G-ABC123XYZ.
   const GA4_ID = "G-3LVTS738CB";
   const isConfigured = /^G-[A-Z0-9]+$/i.test(GA4_ID) && GA4_ID !== "G-XXXXXXXXXX";
