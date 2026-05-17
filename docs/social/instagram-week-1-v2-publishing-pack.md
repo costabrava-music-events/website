@@ -1,6 +1,6 @@
 # Semana 1 v2 - Instagram
 
-Estado: para revision. No publicar sin aprobacion.
+Estado: aprobado. Post 1 publicado; posts 2, 3 y 4 programados.
 
 ## Linea creativa
 
@@ -12,6 +12,8 @@ Estado: para revision. No publicar sin aprobacion.
 - La descripcion debe funcionar como mini-explicacion del tema.
 
 ## Post 1 - Boda / DJ
+
+Estado: publicado el 17/05/2026.
 
 Archivo:
 
@@ -31,6 +33,8 @@ Hashtags:
 
 ## Post 2 - Cóctel / música en vivo
 
+Estado: programado para el 18/05/2026 a las 14:00.
+
 Archivo:
 
 `assets/social/week-1-v2/post-02-cocktail-live.png`
@@ -49,6 +53,8 @@ Hashtags:
 
 ## Post 3 - Iluminación / masía
 
+Estado: programado para el 19/05/2026 a las 21:00.
+
 Archivo:
 
 `assets/social/week-1-v2/post-03-masia-night.png`
@@ -66,6 +72,8 @@ Hashtags:
 `#IluminacionEventos #MasiaCostaBrava #BodasCostaBrava #EventosGirona #WeddingLighting #CostaBravaEvents`
 
 ## Post 4 - Fiesta privada
+
+Estado: programado para el 24/05/2026 a las 14:00.
 
 Archivo:
 
