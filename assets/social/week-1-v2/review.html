@@ -13,6 +13,8 @@
       .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
       article { background: #161a20; border: 1px solid #2a3039; border-radius: 8px; overflow: hidden; }
       img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #050608; }
+      .slides { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #050608; }
+      .slides img { aspect-ratio: 4 / 5; }
       .body { padding: 14px; }
       h2 { margin: 0 0 8px; font-size: 17px; }
       .meta { color: #f0d08a; font-size: 13px; margin: 0; }
@@ -33,12 +35,16 @@
           <div class="body"><h2>Post 2 - Cóctel</h2><p class="meta">Catalán · 18/05 14:00</p></div>
         </article>
         <article>
-          <img src="post-03-masia-night.png" alt="">
-          <div class="body"><h2>Post 3 - Iluminación</h2><p class="meta">Catalán · 19/05 21:00</p></div>
+          <div class="slides">
+            <img src="post-03-educational-gpt-ca-01.png" alt="">
+            <img src="post-03-educational-gpt-ca-02.png" alt="">
+            <img src="post-03-educational-gpt-ca-03.png" alt="">
+          </div>
+          <div class="body"><h2>Post 3 - Educativo</h2><p class="meta">Catalán · GPT Image · 19/05 21:00</p></div>
         </article>
         <article>
-          <img src="post-04-private-party.png" alt="">
-          <div class="body"><h2>Post 4 - Fiesta privada</h2><p class="meta">Inglés · 24/05 14:00</p></div>
+          <img src="post-04-artist-focus-onedaydjs-en.png" alt="">
+          <div class="body"><h2>Post 4 - OneDayDJs</h2><p class="meta">Inglés · Artista · 24/05 10:00</p></div>
         </article>
       </section>
     </main>

@@ -53,47 +53,47 @@ Hashtags:
 
 `#MusicaEnViu #CoctelBoda #EsdevenimentsCostaBrava #BodesGirona #AperitiuBoda #CostaBravaEvents`
 
-## Post 3 - Iluminación / masía
+## Post 3 - Educativo / música por momentos
 
 Estado: programado para el 19/05/2026 a las 21:00. Idioma: catalan.
 
-Archivo:
+Archivos:
 
-`assets/social/week-1-v2/post-03-masia-night.png`
-
-Caption:
-
-> Una masia canvia completament quan la llum està ben pensada.
->
-> No es tracta de posar focus per posar-ne. Es tracta de separar moments: arribada, sopar, brindis, ball i final de festa.
->
-> Si tens un espai o venue, et podem ajudar a imaginar el muntatge.
-
-Hashtags:
-
-`#IluminacioEsdeveniments #MasiaCostaBrava #BodesCostaBrava #EsdevenimentsGirona #WeddingLighting #CostaBravaEvents`
-
-## Post 4 - Fiesta privada
-
-Estado: programado para el 24/05/2026 a las 14:00. Idioma: ingles.
-
-Archivo:
-
-`assets/social/week-1-v2/post-04-private-party.png`
+`assets/social/week-1-v2/post-03-educational-gpt-ca-01.png`
+`assets/social/week-1-v2/post-03-educational-gpt-ca-02.png`
+`assets/social/week-1-v2/post-03-educational-gpt-ca-03.png`
 
 Caption:
 
-> A good private party is not improvised.
+> La música d’una boda no comença quan s’obre la pista.
 >
-> The space, guests’ age range, timing, volume limits and the kind of energy you want all change the musical approach.
+> Comença molt abans: cerimònia, còctel, sopar i primer ball tenen ritmes diferents. Quan cada moment té el seu so, l’esdeveniment respira millor.
 >
-> This month we’re preparing a private event with remember, house and an aperitif atmosphere. That’s where planning matters: start softly, read the group and raise the energy at the right moment.
->
-> Tell us what you’re celebrating and we’ll suggest the right format.
+> Guarda aquesta guia si estàs preparant una boda.
 
 Hashtags:
 
-`#PrivateParty #CostaBravaDJ #PrivateEvents #GironaEvents #EventMusic #CostaBravaEvents`
+`#BodesCostaBrava #DJBoda #MusicaBoda #BodesGirona #WeddingMusic #CostaBravaEvents`
+
+## Post 4 - Artist focus / OneDayDJs
+
+Estado: programado para el 24/05/2026 a las 10:00. Idioma: ingles.
+
+Archivo:
+
+`assets/social/week-1-v2/post-04-artist-focus-onedaydjs-en.png`
+
+Caption:
+
+> OneDayDJs bring a different kind of energy to an event.
+>
+> Electronic 80s/90s, live percussion and a format that works especially well when the party needs something more distinctive than a standard DJ set.
+>
+> Good option for private events, venues and celebrations that want rhythm, personality and a live feel.
+
+Hashtags:
+
+`#OneDayDJs #CostaBravaDJ #PrivateEvents #ElectronicMusic #GironaEvents #CostaBravaEvents`
 
 ## Stories de apoyo
 
@@ -129,25 +129,25 @@ Pregunta: `¿DJ, directo o ambos?`
 
 Imagen:
 
-`assets/social/week-1-v2/post-03-masia-night.png`
+`assets/social/week-1-v2/post-03-educational-gpt-ca-01.png`
 
 Texto:
 
-> La iluminación también marca el ritmo del evento.
+> La música d'una boda comença abans de la pista.
 
 Sticker:
 
-Pregunta: `¿Ya tienes venue?`
+Pregunta: `Quin moment vols cuidar més?`
 
 ## Programacion aplicada
 
 1. Post 1: publicado el domingo 17/05/2026.
 2. Post 2: lunes 18/05/2026, 14:00.
 3. Post 3: martes 19/05/2026, 21:00.
-4. Post 4: domingo 24/05/2026, 14:00.
+4. Post 4: domingo 24/05/2026, 10:00.
 
 ## Continuidad con eventos reales
 
-- 30/05/2026: bolo privado remember / house. Usar Post 4 como previa.
+- 30/05/2026: bolo privado remember / house. Preparar contenido posterior, sin publicarlo como previa si no conviene.
 - 20/06/2026: boda pequeña en Riudarenes. Usar Post 1 y carrusel posterior sobre música por momentos.
 - 01/08/2026: aniversario / puesta de largo. Preparar post específico en julio.
