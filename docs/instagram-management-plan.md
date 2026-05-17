@@ -341,6 +341,15 @@ Requisitos:
 - Idiomas a priorizar: ES, CA, EN, FR.
 - Proveedores/venues con los que queremos colaborar.
 
+## Enlace de Instagram
+
+Los enlaces en captions de Instagram no son clicables. El flujo recomendado es:
+
+- Usar en la bio `https://costabravamusicevents.com/instagram.html`.
+- En cada post escribir `Guía en el enlace de la bio`.
+- Mantener la landing con los enlaces activos a las guías, contacto y campañas.
+- Si un post ya está publicado sin CTA accionable, añadir comentario con URL directa como solución temporal.
+
 ## Proxima accion
 
 1. Revisar y aprobar el paquete de semana 1.
