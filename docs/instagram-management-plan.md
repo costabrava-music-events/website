@@ -343,12 +343,12 @@ Requisitos:
 
 ## Enlace de Instagram
 
-Los enlaces en captions de Instagram no son clicables. El flujo recomendado es:
+Los enlaces en captions de Instagram no son clicables, pero se pueden mostrar como URL visible. El flujo recomendado es:
 
-- Usar en la bio `https://costabravamusicevents.com/instagram.html`.
-- En cada post escribir `Guía en el enlace de la bio`.
-- Mantener la landing con los enlaces activos a las guías, contacto y campañas.
-- Si un post ya está publicado sin CTA accionable, añadir comentario con URL directa como solución temporal.
+- Incluir la URL concreta del articulo en la descripcion del post.
+- Cuando la imagen lo permita, añadir una etiqueta visual discreta con la URL corta o el titulo de la guia.
+- Evitar landing intermedia salvo que se pida expresamente.
+- Si un post ya está publicado sin URL visible, corregir editando caption o añadiendo comentario con la URL directa.
 
 ## Proxima accion
 

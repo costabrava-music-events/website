@@ -9,8 +9,8 @@ Estado: para revision. No publicar sin aprobacion.
 - Sin texto grande dentro de la imagen.
 - Copy con idea concreta + CTA suave.
 - Cada post puede llevar a una entrada del blog.
-- CTA estandar: `Guía en el enlace de la bio`.
-- Link de bio recomendado: `https://costabravamusicevents.com/instagram.html`.
+- CTA estandar: incluir la URL concreta en la descripcion.
+- Opcion visual: añadir una etiqueta discreta en la imagen con la URL corta o el titulo de la guia.
 
 ## Post 1 - Boda / DJ
 
@@ -28,7 +28,8 @@ Caption:
 >
 > El DJ no entra solo cuando empieza la fiesta. Está en las decisiones previas: qué se escucha al llegar, cómo respira el cóctel, cuándo subir la energía y cuándo dejar que el momento hable solo.
 >
-> Guía completa en el enlace de la bio: cómo elegir DJ de boda sin quedarte solo con el precio.
+> Guía completa:
+> https://costabravamusicevents.com/es/blog-como-elegir-dj-boda-costa-brava.html
 >
 > Si estás preparando boda en Costa Brava o Girona, mándanos fecha y lugar.
 
@@ -52,7 +53,8 @@ Caption:
 >
 > Si la música está demasiado alta, molesta. Si no tiene intención, desaparece. El punto está en crear ambiente sin tapar la conversación.
 >
-> Guía completa en el enlace de la bio: cómo plantear música para cóctel, aperitivo y bienvenida.
+> Guía completa:
+> https://costabravamusicevents.com/es/blog-musica-coctel-aperitivo-evento.html
 >
 > ¿Tu evento será de día, tarde o noche?
 
@@ -76,7 +78,8 @@ Caption:
 >
 > No se trata de poner focos por poner. Se trata de separar momentos: llegada, cena, brindis, baile y final de fiesta.
 >
-> Guía completa en el enlace de la bio: iluminación ambiental para masías y espacios singulares en Costa Brava.
+> Guía completa:
+> https://costabravamusicevents.com/es/blog-iluminacion-ambiental-masia-costa-brava.html
 >
 > Si tienes venue, podemos ayudarte a imaginar el montaje.
 
@@ -102,7 +105,8 @@ Caption:
 >
 > Este mes preparamos un bolo privado con remember, house y ambiente de aperitivo. Ahí es donde se nota la planificación: empezar suave, leer el grupo y subir la energía cuando toca.
 >
-> Guía completa en el enlace de la bio: cómo organizar la música de una fiesta privada sin dejar el ambiente al azar.
+> Guía completa:
+> https://costabravamusicevents.com/es/blog-musica-fiesta-privada-costa-brava.html
 >
 > Cuéntanos qué celebras y te proponemos formato.
 
