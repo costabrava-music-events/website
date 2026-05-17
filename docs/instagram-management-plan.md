@@ -79,6 +79,12 @@ Highlights recomendados:
 - Stories 5 dias por semana.
 - 1 post colaborativo semanal con artista, venue o proveedor.
 
+## Idioma
+
+- Objetivo editorial: 50% catalan, 30% castellano, 20% ingles.
+- En tandas pequenas, ajustar al reparto mas cercano sin forzar decimales.
+- Prioridad: catalan para proximidad local, castellano para captacion general e ingles para bodas/eventos internacionales.
+
 ## Calendario 30 dias
 
 | Dia | Formato | Tema | CTA |

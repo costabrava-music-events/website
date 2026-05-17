@@ -2,6 +2,8 @@
 
 Estado: aprobado. Post 1 publicado; posts 2, 3 y 4 programados.
 
+Mix de idioma aplicado: 2 catalan, 1 castellano, 1 ingles. Con 4 posts no existe reparto exacto 50/30/20; esta tanda queda en 50/25/25, que es el ajuste mas cercano.
+
 ## Linea creativa
 
 - Imagen realista premium.
@@ -13,7 +15,7 @@ Estado: aprobado. Post 1 publicado; posts 2, 3 y 4 programados.
 
 ## Post 1 - Boda / DJ
 
-Estado: publicado el 17/05/2026.
+Estado: publicado el 17/05/2026. Idioma: castellano.
 
 Archivo:
 
@@ -33,7 +35,7 @@ Hashtags:
 
 ## Post 2 - Cóctel / música en vivo
 
-Estado: programado para el 18/05/2026 a las 14:00.
+Estado: programado para el 18/05/2026 a las 14:00. Idioma: catalan.
 
 Archivo:
 
@@ -41,19 +43,19 @@ Archivo:
 
 Caption:
 
-> El cóctel es uno de los momentos más delicados de un evento.
+> El còctel és un dels moments més delicats d’un esdeveniment.
 >
-> Si la música está demasiado alta, molesta. Si no tiene intención, desaparece. El punto está en crear ambiente sin tapar la conversación.
+> Si la música està massa alta, molesta. Si no té intenció, desapareix. El punt és crear ambient sense tapar la conversa.
 >
-> ¿Tu evento será de día, tarde o noche?
+> El teu esdeveniment serà de dia, tarda o nit?
 
 Hashtags:
 
-`#MusicaEnVivo #CoctelBoda #EventosCostaBrava #BodasGirona #AperitivoBoda #CostaBravaEvents`
+`#MusicaEnViu #CoctelBoda #EsdevenimentsCostaBrava #BodesGirona #AperitiuBoda #CostaBravaEvents`
 
 ## Post 3 - Iluminación / masía
 
-Estado: programado para el 19/05/2026 a las 21:00.
+Estado: programado para el 19/05/2026 a las 21:00. Idioma: catalan.
 
 Archivo:
 
@@ -61,19 +63,19 @@ Archivo:
 
 Caption:
 
-> Una masía cambia completamente cuando la luz está bien pensada.
+> Una masia canvia completament quan la llum està ben pensada.
 >
-> No se trata de poner focos por poner. Se trata de separar momentos: llegada, cena, brindis, baile y final de fiesta.
+> No es tracta de posar focus per posar-ne. Es tracta de separar moments: arribada, sopar, brindis, ball i final de festa.
 >
-> Si tienes venue, podemos ayudarte a imaginar el montaje.
+> Si tens un espai o venue, et podem ajudar a imaginar el muntatge.
 
 Hashtags:
 
-`#IluminacionEventos #MasiaCostaBrava #BodasCostaBrava #EventosGirona #WeddingLighting #CostaBravaEvents`
+`#IluminacioEsdeveniments #MasiaCostaBrava #BodesCostaBrava #EsdevenimentsGirona #WeddingLighting #CostaBravaEvents`
 
 ## Post 4 - Fiesta privada
 
-Estado: programado para el 24/05/2026 a las 14:00.
+Estado: programado para el 24/05/2026 a las 14:00. Idioma: ingles.
 
 Archivo:
 
@@ -81,17 +83,17 @@ Archivo:
 
 Caption:
 
-> Una fiesta privada buena no se improvisa.
+> A good private party is not improvised.
 >
-> El espacio, la edad de los invitados, el horario, el volumen permitido y el tipo de energía cambian totalmente la propuesta musical.
+> The space, guests’ age range, timing, volume limits and the kind of energy you want all change the musical approach.
 >
-> Este mes preparamos un bolo privado con remember, house y ambiente de aperitivo. Ahí es donde se nota la planificación: empezar suave, leer el grupo y subir la energía cuando toca.
+> This month we’re preparing a private event with remember, house and an aperitif atmosphere. That’s where planning matters: start softly, read the group and raise the energy at the right moment.
 >
-> Cuéntanos qué celebras y te proponemos formato.
+> Tell us what you’re celebrating and we’ll suggest the right format.
 
 Hashtags:
 
-`#FiestaPrivada #DJCostaBrava #EventosPrivados #GironaEvents #MusicaParaEventos #CostaBravaEvents`
+`#PrivateParty #CostaBravaDJ #PrivateEvents #GironaEvents #EventMusic #CostaBravaEvents`
 
 ## Stories de apoyo
 
@@ -137,14 +139,12 @@ Sticker:
 
 Pregunta: `¿Ya tienes venue?`
 
-## Recomendacion de orden
+## Programacion aplicada
 
-1. Post 1: martes 19/05/2026, 19:30.
-2. Story 1: miércoles 20/05/2026, 12:30.
-3. Post 2: jueves 21/05/2026, 19:30.
-4. Story 2: viernes 22/05/2026, 12:30.
-5. Post 4: domingo 24/05/2026, 19:00.
-6. Post 3: martes 09/06/2026, 19:30.
+1. Post 1: publicado el domingo 17/05/2026.
+2. Post 2: lunes 18/05/2026, 14:00.
+3. Post 3: martes 19/05/2026, 21:00.
+4. Post 4: domingo 24/05/2026, 14:00.
 
 ## Continuidad con eventos reales
 
