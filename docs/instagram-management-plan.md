@@ -341,14 +341,14 @@ Requisitos:
 - Idiomas a priorizar: ES, CA, EN, FR.
 - Proveedores/venues con los que queremos colaborar.
 
-## Enlace de Instagram
+## Enfoque de captions
 
-Los enlaces en captions de Instagram no son clicables, pero se pueden mostrar como URL visible. El flujo recomendado es:
+Los posts del feed deben ser autonomos:
 
-- Incluir la URL concreta del articulo en la descripcion del post.
-- Cuando la imagen lo permita, añadir una etiqueta visual discreta con la URL corta o el titulo de la guia.
-- Evitar landing intermedia salvo que se pida expresamente.
-- Si un post ya está publicado sin URL visible, corregir editando caption o añadiendo comentario con la URL directa.
+- No incluir URLs largas ni referencias al blog en captions.
+- Usar la descripcion como mini-explicacion del tema.
+- Mantener CTA suave hacia contacto, fecha o tipo de evento.
+- Usar Stories con sticker de enlace solo cuando se quiera empujar trafico a una pagina concreta.
 
 ## Proxima accion
 

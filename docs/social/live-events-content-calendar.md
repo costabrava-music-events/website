@@ -30,10 +30,6 @@ Copy propuesto:
 >
 > Si estas preparando una celebracion en Costa Brava o Girona, cuentanos que energia buscas.
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-musica-fiesta-privada-costa-brava.html`
-
 ### 20/06/2026 - Boda en Riudarenes
 
 Datos utiles:
@@ -59,10 +55,6 @@ Copy propuesto:
 >
 > Justo por eso trabajamos cada bloque por separado.
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-musica-para-cada-momento-boda.html`
-
 ### 01/08/2026 - Aniversario / puesta de largo
 
 Datos utiles:
@@ -87,15 +79,11 @@ Copy propuesto:
 >
 > Para este tipo de evento, el orden importa tanto como la musica.
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-musica-aniversarios-inauguraciones-costa-brava.html`
-
 ## Plan semanal basado en eventos
 
 ### Semana 18/05 - 24/05
 
-- Post blog: como organizar musica para una fiesta privada.
+- Post educativo: como organizar musica para una fiesta privada.
 - Story: encuesta `Remember / Comercial`.
 - Objetivo: calentar el evento privado del 30/05.
 
@@ -124,7 +112,7 @@ Blog relacionado:
 ### Semana 22/06 - 28/06
 
 - Post recap boda pequena.
-- Blog recomendado: como elegir DJ para boda.
+- Post educativo: decisiones clave al elegir DJ para boda.
 
 ### Semana 27/07 - 02/08
 

@@ -8,9 +8,8 @@ Estado: para revision. No publicar sin aprobacion.
 - Logo real de CBME integrado.
 - Sin texto grande dentro de la imagen.
 - Copy con idea concreta + CTA suave.
-- Cada post puede llevar a una entrada del blog.
-- CTA estandar: incluir la URL concreta en la descripcion.
-- Opcion visual: añadir una etiqueta discreta en la imagen con la URL corta o el titulo de la guia.
+- Posts autonomos: no incluir enlaces ni referencias a articulos del blog.
+- La descripcion debe funcionar como mini-explicacion del tema.
 
 ## Post 1 - Boda / DJ
 
@@ -18,18 +17,11 @@ Archivo:
 
 `assets/social/week-1-v2/post-01-wedding-terrace.png`
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-como-elegir-dj-boda-costa-brava.html`
-
 Caption:
 
 > Hay una diferencia enorme entre “poner música” y saber leer una boda.
 >
 > El DJ no entra solo cuando empieza la fiesta. Está en las decisiones previas: qué se escucha al llegar, cómo respira el cóctel, cuándo subir la energía y cuándo dejar que el momento hable solo.
->
-> Guía completa:
-> https://costabravamusicevents.com/es/blog-como-elegir-dj-boda-costa-brava.html
 >
 > Si estás preparando boda en Costa Brava o Girona, mándanos fecha y lugar.
 
@@ -43,18 +35,11 @@ Archivo:
 
 `assets/social/week-1-v2/post-02-cocktail-live.png`
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-musica-coctel-aperitivo-evento.html`
-
 Caption:
 
 > El cóctel es uno de los momentos más delicados de un evento.
 >
 > Si la música está demasiado alta, molesta. Si no tiene intención, desaparece. El punto está en crear ambiente sin tapar la conversación.
->
-> Guía completa:
-> https://costabravamusicevents.com/es/blog-musica-coctel-aperitivo-evento.html
 >
 > ¿Tu evento será de día, tarde o noche?
 
@@ -68,18 +53,11 @@ Archivo:
 
 `assets/social/week-1-v2/post-03-masia-night.png`
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-iluminacion-ambiental-masia-costa-brava.html`
-
 Caption:
 
 > Una masía cambia completamente cuando la luz está bien pensada.
 >
 > No se trata de poner focos por poner. Se trata de separar momentos: llegada, cena, brindis, baile y final de fiesta.
->
-> Guía completa:
-> https://costabravamusicevents.com/es/blog-iluminacion-ambiental-masia-costa-brava.html
 >
 > Si tienes venue, podemos ayudarte a imaginar el montaje.
 
@@ -93,10 +71,6 @@ Archivo:
 
 `assets/social/week-1-v2/post-04-private-party.png`
 
-Blog relacionado:
-
-`https://costabravamusicevents.com/es/blog-musica-fiesta-privada-costa-brava.html`
-
 Caption:
 
 > Una fiesta privada buena no se improvisa.
@@ -104,9 +78,6 @@ Caption:
 > El espacio, la edad de los invitados, el horario, el volumen permitido y el tipo de energía cambian totalmente la propuesta musical.
 >
 > Este mes preparamos un bolo privado con remember, house y ambiente de aperitivo. Ahí es donde se nota la planificación: empezar suave, leer el grupo y subir la energía cuando toca.
->
-> Guía completa:
-> https://costabravamusicevents.com/es/blog-musica-fiesta-privada-costa-brava.html
 >
 > Cuéntanos qué celebras y te proponemos formato.
 
