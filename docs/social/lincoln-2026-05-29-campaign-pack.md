@@ -1,6 +1,6 @@
 # Lincoln 90s - Campaña Instagram
 
-Estado: borrador para revisión antes de publicar.
+Estado: aprobado para adelantar programacion desde el 20/05/2026.
 
 Evento de calendario: `Lincoln 90 s`, viernes 29/05/2026, de 23:00 a cierre.
 
@@ -22,11 +22,13 @@ Evento de calendario: `Lincoln 90 s`, viernes 29/05/2026, de 23:00 a cierre.
 
 Idioma: castellano.
 
+Fecha programada: 20/05/2026 a las 20:30.
+
 Caption:
 
-> Este viernes 29 de mayo vuelve la energía de los 90 a Lincoln.
+> El viernes 29 de mayo vuelve la energia de los 90 a Lincoln.
 >
-> DJ Dani Homs al mando de una noche de dance house y remember classics, desde las 23:00 hasta cierre.
+> DJ Dani Homs al mando de una noche de 90s dance house y remember classics, desde las 23:00 hasta cierre.
 >
 > Guarda la fecha y ven con ganas de bailar.
 
@@ -56,9 +58,11 @@ Sticker sugerido: cuenta atrás para el 29/05/2026 a las 23:00.
 
 ## Tratamiento especial
 
-1. Publicar feed entre el 25/05 y el 27/05.
-2. Subir Story 2 el 28/05 por la tarde.
-3. Subir Story 3 el 29/05 por la mañana con cuenta atrás.
-4. Repostear Story principal el 29/05 por la tarde.
+1. 20/05 a las 20:30: publicar/programar feed principal.
+2. 23/05 a las 12:00: story musica.
+3. 26/05 a las 20:30: repost story principal.
+4. 28/05 a las 20:30: story musica + encuesta.
+5. 29/05 por la mañana: story cuenta atrás.
+6. 29/05 por la tarde: repost flyer principal.
 
-No publicar sin revisión previa.
+Revision semanal ya autorizada por el usuario para adelantar esta campaña.

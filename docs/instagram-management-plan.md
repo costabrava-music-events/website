@@ -356,9 +356,19 @@ Los posts del feed deben ser autonomos:
 - Mantener CTA suave hacia contacto, fecha o tipo de evento.
 - Usar Stories con sticker de enlace solo cuando se quiera empujar trafico a una pagina concreta.
 
+## Regla de aprobacion semanal
+
+Cada semana debe existir una revision previa contigo antes de publicar o programar contenido.
+
+- Yo preparo propuesta, visuales, captions, stories y horarios.
+- Tu revisas y pides cambios si hace falta.
+- Solo despues de tu aprobacion explicita se programa o publica.
+- Esta regla aplica a posts, carruseles, reels, stories y campañas especiales.
+- Excepcion: ninguna, salvo que me pidas explicitamente publicar algo concreto en ese momento.
+
 ## Proxima accion
 
-1. Revisar y aprobar el paquete de semana 1.
+1. Revisar y aprobar el paquete semanal correspondiente.
 2. Ajustar calendario con eventos proximos.
 3. Crear borradores en Meta Business Suite.
 4. Publicar/programar solo con aprobacion explicita.

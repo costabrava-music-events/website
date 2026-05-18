@@ -1,6 +1,6 @@
 # Instagram - Proximos eventos reales
 
-Estado: borrador para revision. No publicar sin aprobacion.
+Estado: borrador para revision semanal. Lincoln aprobado para empezar el 20/05/2026.
 
 Fuente: calendarios revisados el 18/05/2026.
 
@@ -38,7 +38,7 @@ Hashtags:
 
 ### 2. Lincoln 90s
 
-Fecha sugerida: 26/05/2026 o 27/05/2026.
+Fecha programada: 20/05/2026 a las 20:30.
 Idioma: castellano.
 Formato: feed + stories.
 
@@ -48,7 +48,7 @@ Archivo feed:
 
 Caption:
 
-> Este viernes 29 de mayo vuelve la energia de los 90 a Lincoln.
+> El viernes 29 de mayo vuelve la energia de los 90 a Lincoln.
 >
 > DJ Dani Homs al mando de una noche de 90s dance house y remember classics, desde las 23:00 hasta cierre.
 >
@@ -141,6 +141,6 @@ Hashtags:
 
 ## Pendiente antes de programar
 
-- Aprobar visuales Lincoln.
+- Revision semanal del usuario. Lincoln aprobado para adelantar.
 - Confirmar si se puede mencionar Lincoln como ubicacion y si existe cuenta para etiquetar.
 - Confirmar permiso para publicar material de Can Marc y eventos privados.
