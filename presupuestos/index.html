@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Pressupostos | Costa Brava Music Events</title>
+    <link rel="icon" href="../assets/img/logo-transparente.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="lock-screen" id="lockScreen">
+      <form class="lock-card" id="lockForm">
+        <img src="../assets/img/logo-hero-white-text.png" alt="Costa Brava Music Events" />
+        <p class="eyebrow">Accés intern</p>
+        <h1>Pressupostos CBME</h1>
+        <label>
+          Contrasenya
+          <input id="passwordInput" type="password" autocomplete="current-password" autofocus />
+        </label>
+        <button class="button accent" type="submit">Entrar</button>
+        <p class="lock-error" id="lockError" role="alert"></p>
+      </form>
+    </section>
+
+    <main class="app-shell is-hidden" id="quoteApp">
+      <section class="workspace" aria-label="Editor de pressupost">
+        <header class="brand-bar">
+          <img src="../assets/img/logo-hero-white-text.png" alt="Costa Brava Music Events" />
+          <a href="../">Web publica</a>
+        </header>
+
+        <section class="panel">
+          <h2>Plantilla</h2>
+          <div class="inline-actions">
+            <label>
+              Tipus
+              <select id="templateSelect"></select>
+            </label>
+            <button class="button" id="applyTemplate" type="button">Aplicar</button>
+            <button class="button secondary" id="newQuote" type="button">Nou</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Dades</h2>
+          <div class="grid">
+            <label>
+              Idioma presupuesto
+              <select id="language">
+                <option value="ca">Català</option>
+                <option value="es">Castellano</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <label>Num. pressupost <input id="quoteNumber" /></label>
+            <label>Data <input id="quoteDate" type="date" /></label>
+            <label>Valid fins <input id="validUntil" type="date" /></label>
+            <label>Client <input id="clientName" placeholder="Nom del client" /></label>
+            <label>Email client <input id="clientEmail" type="email" placeholder="client@email.com" /></label>
+            <label>Tipus d'event <input id="eventName" /></label>
+            <label>Data event <input id="eventDate" type="date" /></label>
+            <label>Convidats <input id="guests" type="number" min="0" step="1" /></label>
+            <label style="grid-column: 1 / -1">Espai <input id="eventPlace" /></label>
+            <label style="grid-column: 1 / -1">Introduccio <textarea id="intro" rows="4"></textarea></label>
+            <label class="switch">
+              <span>Mostrar IVA 21%</span>
+              <input id="includeTax" type="checkbox" />
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Partides</h2>
+          <div class="inline-actions">
+            <label>
+              Cataleg de preus
+              <select id="catalogItem"></select>
+            </label>
+            <button class="button" id="addItem" type="button">Afegir</button>
+            <button class="button secondary" id="addCustom" type="button">Personalitzada</button>
+          </div>
+          <table class="items-table" aria-label="Partides del pressupost">
+            <thead>
+              <tr>
+                <th>Servei</th>
+                <th>Quant.</th>
+                <th>Preu</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody"></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <h2>Condicions</h2>
+          <label>
+            Una condició per linia
+            <textarea id="terms" rows="7"></textarea>
+          </label>
+        </section>
+      </section>
+
+      <section class="preview-wrap" aria-label="Vista previa del pressupost">
+        <div class="preview-toolbar">
+          <button class="button secondary" id="copySummary" type="button">Copiar resum</button>
+          <button class="button accent" id="printQuote" type="button">Imprimir / PDF</button>
+        </div>
+        <div id="preview"></div>
+      </section>
+    </main>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

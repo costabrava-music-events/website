@@ -21,6 +21,29 @@
 })();
 
 /**
+ * Internal quote tool easter egg.
+ * Type "presu" on the public site.
+ */
+(() => {
+  const code = "presu";
+  let buffer = "";
+  const isTyping = (target) =>
+    target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
+
+  window.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || isTyping(event.target)) return;
+    buffer = `${buffer}${event.key.toLowerCase()}`.slice(-code.length);
+    if (buffer !== code) return;
+
+    const localPrefix = /\/(ca|es|en)\//.test(window.location.pathname) ? "../" : "./";
+    window.location.href =
+      window.location.protocol === "http:" || window.location.protocol === "https:"
+        ? `${window.location.origin}/presupuestos/`
+        : `${localPrefix}presupuestos/index.html`;
+  });
+})();
+
+/**
  * Swiper init (gallery)
  */
 (() => {
