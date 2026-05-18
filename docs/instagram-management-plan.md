@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Convertir Instagram en un canal de captacion para bodas, eventos privados, fiestas, inauguraciones y vermuts musicales en Costa Brava y Girona.
+Convertir Instagram en un canal de captacion para bodas, eventos privados, fiestas, inauguraciones, clubs y produccion musical en Costa Brava y Girona.
 
 ## Auditoria inicial
 
@@ -65,7 +65,7 @@ Highlights recomendados:
    - Objetivo: confianza y busquedas.
 
 4. Artistas y partners
-   - Alb3rt Bit, One Day DJs, Dani Homs, Barcelona Flamenco, Litus al Cub, Inma Ortiz.
+   - Dani Homs, One Day DJs, Alb3rt Bit, Barcelona Flamenco, Litus al Cub, Inma Ortiz, venues y colaboradores.
    - Objetivo: variedad y autoridad.
 
 5. Costa Brava lifestyle
@@ -109,7 +109,7 @@ Highlights recomendados:
 | 18 | Reel | Canciones para entrada, coctel y fiesta | Guardar |
 | 19 | Stories | Pregunta: fecha y ubicacion del evento | Responder |
 | 20 | Carrusel | Checklist musical para tu boda | Guardar |
-| 21 | Reel | Vermut musical / Hitster / tardeo | Reservar |
+| 21 | Reel | Tardeo / fiesta 80-90 / club | Reservar |
 | 22 | Stories | Encuesta de estilos musicales | Votar |
 | 23 | Post | One Day DJs: electronica 80/90 con percusion | Consultar |
 | 24 | Reel | Transicion: ceremonia tranquila a fiesta | DM |
@@ -252,12 +252,12 @@ CTA:
 
 > Dinos que estilo imaginas y te proponemos opciones.
 
-### 10. Reel - Vermut musical
+### 10. Reel - Tardeo / fiesta musical
 
 Texto en pantalla:
 
 1. No todo evento tiene que acabar de madrugada.
-2. Vermut musical.
+2. Tardeo, cena musical o fiesta.
 3. Tardeo.
 4. Juego, musica y buen ambiente.
 
