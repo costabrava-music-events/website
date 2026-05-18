@@ -1,6 +1,6 @@
 # Lincoln 90s - Campaña Instagram
 
-Estado: aprobado para adelantar programacion desde el 20/05/2026.
+Estado: feed principal programado en Meta Business Suite para Instagram `@costabrava_music_events` y Facebook.
 
 Evento de calendario: `Lincoln 90 s`, viernes 29/05/2026, de 23:00 a cierre.
 
@@ -23,6 +23,8 @@ Evento de calendario: `Lincoln 90 s`, viernes 29/05/2026, de 23:00 a cierre.
 Idioma: castellano.
 
 Fecha programada: 20/05/2026 a las 20:30.
+
+Canales: Instagram `@costabrava_music_events` y pagina de Facebook vinculada.
 
 Caption:
 
