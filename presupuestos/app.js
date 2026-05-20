@@ -4,8 +4,10 @@
   const $ = (selector) => document.querySelector(selector);
   const allItems = data.catalog.flatMap((group) => group.items.map((item) => ({ ...item, group: group.group })));
   const defaultLanguage = "ca";
+  const previewRenderDelay = 300;
 
   let state = loadState() || createInitialState();
+  let previewRenderTimeout;
 
   function createInitialState() {
     const language = defaultLanguage;
@@ -118,10 +120,23 @@
   }
 
   function render() {
+    clearTimeout(previewRenderTimeout);
     renderForms();
     renderCatalog();
     renderItems();
     renderTerms();
+    renderPreview();
+    saveState();
+  }
+
+  function schedulePreviewRender() {
+    saveState();
+    clearTimeout(previewRenderTimeout);
+    previewRenderTimeout = setTimeout(renderPreview, previewRenderDelay);
+  }
+
+  function flushPreviewRender() {
+    clearTimeout(previewRenderTimeout);
     renderPreview();
     saveState();
   }
@@ -288,20 +303,21 @@
 
       if (field === "terms") {
         state.terms = target.value.split("\n");
-        render();
+        schedulePreviewRender();
         return;
       }
 
       if (field in state) {
         state[field] = target.type === "checkbox" ? target.checked : target.value;
-        render();
+        schedulePreviewRender();
         return;
       }
 
-      if (target.dataset.item) {
+      if (target.dataset.item !== undefined) {
         const item = state.items[Number(target.dataset.item)];
         item[target.dataset.field] = target.type === "number" ? Number(target.value) : target.value;
-        render();
+        updateItemLineTotal(target, item);
+        schedulePreviewRender();
       }
     });
 
@@ -349,7 +365,10 @@
       render();
     });
 
-    $("#printQuote").addEventListener("click", () => window.print());
+    $("#printQuote").addEventListener("click", () => {
+      flushPreviewRender();
+      window.print();
+    });
 
     $("#copySummary").addEventListener("click", async () => {
       const total = totals();
@@ -386,6 +405,13 @@
     if (wasDefaultTerms) {
       state.terms = defaultTerms(state.language);
     }
+  }
+
+  function updateItemLineTotal(target, item) {
+    const row = target.closest("tr");
+    const lineTotal = row && row.querySelector(".line-total");
+    if (!lineTotal) return;
+    lineTotal.textContent = euro.format(Number(item.qty || 0) * Number(item.price || 0));
   }
 
   function bindAuth() {
