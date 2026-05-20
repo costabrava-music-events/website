@@ -79,6 +79,281 @@ body.cbme-lock {
   font-family: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Homepage direction: mediterráneo nocturno + club elegante */
+.cbme-night-home {
+  background:
+    radial-gradient(900px circle at 12% 8%, rgba(34, 211, 238, 0.16), transparent 42%),
+    radial-gradient(760px circle at 88% 24%, rgba(251, 113, 133, 0.14), transparent 42%),
+    radial-gradient(700px circle at 50% 80%, rgba(251, 191, 36, 0.08), transparent 48%),
+    linear-gradient(180deg, #020617 0%, #061428 36%, #030712 100%);
+  color: #f8fafc;
+}
+
+.cbme-night-home main {
+  position: relative;
+  overflow: hidden;
+}
+
+.cbme-night-home main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+
+.cbme-night-home section:not([data-hero]) {
+  position: relative;
+  color: #f8fafc;
+}
+
+.cbme-night-home section:not([data-hero])::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(560px circle at 8% 18%, rgba(34, 211, 238, 0.09), transparent 50%),
+    radial-gradient(520px circle at 92% 4%, rgba(251, 113, 133, 0.08), transparent 48%);
+}
+
+.cbme-night-home section:not([data-hero]) > .mx-auto {
+  position: relative;
+  z-index: 1;
+  padding-top: 4.25rem;
+  padding-bottom: 4.25rem;
+}
+
+.cbme-night-home section:not([data-hero]) h2 {
+  color: #ffffff;
+  text-shadow: 0 14px 48px rgba(34, 211, 238, 0.14);
+}
+
+.cbme-night-home section:not([data-hero]) h2::after {
+  content: "";
+  display: block;
+  width: 5.5rem;
+  height: 2px;
+  margin-top: 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22d3ee, #fbbf24 52%, rgba(251, 113, 133, 0));
+  box-shadow: 0 0 22px rgba(34, 211, 238, 0.34);
+}
+
+.cbme-night-home section:not([data-hero]) h2 + p,
+.cbme-night-home section:not([data-hero]) p {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.cbme-night-home main > section:nth-of-type(2) {
+  margin-top: -1px;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.0), rgba(6, 20, 40, 0.92)),
+    radial-gradient(860px circle at 50% -24%, rgba(34, 211, 238, 0.16), transparent 56%);
+}
+
+.cbme-night-home main > section:nth-of-type(2) .rounded-3xl {
+  border-color: rgba(34, 211, 238, 0.24) !important;
+  background:
+    linear-gradient(135deg, rgba(6, 20, 40, 0.92), rgba(2, 6, 23, 0.74)),
+    radial-gradient(520px circle at 86% 0%, rgba(251, 191, 36, 0.13), transparent 46%) !important;
+  box-shadow: 0 30px 80px -44px rgba(34, 211, 238, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cbme-night-home main > section:nth-of-type(2) h3,
+.cbme-night-home main > section:nth-of-type(2) p {
+  color: #f8fafc !important;
+}
+
+.cbme-night-home main > section:nth-of-type(2) a,
+.cbme-night-home #contacto button[type="submit"] {
+  border: 1px solid rgba(34, 211, 238, 0.34);
+  background: linear-gradient(135deg, #22d3ee, #0ea5e9 48%, #fbbf24) !important;
+  color: #03111f !important;
+  box-shadow: 0 18px 44px -26px rgba(34, 211, 238, 0.86);
+}
+
+.cbme-night-home #partners {
+  background:
+    linear-gradient(180deg, rgba(6, 20, 40, 0.96), rgba(3, 7, 18, 0.96)),
+    radial-gradient(920px circle at 10% 20%, rgba(34, 211, 238, 0.14), transparent 46%);
+}
+
+.cbme-night-home #event-partners,
+.cbme-night-home #servicios {
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.98), rgba(6, 20, 40, 0.96));
+}
+
+.cbme-night-home #galeria,
+.cbme-night-home #contacto {
+  background:
+    radial-gradient(900px circle at 92% 12%, rgba(251, 113, 133, 0.11), transparent 45%),
+    linear-gradient(180deg, rgba(6, 20, 40, 0.96), rgba(3, 7, 18, 0.98));
+}
+
+.cbme-night-home #partners .swiper-slide > div,
+.cbme-night-home #event-partners a,
+.cbme-night-home #galeria figure,
+.cbme-night-home #contacto a,
+.cbme-night-home #contacto form {
+  border-color: rgba(148, 163, 184, 0.2) !important;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.86), rgba(2, 6, 23, 0.7)),
+    radial-gradient(360px circle at 12% 0%, rgba(34, 211, 238, 0.08), transparent 50%) !important;
+  box-shadow: 0 28px 80px -48px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.cbme-night-home #partners .swiper-slide > div,
+.cbme-night-home #event-partners a,
+.cbme-night-home #galeria figure,
+.cbme-night-home #servicios a,
+.cbme-night-home #contacto a {
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.cbme-night-home #partners .swiper-slide > div:hover,
+.cbme-night-home #event-partners a:hover,
+.cbme-night-home #galeria figure:hover,
+.cbme-night-home #servicios a:hover,
+.cbme-night-home #contacto a:hover {
+  transform: translateY(-0.35rem);
+  border-color: rgba(34, 211, 238, 0.44) !important;
+  box-shadow: 0 34px 90px -46px rgba(34, 211, 238, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cbme-night-home #partners img,
+.cbme-night-home #galeria video,
+.cbme-night-home #servicios img {
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.cbme-night-home #partners .swiper-slide > div:hover img,
+.cbme-night-home #galeria figure:hover video,
+.cbme-night-home #servicios a:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.12) contrast(1.05);
+}
+
+.cbme-night-home #partners .text-xs {
+  color: #67e8f9 !important;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cbme-night-home #partners .font-display,
+.cbme-night-home #event-partners h3,
+.cbme-night-home #galeria .font-extrabold,
+.cbme-night-home #servicios h3,
+.cbme-night-home #contacto h2,
+.cbme-night-home #contacto h3,
+.cbme-night-home footer .font-display {
+  color: #ffffff;
+}
+
+.cbme-night-home #partners .text-slate-600,
+.cbme-night-home #event-partners .text-slate-600,
+.cbme-night-home #galeria .text-slate-600,
+.cbme-night-home #contacto .text-slate-500,
+.cbme-night-home #contacto .text-slate-600 {
+  color: rgba(226, 232, 240, 0.72) !important;
+}
+
+.cbme-night-home #partners [data-instagram-link] {
+  border-color: rgba(251, 113, 133, 0.34) !important;
+  background: rgba(251, 113, 133, 0.12) !important;
+  color: #fecdd3 !important;
+}
+
+.cbme-night-home #event-partners .bg-white,
+.cbme-night-home #event-partners .dark\:bg-white {
+  background: rgba(255, 255, 255, 0.96) !important;
+}
+
+.cbme-night-home #servicios a {
+  min-height: 20rem;
+  border-color: rgba(34, 211, 238, 0.22) !important;
+  background: #020617 !important;
+  box-shadow: 0 30px 90px -52px rgba(0, 0, 0, 0.9);
+}
+
+.cbme-night-home #servicios a > img {
+  opacity: 0.72 !important;
+  filter: saturate(0.95) contrast(1.05);
+}
+
+.cbme-night-home #servicios a > .absolute.inset-0.bg-gradient-to-b {
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.14), rgba(2, 6, 23, 0.86)) !important;
+}
+
+.cbme-night-home #servicios p {
+  color: rgba(226, 232, 240, 0.78) !important;
+}
+
+.cbme-night-home #contacto input,
+.cbme-night-home #contacto select,
+.cbme-night-home #contacto textarea {
+  border-color: rgba(148, 163, 184, 0.24) !important;
+  background: rgba(2, 6, 23, 0.62) !important;
+  color: #f8fafc;
+}
+
+.cbme-night-home #contacto input::placeholder,
+.cbme-night-home #contacto textarea::placeholder {
+  color: rgba(148, 163, 184, 0.72);
+}
+
+.cbme-night-home #contacto label span {
+  color: rgba(248, 250, 252, 0.88);
+}
+
+.cbme-night-home footer {
+  border-color: rgba(148, 163, 184, 0.18) !important;
+  background: linear-gradient(180deg, #030712, #020617);
+  color: rgba(226, 232, 240, 0.76);
+}
+
+.cbme-night-home footer p,
+.cbme-night-home footer a {
+  color: rgba(226, 232, 240, 0.76) !important;
+}
+
+@media (max-width: 639px) {
+  .cbme-night-home section:not([data-hero]) > .mx-auto {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbme-night-home #partners .swiper-slide > div,
+  .cbme-night-home #event-partners a,
+  .cbme-night-home #galeria figure,
+  .cbme-night-home #servicios a,
+  .cbme-night-home #contacto a,
+  .cbme-night-home #partners img,
+  .cbme-night-home #galeria video,
+  .cbme-night-home #servicios img {
+    transition: none;
+  }
+
+  .cbme-night-home #partners .swiper-slide > div:hover,
+  .cbme-night-home #event-partners a:hover,
+  .cbme-night-home #galeria figure:hover,
+  .cbme-night-home #servicios a:hover,
+  .cbme-night-home #contacto a:hover,
+  .cbme-night-home #partners .swiper-slide > div:hover img,
+  .cbme-night-home #galeria figure:hover video,
+  .cbme-night-home #servicios a:hover img {
+    transform: none;
+  }
+}
+
 .cbme-lang-btn {
   display: inline-flex;
   align-items: center;
