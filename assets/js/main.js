@@ -189,7 +189,7 @@ window.cbmeApp = function cbmeApp() {
       skip_to_content: "Saltar al contenido",
       hero_title: "Música, sonido e iluminación para eventos que se recuerdan",
       hero_intro:
-        'Creamos experiencias musicales a medida para bodas, eventos privados y celebraciones en la Costa Brava y en toda Cataluña. Coordinamos <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span>, DJs, música en directo, sonido, iluminación y ambientación para que cada momento encaje con tu espacio, tus invitados y tu estilo.',
+        'Creamos experiencias musicales a medida para bodas, eventos privados y celebraciones en la Costa Brava y en toda Cataluña. Coordinamos DJs, música en directo, sonido, iluminación y ambientación para que cada momento encaje con tu espacio, tus invitados y tu estilo.',
       hero_offers_title: "Ofrecemos:",
       hero_bullet_1: "DJs profesionales con repertorio adaptado al público y al momento",
       hero_bullet_2: "Música en directo: pop, rock, flamenco, rumba, boleros, chill y más",
@@ -281,7 +281,7 @@ window.cbmeApp = function cbmeApp() {
       skip_to_content: "Vés al contingut",
       hero_title: "Música, so i il·luminació per a esdeveniments que es recorden",
       hero_intro:
-        'Creem experiències musicals a mida per a casaments, esdeveniments privats i celebracions a la Costa Brava i a tot Catalunya. Coordinem <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span>, DJs, música en directe, so, il·luminació i ambientació perquè cada moment encaixi amb el teu espai, els teus convidats i el teu estil.',
+        'Creem experiències musicals a mida per a casaments, esdeveniments privats i celebracions a la Costa Brava i a tot Catalunya. Coordinem DJs, música en directe, so, il·luminació i ambientació perquè cada moment encaixi amb el teu espai, els teus convidats i el teu estil.',
       hero_offers_title: "Oferim:",
       hero_bullet_1: "DJs professionals amb repertori adaptat al públic i al moment",
       hero_bullet_2: "Música en directe: pop, rock, flamenc, rumba, boleros, chill i més",
@@ -366,7 +366,7 @@ window.cbmeApp = function cbmeApp() {
       skip_to_content: "Skip to content",
       hero_title: "Music, sound and lighting for events people remember",
       hero_intro:
-        'We create tailor-made music experiences for weddings, private events and celebrations across the Costa Brava and Catalonia. <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span> coordinates DJs, live music, sound, lighting and atmosphere so every moment fits your venue, your guests and your style.',
+        'We create tailor-made music experiences for weddings, private events and celebrations across the Costa Brava and Catalonia. We coordinate DJs, live music, sound, lighting and atmosphere so every moment fits your venue, your guests and your style.',
       hero_offers_title: "We offer:",
       hero_bullet_1: "Professional DJs with music adapted to the crowd and the moment",
       hero_bullet_2: "Live music: pop, rock, flamenco, rumba, boleros, chill and more",
