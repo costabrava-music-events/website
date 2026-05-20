@@ -99,6 +99,35 @@
 })();
 
 /**
+ * Swiper init (event partners)
+ */
+(() => {
+  const el = document.querySelector(".js-event-partners-swiper");
+  if (!el || typeof Swiper === "undefined") return;
+
+  // eslint-disable-next-line no-new
+  new Swiper(el, {
+    loop: false,
+    rewind: true,
+    speed: 1200,
+    slidesPerView: 1.15,
+    spaceBetween: 16,
+    centeredSlides: false,
+    autoplay: {
+      delay: 3600,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    allowTouchMove: true,
+    breakpoints: {
+      640: { slidesPerView: 2.0, spaceBetween: 16 },
+      1024: { slidesPerView: 3.0, spaceBetween: 18 },
+      1280: { slidesPerView: 4.0, spaceBetween: 20 },
+    },
+  });
+})();
+
+/**
  * AOS init (scroll animations)
  */
 (() => {
