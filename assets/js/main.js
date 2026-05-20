@@ -175,9 +175,9 @@ window.cbmeApp = function cbmeApp() {
     en: "en/blog.html",
   };
   const serviceLinks = {
-    es: { dj: "es/dj-bodas-costa-brava.html", sound: "es/alquiler-sonido-eventos-girona.html", decor: "es/decoracion-eventos-costa-brava.html" },
-    ca: { dj: "ca/dj-bodas-costa-brava.html", sound: "ca/alquiler-sonido-eventos-girona.html", decor: "ca/decoracion-eventos-costa-brava.html" },
-    en: { dj: "en/dj-bodas-costa-brava.html", sound: "en/alquiler-sonido-eventos-girona.html", decor: "en/decoracion-eventos-costa-brava.html" },
+    es: { dj: "es/dj-bodas-costa-brava.html", sound: "es/alquiler-sonido-eventos-girona.html", decor: "es/decoracion-eventos-costa-brava.html", privateEvents: "es/musica-eventos-privados-girona.html" },
+    ca: { dj: "ca/dj-bodas-costa-brava.html", sound: "ca/alquiler-sonido-eventos-girona.html", decor: "ca/decoracion-eventos-costa-brava.html", privateEvents: "ca/musica-eventos-privados-girona.html" },
+    en: { dj: "en/dj-bodas-costa-brava.html", sound: "en/alquiler-sonido-eventos-girona.html", decor: "en/decoracion-eventos-costa-brava.html", privateEvents: "en/musica-eventos-privados-girona.html" },
   };
 
   const translations = {
@@ -247,6 +247,7 @@ window.cbmeApp = function cbmeApp() {
       service_card_3_title: "Decoración",
       service_card_3_desc:
         "Ofrecemos servicios de decoración para tu evento: flores, globos, fuego frío, confeti y más, adaptados a tu estilo.",
+      private_events_cta: "Música, DJ, sonido e iluminación para eventos privados en Girona",
       contact_title: "Contacto / Reserva",
       contact_email: "Email",
       contact_phone: "Teléfono de contacto",
@@ -332,6 +333,7 @@ window.cbmeApp = function cbmeApp() {
       service_card_2_desc: "Sistema de so ajustat al recinte, cabina DJ i proposta d'il·luminació decorativa i de festa.",
       service_card_3_title: "Decoració",
       service_card_3_desc: "Oferim serveis de decoració per al teu esdeveniment: flors, globus, foc fred, confeti i més, adaptats al teu estil.",
+      private_events_cta: "Música, DJ, so i il·luminació per a esdeveniments privats a Girona",
       contact_title: "Contacte / Reserva",
       contact_email: "Correu electrònic",
       contact_phone: "Telèfon de contacte",
@@ -421,6 +423,7 @@ window.cbmeApp = function cbmeApp() {
       service_card_3_title: "Decoration",
       service_card_3_desc:
         "We offer decoration services for your event: flowers, balloons, cold sparks, confetti and more, adapted to your style.",
+      private_events_cta: "Music, DJ, sound and lighting for private events in Girona",
       contact_title: "Contact / Booking",
       contact_email: "Email",
       contact_phone: "Contact phone",
