@@ -17,6 +17,7 @@ CBME_LOGO = CBME / "logo-hero-white-text.png"
 GOLD = (229, 188, 80)
 GOLD_LIGHT = (255, 226, 137)
 BLUE = (48, 126, 255)
+PINK = (211, 54, 194)
 WHITE = (248, 249, 252)
 MUTED = (196, 203, 214)
 
@@ -98,6 +99,20 @@ def add_vignette(img):
     return Image.alpha_composite(img.convert("RGBA"), layer)
 
 
+def add_depth(img):
+    canvas = img.convert("RGBA")
+    w, h = canvas.size
+    layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+    draw.rectangle((0, 0, w, h), fill=(0, 0, 0, 28))
+    for y in range(h):
+        top = max(0, 180 - y)
+        bottom = max(0, y - int(h * 0.58))
+        alpha = min(160, int(top * 0.72 + bottom * 0.42))
+        draw.line((0, y, w, y), fill=(0, 0, 0, alpha))
+    return Image.alpha_composite(canvas, layer)
+
+
 def logo(path, max_size):
     img = Image.open(path).convert("RGBA")
     img.thumbnail(max_size, Image.LANCZOS)
@@ -115,15 +130,37 @@ def paste_logo(canvas, img, center, glow=True):
     canvas.alpha_composite(img, (x, y))
 
 
+def text_left(draw, xy, text, text_font, fill, stroke=0, stroke_fill=(0, 0, 0), spacing=0):
+    x, y = xy
+    lines = text.split("\n")
+    yy = y
+    for line in lines:
+        draw.text(
+            (x, yy),
+            line,
+            font=text_font,
+            fill=fill,
+            stroke_width=stroke,
+            stroke_fill=stroke_fill,
+        )
+        box = draw.textbbox((0, 0), line, font=text_font, stroke_width=stroke)
+        yy += box[3] - box[1] + spacing
+
+
+def divider(draw, x, y, w):
+    draw.line((x, y, x + w, y), fill=(229, 188, 80, 210), width=4)
+    draw.line((x, y + 10, x + int(w * 0.45), y + 10), fill=(48, 126, 255, 180), width=3)
+
+
 def base(size, crop_y=0):
     img = cover(BG, (size[0], int(size[1] * 1.05)))
     if crop_y:
         img = img.crop((0, crop_y, size[0], crop_y + size[1]))
     else:
         img = img.crop((0, 0, size[0], size[1]))
-    img = ImageEnhance.Contrast(img).enhance(1.08)
-    img = ImageEnhance.Color(img).enhance(1.05)
-    return add_vignette(img)
+    img = ImageEnhance.Contrast(img).enhance(1.12)
+    img = ImageEnhance.Color(img).enhance(1.08)
+    return add_depth(add_vignette(img))
 
 
 def draw_main_flyer(size, output, story=False):
@@ -131,37 +168,54 @@ def draw_main_flyer(size, output, story=False):
     draw = ImageDraw.Draw(canvas)
     w, h = size
 
-    lincoln = logo(LINCOLN_ALPHA, (470 if not story else 520, 260 if not story else 300))
-    cbme = logo(CBME_LOGO, (128 if not story else 150, 128 if not story else 150))
+    lincoln = logo(LINCOLN_ALPHA, (360 if not story else 420, 190 if not story else 230))
+    cbme = logo(CBME_LOGO, (118 if not story else 136, 118 if not story else 136))
 
-    paste_logo(canvas, lincoln, (w // 2, int(h * 0.155 if not story else h * 0.15)))
-    paste_logo(canvas, cbme, (w - 108 if not story else w - 118, 112 if not story else 130), glow=False)
+    margin = 72 if not story else 88
+    paste_logo(canvas, lincoln, (margin + lincoln.width // 2, 98 if not story else 132))
+    paste_logo(canvas, cbme, (w - margin - cbme.width // 2, 96 if not story else 130), glow=False)
 
-    top = int(h * (0.29 if not story else 0.32))
-    panel_h = 690 if not story else 830
-    rounded_rect(
-        draw,
-        (82, top, w - 82, top + panel_h),
-        34,
-        (0, 0, 0, 142),
-        (216, 178, 77, 150),
-        3,
-    )
+    card_top = 255 if not story else 315
+    card_bottom = 1188 if not story else 1728
+    rounded_rect(draw, (margin, card_top, w - margin, card_bottom), 34, (0, 0, 0, 118), (229, 188, 80, 130), 2)
+    draw.rounded_rectangle((margin + 14, card_top + 14, w - margin - 14, card_bottom - 14), radius=26, outline=(48, 126, 255, 90), width=2)
 
-    text_center(draw, (w // 2, top + (70 if not story else 86)), "VIERNES 29 MAYO", font(FONT_BOLD, 46 if not story else 54), GOLD_LIGHT, 1)
-    text_center(draw, (w // 2, top + (185 if not story else 232)), "LINCOLN\n90'S", font(FONT_BLACK, 112 if not story else 130), WHITE, 3, (0, 0, 0), 0)
-    text_center(draw, (w // 2, top + (334 if not story else 407)), "DJ DANI HOMS", font(FONT_BLACK, 54 if not story else 68), GOLD_LIGHT, 2, (0, 0, 0))
-    text_center(draw, (w // 2, top + (403 if not story else 492)), "90s DANCE HOUSE · REMEMBER CLASSICS", font(FONT_NARROW, 37 if not story else 42), GOLD_LIGHT, 1)
+    date_font = font(FONT_BOLD, 45 if not story else 52)
+    title_font = font(FONT_BLACK, 150 if not story else 122)
+    title2_font = font(FONT_BLACK, 132 if not story else 112)
+    dj_font = font(FONT_BLACK, 56 if not story else 58)
+    style_font = font(FONT_NARROW, 39 if not story else 32)
+    time_font = font(FONT_BOLD, 38 if not story else 31)
+    small_font = font(FONT_REG, 28 if not story else 31)
 
-    pill_y = top + (470 if not story else 585)
-    rounded_rect(draw, (145, pill_y, w - 145, pill_y + (86 if not story else 102)), 28, (7, 24, 64, 210), (70, 145, 255, 180), 2)
-    text_center(draw, (w // 2, pill_y + (43 if not story else 51)), "A PARTIR DE LAS 23:00 · HASTA CIERRE", font(FONT_BOLD, 35 if not story else 37), WHITE, 1)
+    x = margin + (56 if not story else 54)
+    center_x = w // 2
+    y = card_top + (62 if not story else 82)
+    text_center(draw, (center_x, y + (28 if story else 26)), "VIERNES 29 MAYO", date_font, GOLD_LIGHT, 1)
+    divider(draw, x, y + (70 if not story else 88), w - margin * 2 - 112)
 
-    text_center(draw, (w // 2, top + (605 if not story else 750)), "Los mejores remembers y clásicos dance de los 90", font(FONT_REG, 30 if not story else 36), MUTED)
+    text_center(draw, (center_x, y + (200 if story else 210)), "LINCOLN", title_font, WHITE, 3)
+    text_center(draw, (center_x, y + (340 if story else 355)), "90s", title2_font, WHITE, 3)
 
-    footer_y = h - (106 if not story else 150)
-    text_center(draw, (w // 2, footer_y), "Sala de Festa Lincoln  ·  Costa Brava Music Events", font(FONT_BOLD, 30 if not story else 38), WHITE)
-    text_center(draw, (w // 2, footer_y + (42 if not story else 54)), "@costabrava_music_events", font(FONT_REG, 25 if not story else 34), (210, 218, 230))
+    dj_y = y + (430 if not story else 475)
+    text_center(draw, (center_x, dj_y + (34 if story else 32)), "DJ DANI HOMS", dj_font, GOLD_LIGHT, 2)
+    text_center(draw, (center_x, dj_y + (113 if story else 104)), "90s DANCE HOUSE · REMEMBER CLASSICS", style_font, WHITE, 1)
+
+    pill_y = dj_y + (150 if not story else 190)
+    rounded_rect(draw, (x, pill_y, w - margin - (56 if not story else 54), pill_y + (82 if not story else 104)), 24, (10, 30, 86, 218), (72, 145, 255, 180), 2)
+    text_center(draw, (w // 2, pill_y + (41 if not story else 52)), "A PARTIR DE LAS 23:00 · HASTA CIERRE", time_font, WHITE, 1)
+
+    text_center(draw, (center_x, pill_y + (178 if story else 136)), "Los mejores remembers y clásicos dance de los 90", small_font, MUTED)
+
+    footer_y = card_bottom - (98 if not story else 190)
+    divider(draw, x, footer_y - 32, w - margin * 2 - 112)
+    if story:
+        text_center(draw, (center_x, footer_y + 18), "Sala de Festa Lincoln", font(FONT_BOLD, 36), WHITE)
+        text_center(draw, (center_x, footer_y + 64), "Costa Brava Music Events", font(FONT_BOLD, 36), WHITE)
+        text_center(draw, (center_x, footer_y + 112), "@costabrava_music_events", font(FONT_REG, 32), (210, 218, 230))
+    else:
+        text_center(draw, (center_x, footer_y + 16), "Sala de Festa Lincoln · Costa Brava Music Events", font(FONT_BOLD, 29), WHITE)
+        text_center(draw, (center_x, footer_y + 58), "@costabrava_music_events", font(FONT_REG, 25), (210, 218, 230))
 
     canvas.convert("RGB").save(output, quality=96)
 

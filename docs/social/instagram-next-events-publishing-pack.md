@@ -20,7 +20,11 @@ Reparto recomendado para esta tanda:
 
 Fecha sugerida: 25/05/2026.
 Idioma: castellano.
-Formato: post feed o carrusel simple.
+Formato: post feed.
+
+Visual:
+
+`assets/social/week-2026-05-25/post-01-sonorizacion-dj.png`
 
 Caption:
 
@@ -69,6 +73,12 @@ Stories:
 Fecha sugerida: 31/05/2026 o 01/06/2026.
 Idioma: catalan.
 Formato: post educativo con referencia generica al venue si hay permiso.
+
+Visual:
+
+`assets/social/week-2026-05-25/post-02-boda-can-marc.png`
+
+Fuente visual: foto real de la galeria oficial de El Jardi de Can Marc. Permiso confirmado por Albert el 25/05/2026.
 
 Caption:
 

@@ -1,0 +1,68 @@
+{
+  "name": "CBME Instagram semana 2026-05-25",
+  "jobs": [
+    {
+      "id": "2026-05-25-sonorizacion-dj",
+      "scheduled_at": "2026-05-25T20:30:00+02:00",
+      "asset": "assets/social/week-2026-05-25/post-01-sonorizacion-dj.png",
+      "platforms": [
+        "instagram_feed",
+        "facebook_photo"
+      ],
+      "caption": "Hay eventos donde el DJ no es solo musica.\n\nTambien importa que el micro funcione, que el sonido llegue bien y que el montaje no robe protagonismo al momento.\n\nSonido + DJ, bien coordinado, cambia por completo la experiencia.\n\nSi tienes un evento pequeno o una presentacion, cuentanos formato, espacio y horario.",
+      "hashtags": [
+        "#SonidoEventos",
+        "#DJEventos",
+        "#CostaBravaMusicEvents",
+        "#EventosGirona",
+        "#Sonorizacion",
+        "#EventProduction"
+      ]
+    },
+    {
+      "id": "2026-05-28-lincoln-story-musica",
+      "scheduled_at": "2026-05-28T20:30:00+02:00",
+      "asset": "assets/social/lincoln-2026-05-29/lincoln-90s-story-music.png",
+      "platforms": [
+        "instagram_story"
+      ],
+      "manual_after_publish": "Añadir sticker encuesta si se re-publica manualmente: ¿Qué te apetece más? / 90s dance / 90s house. La API publica la story sin sticker interactivo."
+    },
+    {
+      "id": "2026-05-29-lincoln-story-countdown",
+      "scheduled_at": "2026-05-29T10:00:00+02:00",
+      "asset": "assets/social/lincoln-2026-05-29/lincoln-90s-story-countdown.png",
+      "platforms": [
+        "instagram_story"
+      ],
+      "manual_after_publish": "Añadir sticker cuenta atrás si se re-publica manualmente: Lincoln 90s, 29/05/2026 23:00. La API publica la story sin sticker interactivo."
+    },
+    {
+      "id": "2026-05-29-lincoln-story-main",
+      "scheduled_at": "2026-05-29T18:00:00+02:00",
+      "asset": "assets/social/lincoln-2026-05-29/lincoln-90s-story-main.png",
+      "platforms": [
+        "instagram_story"
+      ]
+    },
+    {
+      "id": "2026-06-01-boda-can-marc",
+      "scheduled_at": "2026-06-01T10:00:00+02:00",
+      "asset": "assets/social/week-2026-05-25/post-02-boda-can-marc.png",
+      "platforms": [
+        "instagram_feed",
+        "facebook_photo"
+      ],
+      "caption": "Una boda no es nomes la festa final.\n\nHi ha ceremonia, arribada, coctel, sopar i pista. Cada moment necessita un volum, una energia i una manera diferent de llegir l'espai.\n\nQuan treballem ceremonia + DJ, el repte es que tot soni coherent de principi a final.",
+      "hashtags": [
+        "#BodesCostaBrava",
+        "#DJBoda",
+        "#BodesGirona",
+        "#CanMarc",
+        "#MusicaBoda",
+        "#CostaBravaEvents"
+      ],
+      "permission_note": "Permiso confirmado por Albert el 25/05/2026."
+    }
+  ]
+}
