@@ -3,7 +3,7 @@ window.CBME_QUOTE_DATA = {
     name: "Costa Brava Music Events",
     tagline: "Musica, so i il·luminació per a casaments i esdeveniments",
     email: "info@costabravamusicevents.com",
-    phones: ["619 840 602", "687 962 905"],
+    phones: ["687 962 905", "619 840 206"],
     instagram: "@costabrava_music_events",
     logo: "../assets/img/logo-hero-white-text.png",
   },

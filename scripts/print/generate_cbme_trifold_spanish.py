@@ -326,7 +326,7 @@ def draw_outside():
         draw.text((x + 28, text_y), bullet, fill=INK, font=bullet_font)
         y += 82
     y += 86
-    draw_contact_row(draw, x, y, "PHONE", "619 840 602 · 687 962 905")
+    draw_contact_row(draw, x, y, "PHONE", "687 962 905 · 619 840 206")
     y += 92
     draw_contact_row(draw, x, y, "MAIL", "info@costabravamusicevents.com")
     y += 92

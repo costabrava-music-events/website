@@ -54,7 +54,7 @@ guard let logo = NSImage(contentsOf: logoURL) else {
     exit(1)
 }
 
-let phones = "619 840 602 / 687 962 905"
+let phones = "687 962 905 / 619 840 206"
 let email = "info@costabravamusicevents.com"
 let web = "www.costabravamusicevents.com"
 let tagline = "Música a medida para eventos"
