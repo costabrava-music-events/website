@@ -1,0 +1,15 @@
+{
+  "name": "CBME Instagram story encuesta musical 2026-06-11",
+  "jobs": [
+    {
+      "id": "2026-06-11-story-encuesta-80s-comercial",
+      "scheduled_at": "2026-06-11T15:30:00+02:00",
+      "image_url": "https://raw.githubusercontent.com/costabrava-music-events/website/temp/story-encuesta-2026-06-11/assets/social/week-2026-06-08/story-encuesta-80s-comercial.png",
+      "asset": "assets/social/week-2026-06-08/story-encuesta-80s-comercial.png",
+      "platforms": [
+        "instagram_story"
+      ],
+      "manual_after_publish": "Añadir sticker de encuesta manual en Instagram: pregunta 'Què prefereixes per una festa?' con opciones '80s / 90s' y 'Comercial actual'."
+    }
+  ]
+}

@@ -6,10 +6,9 @@
       "scheduled_at": "2026-05-25T20:30:00+02:00",
       "asset": "assets/social/week-2026-05-25/post-01-sonorizacion-dj.png",
       "platforms": [
-        "instagram_feed",
-        "facebook_photo"
+        "instagram_feed"
       ],
-      "caption": "Hay eventos donde el DJ no es solo musica.\n\nTambien importa que el micro funcione, que el sonido llegue bien y que el montaje no robe protagonismo al momento.\n\nSonido + DJ, bien coordinado, cambia por completo la experiencia.\n\nSi tienes un evento pequeno o una presentacion, cuentanos formato, espacio y horario.",
+      "caption": "Hay eventos donde el DJ no es solo música.\n\nTambién importa que el micro funcione, que el sonido llegue bien y que el montaje no robe protagonismo al momento.\n\nSonido + DJ, bien coordinado, cambia por completo la experiencia.\n\nSi tienes un evento pequeño o una presentación, cuéntanos formato, espacio y horario.",
       "hashtags": [
         "#SonidoEventos",
         "#DJEventos",
@@ -23,6 +22,8 @@
       "id": "2026-05-28-lincoln-story-musica",
       "scheduled_at": "2026-05-28T20:30:00+02:00",
       "asset": "assets/social/lincoln-2026-05-29/lincoln-90s-story-music.png",
+      "manual": true,
+      "manual_reason": "Publicar manualmente en Instagram con sticker encuesta.",
       "platforms": [
         "instagram_story"
       ],
@@ -32,6 +33,8 @@
       "id": "2026-05-29-lincoln-story-countdown",
       "scheduled_at": "2026-05-29T10:00:00+02:00",
       "asset": "assets/social/lincoln-2026-05-29/lincoln-90s-story-countdown.png",
+      "manual": true,
+      "manual_reason": "Publicar manualmente en Instagram con sticker cuenta atrás.",
       "platforms": [
         "instagram_story"
       ],
@@ -50,10 +53,9 @@
       "scheduled_at": "2026-06-01T10:00:00+02:00",
       "asset": "assets/social/week-2026-05-25/post-02-boda-can-marc.png",
       "platforms": [
-        "instagram_feed",
-        "facebook_photo"
+        "instagram_feed"
       ],
-      "caption": "Una boda no es nomes la festa final.\n\nHi ha ceremonia, arribada, coctel, sopar i pista. Cada moment necessita un volum, una energia i una manera diferent de llegir l'espai.\n\nQuan treballem ceremonia + DJ, el repte es que tot soni coherent de principi a final.",
+      "caption": "Una boda no és només la festa final.\n\nHi ha cerimònia, arribada, còctel, sopar i pista. Cada moment necessita un volum, una energia i una manera diferent de llegir l'espai.\n\nQuan treballem cerimònia + DJ, el repte és que tot soni coherent de principi a final.",
       "hashtags": [
         "#BodesCostaBrava",
         "#DJBoda",

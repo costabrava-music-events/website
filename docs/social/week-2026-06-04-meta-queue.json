@@ -1,0 +1,33 @@
+{
+  "name": "CBME Instagram 2026-06-04",
+  "jobs": [
+    {
+      "id": "2026-06-04-sonido-checklist-feed",
+      "scheduled_at": "2026-06-04T10:00:00+02:00",
+      "image_url": "https://raw.githubusercontent.com/costabrava-music-events/website/main/assets/social/week-2026-06-01/post-02-sonido-checklist.png",
+      "asset": "assets/social/week-2026-06-01/post-02-sonido-checklist.png",
+      "platforms": [
+        "instagram_feed"
+      ],
+      "caption": "Hay eventos donde el problema no es la música: es el sonido.\n\nAntes de empezar, revisamos 3 cosas básicas:\n1) Micro claro (sin sustos ni acoples).\n2) Cobertura real (que se entienda en toda la sala).\n3) Volúmenes por zonas (conversación, cena, fiesta).\n\nCuando eso está bien, el evento fluye.\n\nSi tienes fecha y espacio, dinos: ¿interior/exterior y cuántas personas?",
+      "hashtags": [
+        "#SonidoEventos",
+        "#EventosGirona",
+        "#CostaBravaMusicEvents",
+        "#EventProduction",
+        "#Microfonia",
+        "#ProduccionEventos"
+      ]
+    },
+    {
+      "id": "2026-06-04-sonido-checklist-story",
+      "scheduled_at": "2026-06-04T10:00:00+02:00",
+      "image_url": "https://raw.githubusercontent.com/costabrava-music-events/website/main/assets/social/week-2026-06-01/post-02-sonido-checklist.png",
+      "asset": "assets/social/week-2026-06-01/post-02-sonido-checklist.png",
+      "platforms": [
+        "instagram_story"
+      ],
+      "manual_after_publish": "La story se publica sin sticker interactivo. Sticker recomendado manual si se quiere repetir: encuesta '¿Qué te preocupa más en un evento?' con opciones 'Micro/sonido' y 'Música/energía'."
+    }
+  ]
+}
