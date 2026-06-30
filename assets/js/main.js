@@ -21,6 +21,29 @@
 })();
 
 /**
+ * Internal quote tool easter egg.
+ * Type "presu" on the public site.
+ */
+(() => {
+  const code = "presu";
+  let buffer = "";
+  const isTyping = (target) =>
+    target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
+
+  window.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || isTyping(event.target)) return;
+    buffer = `${buffer}${event.key.toLowerCase()}`.slice(-code.length);
+    if (buffer !== code) return;
+
+    const localPrefix = /\/(ca|es|en)\//.test(window.location.pathname) ? "../" : "./";
+    window.location.href =
+      window.location.protocol === "http:" || window.location.protocol === "https:"
+        ? `${window.location.origin}/presupuestos/`
+        : `${localPrefix}presupuestos/index.html`;
+  });
+})();
+
+/**
  * Swiper init (gallery)
  */
 (() => {
@@ -63,6 +86,35 @@
     centeredSlides: false,
     autoplay: {
       delay: 3200,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    allowTouchMove: true,
+    breakpoints: {
+      640: { slidesPerView: 2.0, spaceBetween: 16 },
+      1024: { slidesPerView: 3.0, spaceBetween: 18 },
+      1280: { slidesPerView: 4.0, spaceBetween: 20 },
+    },
+  });
+})();
+
+/**
+ * Swiper init (event partners)
+ */
+(() => {
+  const el = document.querySelector(".js-event-partners-swiper");
+  if (!el || typeof Swiper === "undefined") return;
+
+  // eslint-disable-next-line no-new
+  new Swiper(el, {
+    loop: false,
+    rewind: true,
+    speed: 1200,
+    slidesPerView: 1.15,
+    spaceBetween: 16,
+    centeredSlides: false,
+    autoplay: {
+      delay: 3600,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
@@ -152,9 +204,9 @@ window.cbmeApp = function cbmeApp() {
     en: "en/blog.html",
   };
   const serviceLinks = {
-    es: { dj: "es/dj-bodas-costa-brava.html", sound: "es/alquiler-sonido-eventos-girona.html", decor: "es/decoracion-eventos-costa-brava.html" },
-    ca: { dj: "ca/dj-bodas-costa-brava.html", sound: "ca/alquiler-sonido-eventos-girona.html", decor: "ca/decoracion-eventos-costa-brava.html" },
-    en: { dj: "en/dj-bodas-costa-brava.html", sound: "en/alquiler-sonido-eventos-girona.html", decor: "en/decoracion-eventos-costa-brava.html" },
+    es: { dj: "es/dj-bodas-costa-brava.html", sound: "es/alquiler-sonido-eventos-girona.html", decor: "es/decoracion-eventos-costa-brava.html", privateEvents: "es/musica-eventos-privados-girona.html" },
+    ca: { dj: "ca/dj-bodas-costa-brava.html", sound: "ca/alquiler-sonido-eventos-girona.html", decor: "ca/decoracion-eventos-costa-brava.html", privateEvents: "ca/musica-eventos-privados-girona.html" },
+    en: { dj: "en/dj-bodas-costa-brava.html", sound: "en/alquiler-sonido-eventos-girona.html", decor: "en/decoracion-eventos-costa-brava.html", privateEvents: "en/musica-eventos-privados-girona.html" },
   };
 
   const translations = {
@@ -164,25 +216,36 @@ window.cbmeApp = function cbmeApp() {
       meta_og_title: "DJ, música y sonido para eventos en Costa Brava | CBME",
       meta_og_description: "DJ, música en vivo, sonido e iluminación para bodas y eventos privados en Costa Brava y Girona. Producción técnica y musical a medida.",
       skip_to_content: "Saltar al contenido",
-      hero_title: "Música, sonido e iluminación que hacen vibrar tu evento",
+      hero_title: "Música, sonido e iluminación para eventos que se recuerdan",
       hero_intro:
-        'Somos <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span>, tu partner de confianza para bodas, eventos privados, cumpleaños, aniversarios, inauguraciones, fiestas mayores y verbenas.',
+        'Creamos experiencias musicales a medida para bodas, eventos privados y celebraciones en la Costa Brava y en toda Cataluña. Coordinamos DJs, música en directo, sonido, iluminación y ambientación para que cada momento encaje con tu espacio, tus invitados y tu estilo.',
       hero_offers_title: "Ofrecemos:",
-      hero_bullet_1: "DJs profesionales y selección musical personalizada",
-      hero_bullet_2: "Bandas y propuestas en vivo (pop/rock, flamenco, rumba, boleros y más)",
-      hero_bullet_3: "Equipos de sonido premium adaptados a cada espacio",
-      hero_bullet_4: "Iluminación creativa y ambiental para crear el ambiente perfecto",
-      hero_bullet_5: "Decoración personalizada para cada espacio y estilo de evento",
+      hero_bullet_1: "DJs profesionales con repertorio adaptado al público y al momento",
+      hero_bullet_2: "Música en directo: pop, rock, flamenco, rumba, boleros, chill y más",
+      hero_bullet_3: "Sonido profesional ajustado al espacio, al formato y al número de invitados",
+      hero_bullet_4: "Iluminación ambiental y de fiesta para transformar cada zona del evento",
+      hero_bullet_5: "Coordinación técnica y musical para que todo fluya sin improvisaciones",
       hero_outro:
-        "Diseñamos cada evento a medida, cuidando cada detalle para que tú solo te ocupes de disfrutar.",
-      hero_signature: "Tu evento suena mejor con nosotros.",
+        "Diseñamos cada propuesta a medida, cuidando la energía de cada momento de principio a fin.",
+      hero_signature: "Tú imaginas el ambiente. Nosotros lo hacemos sonar.",
       proposal_title: "¿Quieres una propuesta a medida?",
       proposal_copy:
         "Ponte en contacto con nosotros, estaremos encantados de darte un presupuesto personalizado",
       proposal_cta: "Solicitar propuesta",
-      partners_title: "Artistas & partners",
+      partners_title: "Artistas",
       partners_copy:
         "Colaboramos con DJs, bandas y propuestas en vivo para crear experiencias musicales a medida en cada evento.",
+      event_partners_title: "Partners",
+      event_partners_copy: "Espacios, marcas y proyectos con los que compartimos eventos, criterio y forma de trabajar.",
+      partner_logo_pending: "Logo pendiente",
+      partner_can_marc_name: "Can Marc",
+      partner_can_marc_desc: "Espacio exclusivo en Begur para bodas, eventos y celebraciones, con jardines mediterráneos y vistas privilegiadas.",
+      partner_bcn_alturas_name: "BCN en las Alturas",
+      partner_bcn_alturas_desc: "Market pionero en Barcelona que fusiona moda, gastronomía, arte, ocio y actuaciones musicales en Torre Bellesguard.",
+      partner_flan_sin_nata_name: "Flan Sin Nata",
+      partner_flan_sin_nata_desc: "Agencia de eventos corporativos que diseña experiencias personalizadas, creativas y sostenibles para marcas, convenciones y team building.",
+      partner_bodalia_name: "Bodalia",
+      partner_bodalia_desc: "Proveedor recomendado en Bodalia para parejas que preparan su boda y buscan música, sonido e iluminación.",
       partners_instagram_cta: "Ver Instagram",
       role_dj: "DJ",
       role_band: "Banda",
@@ -215,6 +278,7 @@ window.cbmeApp = function cbmeApp() {
       service_card_3_title: "Decoración",
       service_card_3_desc:
         "Ofrecemos servicios de decoración para tu evento: flores, globos, fuego frío, confeti y más, adaptados a tu estilo.",
+      private_events_cta: "Música, DJ, sonido e iluminación para eventos privados en Girona",
       contact_title: "Contacto / Reserva",
       contact_email: "Email",
       contact_phone: "Teléfono de contacto",
@@ -247,22 +311,33 @@ window.cbmeApp = function cbmeApp() {
       meta_og_title: "DJ, música i so per a esdeveniments a Costa Brava | CBME",
       meta_og_description: "DJ, música en directe, so i il·luminació per a casaments i esdeveniments privats a Costa Brava i Girona.",
       skip_to_content: "Vés al contingut",
-      hero_title: "Música, so i il·luminació que fan vibrar el teu esdeveniment",
+      hero_title: "Música, so i il·luminació per a esdeveniments que es recorden",
       hero_intro:
-        'Som <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span>, el teu partner de confiança per a casaments, esdeveniments privats, aniversaris, inauguracions, festes majors i revetlles.',
+        'Creem experiències musicals a mida per a casaments, esdeveniments privats i celebracions a la Costa Brava i a tot Catalunya. Coordinem DJs, música en directe, so, il·luminació i ambientació perquè cada moment encaixi amb el teu espai, els teus convidats i el teu estil.',
       hero_offers_title: "Oferim:",
-      hero_bullet_1: "DJs professionals i selecció musical personalitzada",
-      hero_bullet_2: "Bandes i propostes en directe (pop/rock, flamenc, rumba, boleros i més)",
-      hero_bullet_3: "Equips de so premium adaptats a cada espai",
-      hero_bullet_4: "Il·luminació creativa i ambiental per crear l'ambient perfecte",
-      hero_bullet_5: "Decoració personalitzada per a cada espai i estil d'esdeveniment",
-      hero_outro: "Dissenyem cada esdeveniment a mida, cuidant cada detall perquè tu només gaudeixis.",
-      hero_signature: "El teu esdeveniment sona millor amb nosaltres.",
+      hero_bullet_1: "DJs professionals amb repertori adaptat al públic i al moment",
+      hero_bullet_2: "Música en directe: pop, rock, flamenc, rumba, boleros, chill i més",
+      hero_bullet_3: "So professional ajustat a l'espai, al format i al nombre de convidats",
+      hero_bullet_4: "Il·luminació ambiental i de festa per transformar cada zona de l'esdeveniment",
+      hero_bullet_5: "Coordinació tècnica i musical perquè tot flueixi sense improvisacions",
+      hero_outro: "Dissenyem cada proposta a mida, cuidant l'energia de cada moment de principi a fi.",
+      hero_signature: "Tu imagines l'ambient. Nosaltres el fem sonar.",
       proposal_title: "Vols una proposta a mida?",
       proposal_copy: "Posa't en contacte amb nosaltres, estarem encantats de preparar-te un pressupost personalitzat",
       proposal_cta: "Sol·licitar proposta",
-      partners_title: "Artistes & partners",
+      partners_title: "Artistes",
       partners_copy: "Col·laborem amb DJs, bandes i propostes en directe per crear experiències musicals a mida a cada esdeveniment.",
+      event_partners_title: "Partners",
+      event_partners_copy: "Espais, marques i projectes amb qui compartim esdeveniments, criteri i manera de treballar.",
+      partner_logo_pending: "Logo pendent",
+      partner_can_marc_name: "Can Marc",
+      partner_can_marc_desc: "Espai exclusiu a Begur per a casaments, esdeveniments i celebracions, amb jardins mediterranis i vistes privilegiades.",
+      partner_bcn_alturas_name: "BCN en las Alturas",
+      partner_bcn_alturas_desc: "Market pioner a Barcelona que fusiona moda, gastronomia, art, oci i actuacions musicals a Torre Bellesguard.",
+      partner_flan_sin_nata_name: "Flan Sin Nata",
+      partner_flan_sin_nata_desc: "Agència d’esdeveniments corporatius que dissenya experiències personalitzades, creatives i sostenibles per a marques, convencions i team building.",
+      partner_bodalia_name: "Bodalia",
+      partner_bodalia_desc: "Proveïdor recomanat a Bodalia per a parelles que preparen el seu casament i busquen música, so i il·luminació.",
       partners_instagram_cta: "Veure Instagram",
       role_dj: "DJ",
       role_band: "Banda",
@@ -291,6 +366,7 @@ window.cbmeApp = function cbmeApp() {
       service_card_2_desc: "Sistema de so ajustat al recinte, cabina DJ i proposta d'il·luminació decorativa i de festa.",
       service_card_3_title: "Decoració",
       service_card_3_desc: "Oferim serveis de decoració per al teu esdeveniment: flors, globus, foc fred, confeti i més, adaptats al teu estil.",
+      private_events_cta: "Música, DJ, so i il·luminació per a esdeveniments privats a Girona",
       contact_title: "Contacte / Reserva",
       contact_email: "Correu electrònic",
       contact_phone: "Telèfon de contacte",
@@ -323,23 +399,34 @@ window.cbmeApp = function cbmeApp() {
       meta_og_title: "DJ, live music and sound for Costa Brava events | CBME",
       meta_og_description: "DJ, live music, sound and lighting for weddings and private events in Costa Brava and Girona. Tailored technical production.",
       skip_to_content: "Skip to content",
-      hero_title: "Music, sound and lighting that make your event come alive",
+      hero_title: "Music, sound and lighting for events people remember",
       hero_intro:
-        'We are <span class="inline-block rounded-lg bg-white/15 px-2 py-0.5 text-lg font-black tracking-wide text-white shadow-sm sm:text-xl">Costa Brava Music Events</span>, your trusted partner for weddings, private events, birthdays, anniversaries, openings, local festivals and traditional celebrations.',
+        'We create tailor-made music experiences for weddings, private events and celebrations across the Costa Brava and Catalonia. We coordinate DJs, live music, sound, lighting and atmosphere so every moment fits your venue, your guests and your style.',
       hero_offers_title: "We offer:",
-      hero_bullet_1: "Professional DJs and tailored music selection",
-      hero_bullet_2: "Bands and live acts (pop/rock, flamenco, rumba, boleros and more)",
-      hero_bullet_3: "Premium sound systems adapted to each venue",
-      hero_bullet_4: "Creative ambient lighting to build the perfect atmosphere",
-      hero_bullet_5: "Custom decoration for each space and event style",
+      hero_bullet_1: "Professional DJs with music adapted to the crowd and the moment",
+      hero_bullet_2: "Live music: pop, rock, flamenco, rumba, boleros, chill and more",
+      hero_bullet_3: "Professional sound matched to the venue, format and guest count",
+      hero_bullet_4: "Ambient and party lighting to transform every area of the event",
+      hero_bullet_5: "Technical and musical coordination so everything flows without guesswork",
       hero_outro:
-        "We design each event to measure, taking care of every detail so you can focus on enjoying it.",
-      hero_signature: "Your event sounds better with us.",
+        "We design each proposal around the energy of the event, from the first arrival to the final song.",
+      hero_signature: "You imagine the atmosphere. We make it sound right.",
       proposal_title: "Need a custom proposal?",
       proposal_copy: "Get in touch with us, we will be happy to prepare a personalized quote for your event",
       proposal_cta: "Request proposal",
-      partners_title: "Artists & partners",
+      partners_title: "Artists",
       partners_copy: "We collaborate with DJs, bands and live acts to create tailor-made music experiences for every event.",
+      event_partners_title: "Partners",
+      event_partners_copy: "Venues, brands and projects that share our events, standards and way of working.",
+      partner_logo_pending: "Logo pending",
+      partner_can_marc_name: "Can Marc",
+      partner_can_marc_desc: "Exclusive venue in Begur for weddings, events and celebrations, with Mediterranean gardens and privileged views.",
+      partner_bcn_alturas_name: "BCN en las Alturas",
+      partner_bcn_alturas_desc: "Pioneering Barcelona market blending fashion, gastronomy, art, leisure and live music at Torre Bellesguard.",
+      partner_flan_sin_nata_name: "Flan Sin Nata",
+      partner_flan_sin_nata_desc: "Corporate events agency creating personalised, creative and sustainable experiences for brands, conventions and team building.",
+      partner_bodalia_name: "Bodalia",
+      partner_bodalia_desc: "Recommended supplier on Bodalia for couples planning their wedding and looking for music, sound and lighting.",
       partners_instagram_cta: "View Instagram",
       role_dj: "DJ",
       role_band: "Band",
@@ -371,6 +458,7 @@ window.cbmeApp = function cbmeApp() {
       service_card_3_title: "Decoration",
       service_card_3_desc:
         "We offer decoration services for your event: flowers, balloons, cold sparks, confetti and more, adapted to your style.",
+      private_events_cta: "Music, DJ, sound and lighting for private events in Girona",
       contact_title: "Contact / Booking",
       contact_email: "Email",
       contact_phone: "Contact phone",
