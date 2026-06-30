@@ -27,9 +27,26 @@
     allow_google_signals: true,
   });
 
+  const pageContext = () => ({
+    page_language: document.documentElement.lang || "unknown",
+    page_path: window.location.pathname,
+  });
+
   const track = (name, params = {}) => {
     if (typeof window.gtag !== "function") return;
-    window.gtag("event", name, params);
+    window.gtag("event", name, {
+      ...pageContext(),
+      ...params,
+    });
+  };
+
+  const guestBucket = (value) => {
+    const count = Number(value);
+    if (!Number.isFinite(count) || count <= 0) return "unknown";
+    if (count <= 50) return "1_50";
+    if (count <= 100) return "51_100";
+    if (count <= 200) return "101_200";
+    return "201_plus";
   };
 
   document.addEventListener("click", (event) => {
@@ -38,6 +55,17 @@
 
     const href = link.getAttribute("href") || "";
     const label = (link.textContent || "").trim().slice(0, 120);
+    const ctaLocation = link.getAttribute("data-cta-location") || "";
+    const service = link.getAttribute("data-service-link") || "";
+
+    if (href.includes("wa.me/") || href.includes("api.whatsapp.com/")) {
+      track("contact_whatsapp_click", {
+        link_url: href.split("?")[0],
+        link_text: label,
+        cta_location: ctaLocation || "contact",
+      });
+      return;
+    }
 
     if (href.startsWith("tel:")) {
       track("contact_phone_click", { link_url: href, link_text: label });
@@ -54,8 +82,21 @@
       return;
     }
 
-    if (href === "#contacto" || href.endsWith("/#contacto")) {
-      track("contact_cta_click", { link_url: href, link_text: label });
+    if (ctaLocation || href === "#contacto" || href.endsWith("/#contacto")) {
+      track("contact_cta_click", {
+        link_url: href,
+        link_text: label,
+        cta_location: ctaLocation || "unknown",
+      });
+      return;
+    }
+
+    if (service) {
+      track("service_link_click", {
+        service,
+        link_url: href,
+        link_text: label,
+      });
     }
   });
 
@@ -65,11 +106,16 @@
 
     const action = form.getAttribute("action") || "";
     const id = form.getAttribute("id") || "";
+    const data = new FormData(form);
 
     track("generate_lead", {
-      form_id: id,
+      form_id: id || "contact_form",
       form_action: action,
-      page_location: window.location.pathname,
+      event_type: String(data.get("event_type") || "unknown").slice(0, 60),
+      guest_count_bucket: guestBucket(data.get("guest_count")),
+      has_phone: Boolean(String(data.get("phone") || "").trim()),
+      has_event_date: Boolean(String(data.get("event_date") || "").trim()),
+      has_event_location: Boolean(String(data.get("event_location") || "").trim()),
     });
   });
 })();

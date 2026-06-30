@@ -46,8 +46,8 @@ guard let logo = NSImage(contentsOf: logoURL) else {
     exit(1)
 }
 
-let phone1 = "619 840 602"
-let phone2 = "687 962 905"
+let phone1 = "687 962 905"
+let phone2 = "619 840 206"
 let phonesCombined = "\(phone1) / \(phone2)"
 let email = "info@costabravamusicevents.com"
 let web = "www.costabravamusicevents.com"

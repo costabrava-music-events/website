@@ -74,8 +74,8 @@ let contactCopy = "Cuéntanos la fecha, el espacio y el tipo de evento. Te prepa
 let web = "www.costabravamusicevents.com"
 let instagram = "@costabrava_music_events"
 let email = "info@costabravamusicevents.com"
-let phone1 = "619 840 602"
-let phone2 = "687 962 905"
+let phone1 = "687 962 905"
+let phone2 = "619 840 206"
 let qrURL = "https://www.costabravamusicevents.com"
 
 func font(_ name: String, size: CGFloat, weight: NSFont.Weight = .regular) -> NSFont {
