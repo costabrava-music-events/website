@@ -330,7 +330,7 @@ Requisitos:
 - Token de larga duracion guardado fuera del chat.
 - Permisos segun alcance:
   - `instagram_basic`
-  - `instagram_content_publish`
+  - `instagram_content_publish` o `instagram_content_publishing`
   - `instagram_manage_insights`
   - `instagram_manage_comments`
   - `pages_read_engagement`

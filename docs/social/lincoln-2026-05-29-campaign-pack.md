@@ -12,6 +12,13 @@ Evento de calendario: `Lincoln 90 s`, viernes 29/05/2026, de 23:00 a cierre.
 - Story música: `assets/social/lincoln-2026-05-29/lincoln-90s-story-music.png`
 - Review: `assets/social/lincoln-2026-05-29/review.html`
 
+## Diseño
+
+- Cartel v2 con jerarquía más limpia y menos bloque pesado.
+- Feed: 1080x1350.
+- Story principal: 1080x1920 adaptado, no recorte del feed.
+- Fondo 90s ya aprobado, logos reales Lincoln y CBME.
+
 ## Assets reutilizables
 
 - Logo Lincoln original: `assets/brand/partners/lincoln/logo-original.jpg`
@@ -50,13 +57,13 @@ Sticker sugerido: ubicación o mención a Lincoln si la cuenta existe.
 
 Archivo: `assets/social/lincoln-2026-05-29/lincoln-90s-story-music.png`
 
-Sticker sugerido: encuesta `¿Te vienes?` / `Obvio`.
+Sticker sugerido: encuesta `¿Qué te apetece más?` con opciones `90s dance` / `90s house`.
 
 ### Story 3 - Recordatorio
 
 Archivo: `assets/social/lincoln-2026-05-29/lincoln-90s-story-countdown.png`
 
-Sticker sugerido: cuenta atrás para el 29/05/2026 a las 23:00.
+Sticker sugerido: cuenta atrás para el 29/05/2026 a las 23:00. Nombre: `Lincoln 90s`.
 
 ## Tratamiento especial
 

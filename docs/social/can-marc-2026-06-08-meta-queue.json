@@ -1,0 +1,26 @@
+{
+  "name": "CBME Can Marc boda reel 2026-06-08",
+  "jobs": [
+    {
+      "id": "2026-06-08-can-marc-fiesta-boda-reel-ca-ortografia",
+      "scheduled_at": "2026-06-08T17:40:00+02:00",
+      "asset": "assets/social/can-marc-2026-06-08/can-marc-fiesta-boda.mp4",
+      "video_url": "https://raw.githubusercontent.com/costabrava-music-events/website/temp/can-marc-reel-2026-06-08/assets/social/can-marc-2026-06-08/can-marc-fiesta-boda.mp4",
+      "platforms": [
+        "instagram_reel"
+      ],
+      "share_to_feed": true,
+      "permission_required": true,
+      "caption": "Festa de casament a El Jardí de Can Marc.\n\nAquell moment en què el sopar queda enrere, s'encén la pista i la música ja té una sola missió: que ningú vulgui marxar.\n\nGràcies @eljardicanmarc_begur per l'espai.",
+      "hashtags": [
+        "#BodaCanMarc",
+        "#ElJardiDeCanMarc",
+        "#BodesCostaBrava",
+        "#BodesBegur",
+        "#DJCasaments",
+        "#WeddingDJSpain",
+        "#CostaBravaMusicEvents"
+      ]
+    }
+  ]
+}

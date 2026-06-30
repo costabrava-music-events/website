@@ -1,0 +1,24 @@
+{
+  "name": "CBME SEA SEA CLUB reel 2026-05-29",
+  "jobs": [
+    {
+      "id": "2026-05-29-seasea-reel",
+      "scheduled_at": "2026-05-29T20:30:00+02:00",
+      "asset": "assets/social/live-reel-2026-05-29/seasea-original.mp4",
+      "platforms": [
+        "instagram_reel"
+      ],
+      "share_to_feed": true,
+      "caption": "Barcelona, Mediterráneo y un espacio que cambia de ritmo con las horas.\n\nEn SEA SEA CLUB, sonido, luz y atmósfera trabajan juntos para que la experiencia fluya: desde el primer encuentro hasta el momento en que la música toma el control.\n\nMontaje preparado para una noche frente al mar.",
+      "hashtags": [
+        "#SeaSeaClub",
+        "#BarcelonaEvents",
+        "#BarcelonaNightlife",
+        "#BeachClubBarcelona",
+        "#MusicEvents",
+        "#DJSets",
+        "#CostaBravaMusicEvents"
+      ]
+    }
+  ]
+}
