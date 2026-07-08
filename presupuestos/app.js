@@ -300,35 +300,48 @@
     `;
   }
 
+  function updateFromTarget(target) {
+    const field = target.id;
+    if (field === "language") {
+      changeLanguage(target.value);
+      render();
+      return true;
+    }
+
+    if (field === "terms") {
+      state.terms = target.value.split("\n");
+      schedulePreviewRender();
+      return true;
+    }
+
+    if (field in state) {
+      state[field] = target.type === "checkbox" ? target.checked : target.value;
+      schedulePreviewRender();
+      return true;
+    }
+
+    if (target.dataset.item !== undefined) {
+      const item = state.items[Number(target.dataset.item)];
+      item[target.dataset.field] = target.type === "number" ? Number(target.value) : target.value;
+      updateItemLineTotal(target, item);
+      schedulePreviewRender();
+      return true;
+    }
+
+    return false;
+  }
+
   function bindEvents() {
     bindAuth();
 
     document.addEventListener("input", (event) => {
+      updateFromTarget(event.target);
+    });
+
+    document.addEventListener("change", (event) => {
       const target = event.target;
-      const field = target.id;
-      if (field === "language") {
-        changeLanguage(target.value);
-        render();
-        return;
-      }
-
-      if (field === "terms") {
-        state.terms = target.value.split("\n");
-        schedulePreviewRender();
-        return;
-      }
-
-      if (field in state) {
-        state[field] = target.type === "checkbox" ? target.checked : target.value;
-        schedulePreviewRender();
-        return;
-      }
-
-      if (target.dataset.item !== undefined) {
-        const item = state.items[Number(target.dataset.item)];
-        item[target.dataset.field] = target.type === "number" ? Number(target.value) : target.value;
-        updateItemLineTotal(target, item);
-        schedulePreviewRender();
+      if (target.type === "checkbox" || target.tagName === "SELECT") {
+        updateFromTarget(target);
       }
     });
 
