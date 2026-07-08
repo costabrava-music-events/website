@@ -26,6 +26,7 @@
       guests: 120,
       intro: templateText(template, language).intro,
       includeTax: false,
+      hideBranding: false,
       items: templateItems(template, language),
       terms: defaultTerms(language),
     };
@@ -154,6 +155,7 @@
     $("#guests").value = state.guests;
     $("#intro").value = state.intro;
     $("#includeTax").checked = state.includeTax;
+    $("#hideBranding").checked = state.hideBranding;
     $("#copySummary").textContent = t("copySummary");
   }
 
@@ -205,6 +207,7 @@
 
   function renderPreview() {
     const total = totals();
+    const quoteNumber = state.hideBranding ? unbrandedQuoteNumber(state.quoteNumber) : state.quoteNumber;
     const rows = state.items
       .map(
         (item) => `
@@ -223,16 +226,20 @@
 
     $("#preview").innerHTML = `
       <article class="quote-sheet">
-        <header class="quote-head">
-          <div class="quote-brand">
-            <span>${t("technicalProposal")}</span>
-            <img src="${data.company.logo}" alt="${data.company.name}" />
-            <p>${t("tagline")}</p>
-          </div>
+        <header class="quote-head${state.hideBranding ? " quote-head--unbranded" : ""}">
+          ${
+            state.hideBranding
+              ? ""
+              : `<div class="quote-brand">
+                  <span>${t("technicalProposal")}</span>
+                  <img src="${data.company.logo}" alt="${data.company.name}" />
+                  <p>${t("tagline")}</p>
+                </div>`
+          }
           <div class="quote-meta-card">
             <strong>${t("quote")}</strong>
             <dl>
-              <div><dt>${t("number")}</dt><dd>${escapeHtml(state.quoteNumber)}</dd></div>
+              <div><dt>${t("number")}</dt><dd>${escapeHtml(quoteNumber)}</dd></div>
               <div><dt>${t("date")}</dt><dd>${formatDate(state.quoteDate)}</dd></div>
               ${state.validUntil ? `<div><dt>${t("validUntil")}</dt><dd>${formatDate(state.validUntil)}</dd></div>` : ""}
             </dl>
@@ -280,11 +287,15 @@
           </dl>
         </section>
 
-        <footer class="quote-footer">
-          <span>${data.company.email}</span>
-          <span>${data.company.phones.join(" / ")}</span>
-          <span>${data.company.instagram}</span>
-        </footer>
+        ${
+          state.hideBranding
+            ? ""
+            : `<footer class="quote-footer">
+                <span>${data.company.email}</span>
+                <span>${data.company.phones.join(" / ")}</span>
+                <span>${data.company.instagram}</span>
+              </footer>`
+        }
       </article>
     `;
   }
@@ -372,8 +383,9 @@
 
     $("#copySummary").addEventListener("click", async () => {
       const total = totals();
+      const quoteNumber = state.hideBranding ? unbrandedQuoteNumber(state.quoteNumber) : state.quoteNumber;
       const lines = [
-        `${state.quoteNumber} - ${state.clientName || "Client"}`,
+        `${quoteNumber} - ${state.clientName || "Client"}`,
         `${state.eventName} · ${state.eventPlace}`,
         `${t("total")}: ${euro.format(total.total)}${state.includeTax ? t("taxIncluded") : t("plusTax")}`,
         `${t("deposit")}: ${euro.format(total.deposit)}`,
@@ -456,6 +468,10 @@
     const date = new Date(`${value}T00:00:00`);
     const locales = { ca: "ca-ES", es: "es-ES", en: "en-GB" };
     return new Intl.DateTimeFormat(locales[currentLanguage()] || "ca-ES", { day: "2-digit", month: "long", year: "numeric" }).format(date);
+  }
+
+  function unbrandedQuoteNumber(value) {
+    return String(value || "").replace(/^CBME[-\s]*/i, "");
   }
 
   function escapeHtml(value) {
