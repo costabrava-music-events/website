@@ -307,6 +307,10 @@ textarea:focus {
   color: #fff;
 }
 
+.quote-head--unbranded {
+  justify-content: flex-end;
+}
+
 .quote-brand span {
   display: inline-flex;
   margin-bottom: 22px;
