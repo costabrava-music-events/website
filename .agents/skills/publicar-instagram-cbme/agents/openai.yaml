@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publicar Instagram CBME"
+  short_description: "Crea y publica contenido de Instagram CBME"
+  default_prompt: "Usa $publicar-instagram-cbme para crear y publicar un Reel de CBME."
