@@ -88,14 +88,15 @@ service cloud.firestore {
         request.resource.data.createdAt == resource.data.createdAt &&
         request.resource.data.updatedAt == request.time &&
         request.resource.data.version == resource.data.version + 1;
-      allow delete: if false;
+      allow delete: if isAdmin();
 
       match /versions/{versionId} {
         allow read: if isAdmin();
         allow create: if isAdmin() && isValidVersion(request.resource.data) &&
           request.resource.data.savedAt == request.time &&
           versionId == string(request.resource.data.version);
-        allow update, delete: if false;
+        allow update: if false;
+        allow delete: if isAdmin();
       }
     }
   }

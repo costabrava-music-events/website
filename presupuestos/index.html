@@ -46,10 +46,19 @@
 
         <section class="panel saved-quotes">
           <div class="panel-heading">
-            <h2>Presupuestos guardados</h2>
+            <div>
+              <p class="panel-kicker">Archivo comercial</p>
+              <h2>Presupuestos guardados</h2>
+            </div>
             <button class="text-button" id="refreshQuotes" type="button">Actualizar</button>
           </div>
-          <input id="quoteSearch" type="search" placeholder="Buscar por cliente o número" />
+          <div class="quotes-summary" id="quotesSummary"></div>
+          <div class="history-controls">
+            <label class="search-field">
+              <span>Buscar</span>
+              <input id="quoteSearch" type="search" placeholder="Cliente, evento o número" />
+            </label>
+          </div>
           <div class="quotes-list" id="quotesList"></div>
         </section>
 

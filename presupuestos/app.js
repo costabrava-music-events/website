@@ -15,6 +15,7 @@ import {
   query,
   runTransaction,
   serverTimestamp,
+  writeBatch,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -209,7 +210,17 @@ const db = getFirestore(app, "cbme-quotes");
   function renderSavedQuotes() {
     const term = $("#quoteSearch").value.trim().toLowerCase();
     const visible = savedQuotes.filter((quote) => [quote.quoteNumber, quote.clientName, quote.eventName].join(" ").toLowerCase().includes(term));
-    $("#quotesList").innerHTML = visible.length ? visible.map((quote) => `<button class="quote-list-item${quote.id === state.quoteId ? " is-active" : ""}" type="button" data-open-quote="${quote.id}"><strong>${escapeHtml(quote.quoteNumber || "Sin número")} · ${escapeHtml(quote.clientName || "Sin cliente")}</strong><span>${escapeHtml(quote.eventName || "Evento")} · ${formatSavedDate(quote.updatedAt)} · ${statusLabel(quote.status)}</span></button>`).join("") : `<p class="quotes-empty">No hay presupuestos guardados.</p>`;
+    const total = savedQuotes.reduce((sum, quote) => sum + Number(quote.total || 0), 0);
+    $("#quotesSummary").innerHTML = `<div><span>Guardados</span><strong>${savedQuotes.length}</strong></div><div><span>Valor acumulado</span><strong>${euro.format(total)}</strong></div>`;
+    $("#quotesList").innerHTML = visible.length ? visible.map((quote) => `
+      <article class="quote-card${quote.id === state.quoteId ? " is-active" : ""}">
+        <button class="quote-card-main" type="button" data-open-quote="${quote.id}" aria-label="Abrir ${escapeAttr(quote.quoteNumber || "presupuesto")}">
+          <div class="quote-card-top"><strong class="quote-card-client">${escapeHtml(quote.clientName || "Sin cliente")}</strong><span class="quote-status quote-status--${escapeAttr(quote.status || "draft")}">${statusLabel(quote.status)}</span></div>
+          <span class="quote-card-event">${escapeHtml(quote.eventName || "Evento sin definir")}</span>
+          <span class="quote-card-metrics"><span class="quote-card-meta">${escapeHtml(quote.quoteNumber || "Sin número")} · v${Number(quote.version || 1)}</span><strong class="quote-card-total">${euro.format(Number(quote.total || 0))}</strong></span>
+        </button>
+        <div class="quote-card-footer"><span class="quote-card-date">Editado ${formatSavedDate(quote.updatedAt)}</span><button class="quote-delete" type="button" data-delete-quote="${quote.id}">Eliminar</button></div>
+      </article>`).join("") : `<p class="quotes-empty">No hay presupuestos que coincidan.</p>`;
   }
 
   async function loadSavedQuotes() {
@@ -270,6 +281,31 @@ const db = getFirestore(app, "cbme-quotes");
     }
   }
 
+  async function deleteQuote(id) {
+    const quote = savedQuotes.find((entry) => entry.id === id);
+    if (!quote || !window.confirm(`¿Eliminar ${quote.quoteNumber || "este presupuesto"} y todo su historial? Esta acción no se puede deshacer.`)) return;
+    setSaveStatus("Eliminando…");
+    try {
+      const quoteRef = doc(db, "quotes", id);
+      const versions = await getDocs(collection(quoteRef, "versions"));
+      for (let start = 0; start < versions.docs.length; start += 499) {
+        const batch = writeBatch(db);
+        versions.docs.slice(start, start + 499).forEach((snapshot) => batch.delete(snapshot.ref));
+        await batch.commit();
+      }
+      const batch = writeBatch(db);
+      batch.delete(quoteRef);
+      await batch.commit();
+      if (state.quoteId === id) state = createInitialState();
+      await loadSavedQuotes();
+      render();
+      setSaveStatus("Presupuesto eliminado");
+    } catch (error) {
+      console.error(error);
+      setSaveStatus("No se ha podido eliminar");
+    }
+  }
+
   function updateFromTarget(target) {
     const field = target.id;
     if (field === "language") {
@@ -310,6 +346,7 @@ const db = getFirestore(app, "cbme-quotes");
         render();
       }
       if (event.target.dataset.openQuote) openQuote(event.target.dataset.openQuote);
+      if (event.target.dataset.deleteQuote) deleteQuote(event.target.dataset.deleteQuote);
     });
     $("#applyTemplate").addEventListener("click", () => {
       const template = data.templates.find((item) => item.id === $("#templateSelect").value);
