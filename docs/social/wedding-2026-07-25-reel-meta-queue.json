@@ -1,0 +1,23 @@
+{
+  "name": "CBME wedding live music reel 2026-07-25",
+  "jobs": [
+    {
+      "id": "2026-08-03-wedding-live-music-reel",
+      "scheduled_at": "2026-08-03T12:00:00+02:00",
+      "asset": "assets/social/wedding-2026-07-25/cbme-wedding-live-music-reel.mp4",
+      "platforms": ["instagram_reel"],
+      "share_to_feed": true,
+      "thumb_offset": 18,
+      "caption": "Cada boda tiene su propia banda sonora. Desde la llegada hasta el cóctel, la música en directo transforma cada momento en un recuerdo que se queda.\n\n¿Celebráis vuestra boda en Costa Brava? Cuéntanos vuestra fecha y diseñamos la música para vuestro día.",
+      "hashtags": [
+        "#CostaBravaWedding",
+        "#BodaCostaBrava",
+        "#MusicaEnVivo",
+        "#WeddingMusic",
+        "#BodasGirona",
+        "#WeddingDJSpain",
+        "#CostaBravaMusicEvents"
+      ]
+    }
+  ]
+}
