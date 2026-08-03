@@ -7,13 +7,14 @@
     }
   ],
   "auth": {
+    "authorizedDomains": [
+      "costabravamusicevents.com",
+      "www.costabravamusicevents.com"
+    ],
     "providers": {
       "googleSignIn": {
         "oAuthBrandDisplayName": "Costa Brava Music Events",
-        "supportEmail": "albertarredondoalfaro@gmail.com",
-        "authorizedRedirectUris": [
-          "https://costabravamusicevents.com"
-        ]
+        "supportEmail": "albertarredondoalfaro@gmail.com"
       }
     }
   }
