@@ -9,7 +9,9 @@
   "auth": {
     "authorizedDomains": [
       "costabravamusicevents.com",
-      "www.costabravamusicevents.com"
+      "www.costabravamusicevents.com",
+      "costa-brava-music-events-web.firebaseapp.com",
+      "costa-brava-music-events-web.web.app"
     ],
     "providers": {
       "googleSignIn": {
