@@ -18,10 +18,9 @@
         <p class="eyebrow">Accés intern</p>
         <h1>Pressupostos CBME</h1>
         <label>
-          Contrasenya
-          <input id="passwordInput" type="password" autocomplete="current-password" autofocus />
+          Acceso protegido con Google
         </label>
-        <button class="button accent" type="submit">Entrar</button>
+        <button class="button accent" type="submit">Entrar con Google</button>
         <p class="lock-error" id="lockError" role="alert"></p>
       </form>
     </section>
@@ -45,6 +44,15 @@
           </div>
         </section>
 
+        <section class="panel saved-quotes">
+          <div class="panel-heading">
+            <h2>Presupuestos guardados</h2>
+            <button class="text-button" id="refreshQuotes" type="button">Actualizar</button>
+          </div>
+          <input id="quoteSearch" type="search" placeholder="Buscar por cliente o número" />
+          <div class="quotes-list" id="quotesList"></div>
+        </section>
+
         <section class="panel">
           <h2>Dades</h2>
           <div class="grid">
@@ -61,6 +69,15 @@
             <label>Valid fins <input id="validUntil" type="date" /></label>
             <label>Client <input id="clientName" placeholder="Nom del client" /></label>
             <label>Email client <input id="clientEmail" type="email" placeholder="client@email.com" /></label>
+            <label>
+              Estado
+              <select id="status">
+                <option value="draft">Borrador</option>
+                <option value="sent">Enviado</option>
+                <option value="accepted">Aceptado</option>
+                <option value="discarded">Descartado</option>
+              </select>
+            </label>
             <label>Tipus d'event <input id="eventName" /></label>
             <label>Data event <input id="eventDate" type="date" /></label>
             <label>Convidats <input id="guests" type="number" min="0" step="1" /></label>
@@ -112,6 +129,8 @@
 
       <section class="preview-wrap" aria-label="Vista previa del pressupost">
         <div class="preview-toolbar">
+          <span class="save-status" id="saveStatus" role="status"></span>
+          <button class="button" id="saveQuote" type="button">Guardar</button>
           <button class="button secondary" id="copySummary" type="button">Copiar resum</button>
           <button class="button accent" id="printQuote" type="button">Imprimir / PDF</button>
         </div>
@@ -120,6 +139,6 @@
     </main>
 
     <script src="./data.js"></script>
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

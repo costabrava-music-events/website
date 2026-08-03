@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "quotes",
+      "queryScope": "COLLECTION",
+      "density": "DENSE",
+      "fields": [
+        { "fieldPath": "updatedAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

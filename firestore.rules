@@ -1,0 +1,102 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    // quotes/{quoteId}: private CBME quote metadata and a JSON snapshot.
+    // Required fields: quoteNumber, clientName, clientEmail, eventName,
+    // eventDate, status, total, version, payload, createdBy, createdAt,
+    // updatedAt. Client data is private and access is limited to the verified
+    // administrator account below.
+    // quotes/{quoteId}/versions/{version}: immutable historical snapshot.
+    // Required fields: version, payload, savedBy, savedAt.
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        request.auth.token.email == 'albertarredondoalfaro@gmail.com' &&
+        request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function uidUnchanged() {
+      return request.resource.data.createdBy == request.auth.uid;
+    }
+
+    function uidNotModified() {
+      return request.resource.data.createdBy == resource.data.createdBy;
+    }
+
+    function validText(value, maxLength) {
+      return value is string && value.size() <= maxLength;
+    }
+
+    function validStatus(value) {
+      return value in ['draft', 'sent', 'accepted', 'discarded'];
+    }
+
+    function hasOnlyQuoteFields(data) {
+      return data.keys().hasOnly([
+        'quoteNumber', 'clientName', 'clientEmail', 'eventName', 'eventDate',
+        'status', 'total', 'version', 'payload', 'createdBy', 'createdAt',
+        'updatedAt'
+      ]);
+    }
+
+    function hasRequiredQuoteFields(data) {
+      return data.keys().hasAll([
+        'quoteNumber', 'clientName', 'clientEmail', 'eventName', 'eventDate',
+        'status', 'total', 'version', 'payload', 'createdBy', 'createdAt',
+        'updatedAt'
+      ]);
+    }
+
+    function isValidQuote(data) {
+      return hasOnlyQuoteFields(data) && hasRequiredQuoteFields(data) &&
+        validText(data.quoteNumber, 100) && validText(data.clientName, 200) &&
+        validText(data.clientEmail, 254) && validText(data.eventName, 300) &&
+        validText(data.eventDate, 10) && validStatus(data.status) &&
+        data.total is number && data.total >= 0 && data.total <= 1000000 &&
+        data.version is int && data.version >= 1 && data.version <= 10000 &&
+        validText(data.payload, 200000) && validText(data.createdBy, 128) &&
+        data.createdAt is timestamp && data.updatedAt is timestamp;
+    }
+
+    function isValidVersion(data) {
+      return data.keys().hasOnly(['version', 'payload', 'savedBy', 'savedAt']) &&
+        data.keys().hasAll(['version', 'payload', 'savedBy', 'savedAt']) &&
+        data.version is int && data.version >= 1 && data.version <= 10000 &&
+        validText(data.payload, 200000) && validText(data.savedBy, 128) &&
+        data.savedBy == request.auth.uid && data.savedAt is timestamp;
+    }
+
+    match /quotes/{quoteId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() && isOwner(request.resource.data.createdBy) &&
+        uidUnchanged() && isValidQuote(request.resource.data) &&
+        request.resource.data.createdAt == request.time &&
+        request.resource.data.updatedAt == request.time;
+      allow update: if isAdmin() && isOwner(resource.data.createdBy) &&
+        uidNotModified() && isValidQuote(request.resource.data) &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        request.resource.data.updatedAt == request.time &&
+        request.resource.data.version == resource.data.version + 1;
+      allow delete: if false;
+
+      match /versions/{versionId} {
+        allow read: if isAdmin();
+        allow create: if isAdmin() && isValidVersion(request.resource.data) &&
+          request.resource.data.savedAt == request.time &&
+          versionId == string(request.resource.data.version);
+        allow update, delete: if false;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "firestore": [
+    {
+      "database": "cbme-quotes",
+      "rules": "firestore.rules",
+      "indexes": "firestore.indexes.json"
+    }
+  ],
+  "auth": {
+    "providers": {
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Costa Brava Music Events",
+        "supportEmail": "albertarredondoalfaro@gmail.com",
+        "authorizedRedirectUris": [
+          "https://costabravamusicevents.com"
+        ]
+      }
+    }
+  }
+}
