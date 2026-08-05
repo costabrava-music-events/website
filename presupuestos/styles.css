@@ -386,6 +386,27 @@ textarea:focus {
   background: linear-gradient(135deg, var(--sea), var(--coral));
 }
 
+.button.is-loading {
+  cursor: wait;
+  opacity: 0.88;
+}
+
+.button.is-loading::before {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 7px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  content: "";
+  animation: print-spinner 0.65s linear infinite;
+}
+
+@keyframes print-spinner {
+  to { transform: rotate(360deg); }
+}
+
 .items-table {
   width: 100%;
   border-collapse: collapse;

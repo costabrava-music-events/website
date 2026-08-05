@@ -41,8 +41,9 @@ const db = getFirestore(app, "cbme-quotes");
 
   let state = loadState() || createInitialState();
   let savedQuotes = [];
-  let previewRenderTimeout;
+  let previewRenderTimeout = null;
   let currentUser;
+  let isPrinting = false;
 
   function createInitialState() {
     const language = defaultLanguage;
@@ -146,6 +147,7 @@ const db = getFirestore(app, "cbme-quotes");
 
   function render() {
     clearTimeout(previewRenderTimeout);
+    previewRenderTimeout = null;
     renderForms();
     renderCatalog();
     renderItems();
@@ -158,12 +160,17 @@ const db = getFirestore(app, "cbme-quotes");
   function schedulePreviewRender() {
     saveState();
     clearTimeout(previewRenderTimeout);
-    previewRenderTimeout = setTimeout(renderPreview, previewRenderDelay);
+    previewRenderTimeout = setTimeout(() => {
+      previewRenderTimeout = null;
+      renderPreview();
+    }, previewRenderDelay);
   }
 
   function flushPreviewRender() {
+    const hasPendingRender = previewRenderTimeout !== null;
     clearTimeout(previewRenderTimeout);
-    renderPreview();
+    previewRenderTimeout = null;
+    if (hasPendingRender) renderPreview();
     saveState();
   }
 
@@ -378,6 +385,7 @@ const db = getFirestore(app, "cbme-quotes");
     $("#refreshQuotes").addEventListener("click", () => loadSavedQuotes().catch(() => setSaveStatus("No se ha podido cargar el histórico")));
     $("#quoteSearch").addEventListener("input", renderSavedQuotes);
     $("#printQuote").addEventListener("click", printQuote);
+    window.addEventListener("afterprint", finishPrinting);
     $("#copySummary").addEventListener("click", async () => {
       const total = totals();
       const quoteNumber = state.hideBranding ? unbrandedQuoteNumber(state.quoteNumber) : state.quoteNumber;
@@ -419,13 +427,36 @@ const db = getFirestore(app, "cbme-quotes");
   }
 
   function printQuote() {
-    flushPreviewRender();
-    const quote = $("#preview .quote-sheet");
-    if (!quote) {
-      setSaveStatus("No se ha podido preparar el presupuesto");
-      return;
-    }
-    window.print();
+    if (isPrinting) return;
+    isPrinting = true;
+    const button = $("#printQuote");
+    button.disabled = true;
+    button.classList.add("is-loading");
+    button.textContent = "Preparando PDF…";
+    button.setAttribute("aria-busy", "true");
+    setSaveStatus("Preparando vista para imprimir…");
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      flushPreviewRender();
+      const quote = $("#preview .quote-sheet");
+      if (!quote) {
+        setSaveStatus("No se ha podido preparar el presupuesto");
+        finishPrinting();
+        return;
+      }
+      window.print();
+    }));
+  }
+
+  function finishPrinting() {
+    if (!isPrinting) return;
+    isPrinting = false;
+    const button = $("#printQuote");
+    button.disabled = false;
+    button.classList.remove("is-loading");
+    button.textContent = "Imprimir / PDF";
+    button.removeAttribute("aria-busy");
+    if ($("#saveStatus").textContent === "Preparando vista para imprimir…") setSaveStatus("");
   }
 
   function formatDate(value) {
