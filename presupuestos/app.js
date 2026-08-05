@@ -26,7 +26,7 @@ const firebaseConfig = {
   authDomain: "costa-brava-music-events-web.firebaseapp.com",
   messagingSenderId: "1026151316968",
 };
-const adminEmail = "albertarredondoalfaro@gmail.com";
+const adminEmails = ["albertarredondoalfaro@gmail.com", "danifocus.40@gmail.com"];
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app, "cbme-quotes");
@@ -451,7 +451,7 @@ const db = getFirestore(app, "cbme-quotes");
   render();
   onAuthStateChanged(auth, async (user) => {
     if (!user) return;
-    if (user.email !== adminEmail || !user.emailVerified) {
+    if (!adminEmails.includes(user.email) || !user.emailVerified) {
       $("#lockError").textContent = "Esta cuenta no tiene acceso.";
       await signOut(auth);
       return;
