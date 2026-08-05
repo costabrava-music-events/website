@@ -836,18 +836,26 @@ textarea:focus {
   }
 }
 
+@page {
+  size: A4;
+  margin: 0;
+}
+
 @media print {
+  html,
   body {
+    width: 210mm;
     background: #fff;
   }
 
+  .lock-screen,
   .workspace,
   .preview-toolbar {
-    display: none;
+    display: none !important;
   }
 
   .app-shell {
-    display: block;
+    display: block !important;
   }
 
   .preview-wrap {
@@ -855,8 +863,14 @@ textarea:focus {
     padding: 0;
   }
 
+  #preview {
+    width: 210mm;
+    max-width: none;
+  }
+
   .quote-sheet {
     width: 210mm;
+    max-width: none;
     min-height: 297mm;
     box-shadow: none;
   }

@@ -377,10 +377,7 @@ const db = getFirestore(app, "cbme-quotes");
     $("#saveQuote").addEventListener("click", saveQuote);
     $("#refreshQuotes").addEventListener("click", () => loadSavedQuotes().catch(() => setSaveStatus("No se ha podido cargar el histórico")));
     $("#quoteSearch").addEventListener("input", renderSavedQuotes);
-    $("#printQuote").addEventListener("click", () => {
-      flushPreviewRender();
-      window.print();
-    });
+    $("#printQuote").addEventListener("click", printQuote);
     $("#copySummary").addEventListener("click", async () => {
       const total = totals();
       const quoteNumber = state.hideBranding ? unbrandedQuoteNumber(state.quoteNumber) : state.quoteNumber;
@@ -419,6 +416,16 @@ const db = getFirestore(app, "cbme-quotes");
 
   function setSaveStatus(message) {
     $("#saveStatus").textContent = message;
+  }
+
+  function printQuote() {
+    flushPreviewRender();
+    const quote = $("#preview .quote-sheet");
+    if (!quote) {
+      setSaveStatus("No se ha podido preparar el presupuesto");
+      return;
+    }
+    window.print();
   }
 
   function formatDate(value) {
