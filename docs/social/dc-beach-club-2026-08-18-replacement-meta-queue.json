@@ -1,0 +1,23 @@
+{
+  "name": "CBME DC Beach Club summer sessions 2026-08-18 replacement",
+  "status": "draft_for_review",
+  "jobs": [
+    {
+      "id": "2026-08-18-dc-beach-club-summer-sessions-v2",
+      "scheduled_at": null,
+      "asset": "assets/social/dc-beach-club-2026-08-18/cbme-dc-beach-club-summer-reel.mp4",
+      "video_url": "https://raw.githubusercontent.com/costabrava-music-events/website/main/assets/social/dc-beach-club-2026-08-18/cbme-dc-beach-club-summer-reel.mp4",
+      "cover_url": "https://raw.githubusercontent.com/costabrava-music-events/website/main/assets/social/dc-beach-club-2026-08-18/cbme-dc-beach-club-summer-reel-cover-v2.jpg",
+      "platforms": ["instagram_reel"],
+      "share_to_feed": true,
+      "caption": "Este verano, nuestras sesiones volvieron a sonar frente al Mediterráneo en @dcbeachclub 🌊🎶\n\nDJs, buena energía y un ambiente increíble para disfrutar cada tarde.\n\nGracias, @dcbeachclub, por contar con Costa Brava Music Events. ¿Repetimos?",
+      "hashtags": [
+        "#DCBeachClub",
+        "#CostaBrava",
+        "#DJSet",
+        "#SummerVibes",
+        "#CostaBravaMusicEvents"
+      ]
+    }
+  ]
+}
