@@ -213,6 +213,8 @@ def publish_instagram_reel(job):
         "caption": job["caption"],
         "share_to_feed": str(job.get("share_to_feed", True)).lower(),
     }
+    if job.get("cover_url"):
+        params["cover_url"] = job["cover_url"]
     if "thumb_offset" in job:
         params["thumb_offset"] = str(job["thumb_offset"])
     container = graph_post(f"{ig_user_id}/media", params)
