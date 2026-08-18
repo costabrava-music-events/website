@@ -1,0 +1,23 @@
+{
+  "status": "draft",
+  "platform": "instagram",
+  "format": "reel",
+  "dimensions": "1080x1920",
+  "duration_seconds": 25,
+  "asset": "cbme-dc-beach-club-summer-reel.mp4",
+  "cover": "cbme-dc-beach-club-summer-reel-cover.jpg",
+  "cover_time_seconds": 15,
+  "caption": "Este verano, nuestras sesiones volvieron a sonar frente al Mediterráneo en @dcbeachclub 🌊🎶\n\nDJs, buena energía y un ambiente increíble para disfrutar cada tarde.\n\nGracias, @dcbeachclub, por contar con Costa Brava Music Events. ¿Repetimos?\n\n#DCBeachClub #CostaBrava #DJSet #SummerVibes #CostaBravaMusicEvents",
+  "sources": [
+    {"type": "photo", "file": "WhatsApp Image 2026-08-18 at 15.46.44.jpeg", "duration_seconds": 1.4},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.46.45.mp4", "source_start_seconds": 0, "duration_seconds": 3.2},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.50.35.mp4", "source_start_seconds": 0, "duration_seconds": 2.4},
+    {"type": "photo", "file": "WhatsApp Image 2026-08-18 at 15.46.43.jpeg", "duration_seconds": 1.4},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.51.22.mp4", "source_start_seconds": 7, "duration_seconds": 3},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.51.03.mp4", "source_start_seconds": 2, "duration_seconds": 3},
+    {"type": "photo", "file": "WhatsApp Image 2026-08-18 at 15.50.29 (1).jpeg", "duration_seconds": 1.4},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.51.19.mp4", "source_start_seconds": 8, "duration_seconds": 3},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.51.16.mp4", "source_start_seconds": 10, "duration_seconds": 3},
+    {"type": "video", "file": "WhatsApp Video 2026-08-18 at 15.51.25.mp4", "source_start_seconds": 5, "duration_seconds": 3.2}
+  ]
+}
