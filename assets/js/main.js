@@ -217,7 +217,8 @@ window.cbmeApp = function cbmeApp() {
       meta_og_description: "DJ, música en vivo, sonido e iluminación para bodas y eventos privados en Costa Brava y Girona. Producción técnica y musical a medida.",
       skip_to_content: "Saltar al contenido",
       hero_title: "Tu boda o evento, recordado por su música.",
-      hero_subtitle: "Nos ocupamos de cada nota.",
+      hero_subtitle: "Un solo equipo lo coordina todo, de la primera reunión a la última canción.",
+      hero_proof: "Más de 20 años de experiencia y más de 120 clientes.",
       hero_intro:
         'Para bodas y celebraciones en la Costa Brava, Girona y Cataluña, reunimos DJs, música en directo, sonido, iluminación y coordinación en un solo equipo. Diseñamos una propuesta a medida de tu espacio, tus invitados y la energía que quieres crear.',
       hero_offers_title: "Todo lo que necesitas para crear ese ambiente:",
@@ -318,7 +319,8 @@ window.cbmeApp = function cbmeApp() {
       meta_og_description: "DJ, música en directe, so i il·luminació per a casaments i esdeveniments privats a Costa Brava i Girona.",
       skip_to_content: "Vés al contingut",
       hero_title: "El teu casament o esdeveniment, recordat per la música.",
-      hero_subtitle: "Ens ocupem de cada nota.",
+      hero_subtitle: "Un sol equip ho coordina tot, de la primera reunió a l'última cançó.",
+      hero_proof: "Més de 20 anys d'experiència i més de 120 clients.",
       hero_intro:
         "Per a casaments i celebracions a la Costa Brava, Girona i Catalunya, reunim DJs, música en directe, so, il·luminació i coordinació en un sol equip. Dissenyem una proposta a mida del teu espai, els teus convidats i l'energia que vols crear.",
       hero_offers_title: "Tot el que necessites per crear aquest ambient:",
@@ -412,7 +414,8 @@ window.cbmeApp = function cbmeApp() {
       meta_og_description: "DJ, live music, sound and lighting for weddings and private events in Costa Brava and Girona. Tailored technical production.",
       skip_to_content: "Skip to content",
       hero_title: "Your destination wedding, remembered for the music.",
-      hero_subtitle: "We handle every note.",
+      hero_subtitle: "One local team coordinates it all, from the first briefing to the final song.",
+      hero_proof: "Over 20 years of experience and more than 120 clients.",
       hero_intro:
         'For couples planning from abroad, we bring together DJs, live music, sound, lighting and on-the-day coordination for destination weddings and private events across the Costa Brava and Catalonia. One local team, one clear point of contact, and a celebration that feels like yours.',
       hero_offers_title: "Everything you need to shape the atmosphere:",
