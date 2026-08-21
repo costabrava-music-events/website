@@ -188,6 +188,7 @@
         service,
         link_url: href,
         link_text: label,
+        cta_location: ctaLocation || "service_content",
       });
     }
   });
