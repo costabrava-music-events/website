@@ -27,6 +27,54 @@
     allow_google_signals: true,
   });
 
+  const ATTRIBUTION_STORAGE_KEY = "cbme_utm_attribution";
+  const CAMPAIGN_KEYS = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+  ];
+
+  const campaignParamsFromObject = (value) => {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+    return CAMPAIGN_KEYS.reduce((campaignParams, key) => {
+      if (typeof value[key] !== "string") return campaignParams;
+      const campaignValue = value[key].trim().slice(0, 100);
+      if (campaignValue) campaignParams[key] = campaignValue;
+      return campaignParams;
+    }, {});
+  };
+
+  const campaignParamsFromUrl = (search) => {
+    const urlParams = new URLSearchParams(search);
+    return campaignParamsFromObject(
+      CAMPAIGN_KEYS.reduce((campaignParams, key) => {
+        campaignParams[key] = urlParams.get(key) || "";
+        return campaignParams;
+      }, {}),
+    );
+  };
+
+  const captureAttribution = () => {
+    const currentAttribution = campaignParamsFromUrl(window.location.search);
+    try {
+      const storedAttribution = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY);
+      if (storedAttribution !== null) {
+        return campaignParamsFromObject(JSON.parse(storedAttribution));
+      }
+      window.sessionStorage.setItem(
+        ATTRIBUTION_STORAGE_KEY,
+        JSON.stringify(currentAttribution),
+      );
+    } catch (_error) {
+      // Private browsing or disabled storage must not stop analytics events.
+    }
+    return currentAttribution;
+  };
+
+  const sessionAttribution = captureAttribution();
+
   const pageContext = () => ({
     page_language: document.documentElement.lang || "unknown",
     page_path: window.location.pathname,
@@ -36,6 +84,7 @@
     if (typeof window.gtag !== "function") return;
     window.gtag("event", name, {
       ...pageContext(),
+      ...sessionAttribution,
       ...params,
     });
   };
