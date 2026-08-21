@@ -49,6 +49,37 @@
     return "201_plus";
   };
 
+  const isFormspreeForm = (form) => {
+    try {
+      const url = new URL(form.getAttribute("action") || "", window.location.href);
+      return url.hostname === "formspree.io" && url.pathname.startsWith("/f/");
+    } catch (_error) {
+      return false;
+    }
+  };
+
+  const leadParams = (form) => {
+    const data = new FormData(form);
+    return {
+      form_id: form.getAttribute("id") || "contact_form",
+      form_action: form.getAttribute("action") || "",
+      contact_method: "form",
+      cta_location: form.getAttribute("data-cta-location") || "contact_form",
+      event_type: String(data.get("event_type") || "unknown").slice(0, 60),
+      guest_count_bucket: guestBucket(data.get("guest_count")),
+      has_phone: Boolean(String(data.get("phone") || "").trim()),
+      has_event_date: Boolean(String(data.get("event_date") || "").trim()),
+      has_event_location: Boolean(String(data.get("event_location") || "").trim()),
+    };
+  };
+
+  const setFormStatus = (form, message) => {
+    const status = form.querySelector("[data-form-status]");
+    if (status) status.textContent = message;
+  };
+
+  const formMessage = (form, name, fallback) => form.dataset[`form${name}`] || fallback;
+
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link) return;
@@ -62,18 +93,29 @@
       track("contact_whatsapp_click", {
         link_url: href.split("?")[0],
         link_text: label,
+        contact_method: "whatsapp",
         cta_location: ctaLocation || "contact",
       });
       return;
     }
 
     if (href.startsWith("tel:")) {
-      track("contact_phone_click", { link_url: href, link_text: label });
+      track("contact_phone_click", {
+        link_url: href,
+        link_text: label,
+        contact_method: "phone",
+        cta_location: ctaLocation || "contact",
+      });
       return;
     }
 
     if (href.startsWith("mailto:")) {
-      track("contact_email_click", { link_url: href, link_text: label });
+      track("contact_email_click", {
+        link_url: href,
+        link_text: label,
+        contact_method: "email",
+        cta_location: ctaLocation || "contact",
+      });
       return;
     }
 
@@ -86,6 +128,7 @@
       track("contact_cta_click", {
         link_url: href,
         link_text: label,
+        contact_method: "form",
         cta_location: ctaLocation || "unknown",
       });
       return;
@@ -103,19 +146,39 @@
   document.addEventListener("submit", (event) => {
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
+    if (!isFormspreeForm(form)) return;
+    event.preventDefault();
+
+    if (form.dataset.formspreeSubmitting === "true") return;
+    form.dataset.formspreeSubmitting = "true";
+
+    const submitButton = form.querySelector("button[type='submit'], input[type='submit']");
+    if (submitButton) submitButton.disabled = true;
+    setFormStatus(form, formMessage(form, "Sending", "Enviando..."));
 
     const action = form.getAttribute("action") || "";
-    const id = form.getAttribute("id") || "";
-    const data = new FormData(form);
-
-    track("generate_lead", {
-      form_id: id || "contact_form",
-      form_action: action,
-      event_type: String(data.get("event_type") || "unknown").slice(0, 60),
-      guest_count_bucket: guestBucket(data.get("guest_count")),
-      has_phone: Boolean(String(data.get("phone") || "").trim()),
-      has_event_date: Boolean(String(data.get("event_date") || "").trim()),
-      has_event_location: Boolean(String(data.get("event_location") || "").trim()),
-    });
+    fetch(action, {
+      method: (form.getAttribute("method") || "POST").toUpperCase(),
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Formspree request failed: ${response.status}`);
+        const params = leadParams(form);
+        form.reset();
+        delete form.dataset.formspreeSubmitting;
+        if (submitButton) submitButton.disabled = false;
+        setFormStatus(form, formMessage(form, "Success", "Gracias. Hemos recibido tu mensaje."));
+        try {
+          track("generate_lead", params);
+        } catch (_error) {
+          // A GA4 failure must not turn a successful Formspree submission into a retry.
+        }
+      })
+      .catch(() => {
+        delete form.dataset.formspreeSubmitting;
+        if (submitButton) submitButton.disabled = false;
+        setFormStatus(form, formMessage(form, "Error", "No se ha podido enviar el mensaje. Inténtalo de nuevo."));
+      });
   });
 })();
