@@ -216,7 +216,8 @@ window.cbmeApp = function cbmeApp() {
       meta_og_title: "DJ, música y sonido para eventos en Costa Brava | CBME",
       meta_og_description: "DJ, música en vivo, sonido e iluminación para bodas y eventos privados en Costa Brava y Girona. Producción técnica y musical a medida.",
       skip_to_content: "Saltar al contenido",
-      hero_title: "Música, sonido e iluminación para eventos que se recuerdan",
+      hero_title: "Tu boda o evento, recordado por su música.",
+      hero_subtitle: "Nos ocupamos de cada nota.",
       hero_intro:
         'Creamos experiencias musicales a medida para bodas, eventos privados y celebraciones en la Costa Brava y en toda Cataluña. Coordinamos DJs, música en directo, sonido, iluminación y ambientación para que cada momento encaje con tu espacio, tus invitados y tu estilo.',
       hero_offers_title: "Ofrecemos:",
@@ -314,7 +315,8 @@ window.cbmeApp = function cbmeApp() {
       meta_og_title: "DJ, música i so per a esdeveniments a Costa Brava | CBME",
       meta_og_description: "DJ, música en directe, so i il·luminació per a casaments i esdeveniments privats a Costa Brava i Girona.",
       skip_to_content: "Vés al contingut",
-      hero_title: "Música, so i il·luminació per a esdeveniments que es recorden",
+      hero_title: "El teu casament o esdeveniment, recordat per la música.",
+      hero_subtitle: "Ens ocupem de cada nota.",
       hero_intro:
         'Creem experiències musicals a mida per a casaments, esdeveniments privats i celebracions a la Costa Brava i a tot Catalunya. Coordinem DJs, música en directe, so, il·luminació i ambientació perquè cada moment encaixi amb el teu espai, els teus convidats i el teu estil.',
       hero_offers_title: "Oferim:",
@@ -405,7 +407,8 @@ window.cbmeApp = function cbmeApp() {
       meta_og_title: "DJ, live music and sound for Costa Brava events | CBME",
       meta_og_description: "DJ, live music, sound and lighting for weddings and private events in Costa Brava and Girona. Tailored technical production.",
       skip_to_content: "Skip to content",
-      hero_title: "Music, sound and lighting for events people remember",
+      hero_title: "Your wedding or event, remembered for the music.",
+      hero_subtitle: "We handle every note.",
       hero_intro:
         'We create tailor-made music experiences for weddings, private events and celebrations across the Costa Brava and Catalonia. We coordinate DJs, live music, sound, lighting and atmosphere so every moment fits your venue, your guests and your style.',
       hero_offers_title: "We offer:",
