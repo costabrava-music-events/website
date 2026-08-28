@@ -44,6 +44,10 @@ const db = getFirestore(app, "cbme-quotes");
   let previewRenderTimeout = null;
   let currentUser;
   let isPrinting = false;
+  let isSaving = false;
+  let isLoadingQuote = false;
+  let isLoadingQuotes = false;
+  let isDeleting = false;
 
   function createInitialState() {
     const language = defaultLanguage;
@@ -53,7 +57,7 @@ const db = getFirestore(app, "cbme-quotes");
       language,
       templateId: template.id,
       quoteNumber: makeQuoteNumber(),
-      quoteDate: new Date().toISOString().slice(0, 10),
+      quoteDate: todayISO(),
       validUntil: "",
       clientName: "",
       clientEmail: "",
@@ -83,6 +87,27 @@ const db = getFirestore(app, "cbme-quotes");
     return data.copy[currentLanguage()][key] || data.copy[defaultLanguage][key] || key;
   }
 
+  function dateLabel(kind) {
+    const labels = {
+      ca: { quote: "Data del pressupost", event: "Data de l'esdeveniment" },
+      es: { quote: "Fecha del presupuesto", event: "Fecha del evento" },
+      en: { quote: "Quote date", event: "Event date" },
+    };
+    return (labels[currentLanguage()] || labels[defaultLanguage])[kind];
+  }
+
+  function todayISO() {
+    const now = new Date();
+    return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  }
+
+  function isValidDateValue(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ""));
+    if (!match) return false;
+    const date = new Date(`${value}T00:00:00`);
+    return !Number.isNaN(date.getTime()) && date.getFullYear() === Number(match[1]) && date.getMonth() + 1 === Number(match[2]) && date.getDate() === Number(match[3]);
+  }
+
   function defaultTerms(language = currentLanguage()) {
     return [...(data.localizedTerms[language] || data.localizedTerms[defaultLanguage] || data.defaultTerms)];
   }
@@ -100,11 +125,12 @@ const db = getFirestore(app, "cbme-quotes");
   function localizedItem(item, language = currentLanguage()) {
     if (item.custom) return item;
     const base = allItems.find((entry) => entry.id === item.id) || item;
-    return { ...item, ...itemText(base, language), group: base.group };
+    const copy = itemText(base, language);
+    return { ...item, ...(item.nameEdited ? {} : { name: copy.name }), ...(item.descriptionEdited ? {} : { description: copy.description }), group: base.group };
   }
 
   function templateItems(template, language = currentLanguage()) {
-    return template.itemIds.map((id) => allItems.find((item) => item.id === id)).filter(Boolean).map((item) => ({ ...item, ...itemText(item, language), qty: 1, custom: false }));
+    return template.itemIds.map((id) => allItems.find((item) => item.id === id)).filter(Boolean).map((item) => ({ ...item, ...itemText(item, language), qty: 1, custom: false, nameEdited: false, descriptionEdited: false }));
   }
 
   function loadState() {
@@ -123,9 +149,31 @@ const db = getFirestore(app, "cbme-quotes");
       ...fresh,
       ...draft,
       language,
+      quoteDate: isValidDateValue(draft.quoteDate) ? draft.quoteDate : fresh.quoteDate,
+      validUntil: isValidDateValue(draft.validUntil) ? draft.validUntil : "",
+      eventDate: isValidDateValue(draft.eventDate) ? draft.eventDate : "",
       status: ["draft", "sent", "accepted", "discarded"].includes(draft.status) ? draft.status : "draft",
       terms: Array.isArray(draft.terms) ? draft.terms : String(draft.terms || "").split("\n"),
-      items: Array.isArray(draft.items) ? draft.items.map((item) => ({ ...localizedItem(item, language), qty: Number(item.qty || 0), price: Number(item.price || 0) })) : fresh.items,
+      items: Array.isArray(draft.items) ? draft.items.map((item) => normalizeItem(item, language)) : fresh.items,
+    };
+  }
+
+  function normalizeItem(item, language) {
+    const base = allItems.find((entry) => entry.id === item.id) || item;
+    const copy = itemText(base, language);
+    const name = String(item.name ?? copy.name);
+    const description = String(item.description ?? copy.description ?? "");
+    const nameEdited = item.nameEdited === true || (item.nameEdited !== false && name !== copy.name);
+    const descriptionEdited = item.descriptionEdited === true || (item.descriptionEdited !== false && description !== String(copy.description || ""));
+    return {
+      ...item,
+      ...(!item.custom && !nameEdited ? { name: copy.name } : { name }),
+      ...(!item.custom && !descriptionEdited ? { description: copy.description } : { description }),
+      group: base.group,
+      nameEdited,
+      descriptionEdited,
+      qty: Number(item.qty || 0),
+      price: Number(item.price || 0),
     };
   }
 
@@ -166,11 +214,11 @@ const db = getFirestore(app, "cbme-quotes");
     }, previewRenderDelay);
   }
 
-  function flushPreviewRender() {
+  function flushPreviewRender(force = false) {
     const hasPendingRender = previewRenderTimeout !== null;
     clearTimeout(previewRenderTimeout);
     previewRenderTimeout = null;
-    if (hasPendingRender) renderPreview();
+    if (force || hasPendingRender) renderPreview();
     saveState();
   }
 
@@ -211,7 +259,7 @@ const db = getFirestore(app, "cbme-quotes");
     const total = totals();
     const quoteNumber = state.hideBranding ? unbrandedQuoteNumber(state.quoteNumber) : state.quoteNumber;
     const rows = state.items.map((item) => `<tr><td><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.description || "")}</span></td><td>${Number(item.qty || 0)}</td><td>${euro.format(Number(item.price || 0))}</td><td>${euro.format(Number(item.price || 0) * Number(item.qty || 0))}</td></tr>`).join("");
-    $("#preview").innerHTML = `<article class="quote-sheet"><header class="quote-head${state.hideBranding ? " quote-head--unbranded" : ""}">${state.hideBranding ? "" : `<div class="quote-brand"><span>${t("technicalProposal")}</span><img src="${data.company.logo}" alt="${data.company.name}" /><p>${t("tagline")}</p></div>`}<div class="quote-meta-card"><strong>${t("quote")}</strong><dl><div><dt>${t("number")}</dt><dd>${escapeHtml(quoteNumber)}</dd></div><div><dt>${t("date")}</dt><dd>${formatDate(state.quoteDate)}</dd></div>${state.validUntil ? `<div><dt>${t("validUntil")}</dt><dd>${formatDate(state.validUntil)}</dd></div>` : ""}</dl></div></header><section class="quote-hero"><div><p class="eyebrow">${t("personalizedProposal")}</p><h1>${escapeHtml(state.eventName || "Esdeveniment")}</h1><p>${escapeHtml(state.intro)}</p></div><dl><div><dt>${t("client")}</dt><dd>${escapeHtml(state.clientName || t("pendingClient"))}</dd></div><div><dt>${t("date")}</dt><dd>${formatDate(state.eventDate) || t("undefined")}</dd></div><div><dt>${t("eventPlace")}</dt><dd>${escapeHtml(state.eventPlace || t("undefined"))}</dd></div><div><dt>${t("guests")}</dt><dd>${escapeHtml(String(state.guests || t("undefined")))}</dd></div></dl></section><section class="quote-summary"><div><span>${t("totalProposal")}</span><strong>${euro.format(total.total)}</strong></div><div><span>${t("deposit")}</span><strong>${euro.format(total.deposit)}</strong></div><div><span>${t("pending")}</span><strong>${euro.format(total.pending)}</strong></div></section><table class="quote-table"><thead><tr><th>${t("service")}</th><th>${t("qty")}</th><th>${t("price")}</th><th>${t("total")}</th></tr></thead><tbody>${rows}</tbody></table><section class="quote-totals"><div><h2>${t("terms")}</h2><ul>${state.terms.filter(Boolean).map((term) => `<li>${escapeHtml(term)}</li>`).join("")}</ul></div><dl><div><dt>${t("subtotal")}</dt><dd>${euro.format(total.base)}</dd></div>${state.includeTax ? `<div><dt>${t("tax")}</dt><dd>${euro.format(total.tax)}</dd></div>` : ""}<div class="grand"><dt>${t("total")}</dt><dd>${euro.format(total.total)}</dd></div><div><dt>${t("deposit")}</dt><dd>${euro.format(total.deposit)}</dd></div><div><dt>${t("pending")}</dt><dd>${euro.format(total.pending)}</dd></div></dl></section>${state.hideBranding ? "" : `<footer class="quote-footer"><span>${data.company.email}</span><span>${data.company.phones.join(" / ")}</span><span>${data.company.instagram}</span></footer>`}</article>`;
+    $("#preview").innerHTML = `<article class="quote-sheet"><header class="quote-head${state.hideBranding ? " quote-head--unbranded" : ""}">${state.hideBranding ? "" : `<div class="quote-brand"><span>${t("technicalProposal")}</span><img src="${data.company.logo}" alt="${data.company.name}" /><p>${t("tagline")}</p></div>`}<div class="quote-meta-card"><strong>${t("quote")}</strong><dl><div><dt>${t("number")}</dt><dd>${escapeHtml(quoteNumber)}</dd></div><div><dt>${dateLabel("quote")}</dt><dd>${formatDate(state.quoteDate)}</dd></div>${state.validUntil ? `<div><dt>${t("validUntil")}</dt><dd>${formatDate(state.validUntil)}</dd></div>` : ""}</dl></div></header><section class="quote-hero"><div><p class="eyebrow">${t("personalizedProposal")}</p><h1>${escapeHtml(state.eventName || "Esdeveniment")}</h1><p>${escapeHtml(state.intro)}</p></div><dl><div><dt>${t("client")}</dt><dd>${escapeHtml(state.clientName || t("pendingClient"))}</dd></div><div><dt>${dateLabel("event")}</dt><dd>${formatDate(state.eventDate) || t("undefined")}</dd></div><div><dt>${t("eventPlace")}</dt><dd>${escapeHtml(state.eventPlace || t("undefined"))}</dd></div><div><dt>${t("guests")}</dt><dd>${escapeHtml(String(state.guests || t("undefined")))}</dd></div></dl></section><section class="quote-summary"><div><span>${t("totalProposal")}</span><strong>${euro.format(total.total)}</strong></div><div><span>${t("deposit")}</span><strong>${euro.format(total.deposit)}</strong></div><div><span>${t("pending")}</span><strong>${euro.format(total.pending)}</strong></div></section><table class="quote-table"><thead><tr><th>${t("service")}</th><th>${t("qty")}</th><th>${t("price")}</th><th>${t("total")}</th></tr></thead><tbody>${rows}</tbody></table><section class="quote-totals"><div><h2>${t("terms")}</h2><ul>${state.terms.filter(Boolean).map((term) => `<li>${escapeHtml(term)}</li>`).join("")}</ul></div><dl><div><dt>${t("subtotal")}</dt><dd>${euro.format(total.base)}</dd></div>${state.includeTax ? `<div><dt>${t("tax")}</dt><dd>${euro.format(total.tax)}</dd></div>` : ""}<div class="grand"><dt>${t("total")}</dt><dd>${euro.format(total.total)}</dd></div><div><dt>${t("deposit")}</dt><dd>${euro.format(total.deposit)}</dd></div><div><dt>${t("pending")}</dt><dd>${euro.format(total.pending)}</dd></div></dl></section>${state.hideBranding ? "" : `<footer class="quote-footer"><span>${data.company.email}</span><span>${data.company.phones.join(" / ")}</span><span>${data.company.instagram}</span></footer>`}</article>`;
   }
 
   function renderSavedQuotes() {
@@ -221,25 +269,43 @@ const db = getFirestore(app, "cbme-quotes");
     $("#quotesSummary").innerHTML = `<div><span>Guardados</span><strong>${savedQuotes.length}</strong></div><div><span>Valor acumulado</span><strong>${euro.format(total)}</strong></div>`;
     $("#quotesList").innerHTML = visible.length ? visible.map((quote) => `
       <article class="quote-card${quote.id === state.quoteId ? " is-active" : ""}">
-        <button class="quote-card-main" type="button" data-open-quote="${quote.id}" aria-label="Abrir ${escapeAttr(quote.quoteNumber || "presupuesto")}">
+        <button class="quote-card-main" type="button" data-open-quote="${escapeAttr(quote.id)}" aria-label="Abrir ${escapeAttr(quote.quoteNumber || "presupuesto")}">
           <div class="quote-card-top"><strong class="quote-card-client">${escapeHtml(quote.clientName || "Sin cliente")}</strong><span class="quote-status quote-status--${escapeAttr(quote.status || "draft")}">${statusLabel(quote.status)}</span></div>
           <span class="quote-card-event">${escapeHtml(quote.eventName || "Evento sin definir")}</span>
           <span class="quote-card-metrics"><span class="quote-card-meta">${escapeHtml(quote.quoteNumber || "Sin número")} · v${Number(quote.version || 1)}</span><strong class="quote-card-total">${euro.format(Number(quote.total || 0))}</strong></span>
         </button>
-        <div class="quote-card-footer"><span class="quote-card-date">Editado ${formatSavedDate(quote.updatedAt)}</span><button class="quote-delete" type="button" data-delete-quote="${quote.id}">Eliminar</button></div>
+        <div class="quote-card-footer"><span class="quote-card-date">Editado ${formatSavedDate(quote.updatedAt)}</span><button class="quote-delete" type="button" data-delete-quote="${escapeAttr(quote.id)}">Eliminar</button></div>
       </article>`).join("") : `<p class="quotes-empty">No hay presupuestos que coincidan.</p>`;
   }
 
   async function loadSavedQuotes() {
-    if (!currentUser) return;
-    const result = await getDocs(query(collection(db, "quotes"), orderBy("updatedAt", "desc")));
-    savedQuotes = result.docs.map((snapshot) => ({ id: snapshot.id, ...snapshot.data() }));
-    renderSavedQuotes();
+    if (!currentUser || isLoadingQuotes) return;
+    isLoadingQuotes = true;
+    const button = $("#refreshQuotes");
+    button.disabled = true;
+    button.textContent = "Cargando…";
+    try {
+      const result = await getDocs(query(collection(db, "quotes"), orderBy("updatedAt", "desc")));
+      savedQuotes = result.docs.map((snapshot) => ({ id: snapshot.id, ...snapshot.data() }));
+      renderSavedQuotes();
+    } finally {
+      isLoadingQuotes = false;
+      button.disabled = false;
+      button.textContent = "Actualizar";
+    }
   }
 
   async function saveQuote() {
-    if (!currentUser) return;
+    if (!currentUser || isSaving || isLoadingQuote || isLoadingQuotes || isDeleting) return;
+    isSaving = true;
+    const button = $("#saveQuote");
+    button.disabled = true;
+    button.classList.add("is-loading");
+    button.textContent = "Guardando…";
     setSaveStatus("Guardando…");
+    syncStateFromForm();
+    setEditorBusy(true);
+    flushPreviewRender(true);
     const quoteRef = state.quoteId ? doc(db, "quotes", state.quoteId) : doc(collection(db, "quotes"));
     const quoteData = { ...state, quoteId: quoteRef.id };
     const payload = JSON.stringify(quoteData);
@@ -267,30 +333,59 @@ const db = getFirestore(app, "cbme-quotes");
       });
       state.quoteId = quoteRef.id;
       saveState();
-      await loadSavedQuotes();
+      try {
+        await loadSavedQuotes();
+      } catch (error) {
+        console.error(error);
+        setSaveStatus("Guardado, pero no se ha podido actualizar el histórico");
+        return;
+      }
       setSaveStatus("Guardado");
     } catch (error) {
       console.error(error);
-      setSaveStatus("No se ha podido guardar");
+      setSaveStatus(error.code === "permission-denied" ? "No tienes permisos para guardar este presupuesto" : "No se ha podido guardar");
+    } finally {
+      isSaving = false;
+      button.disabled = false;
+      button.classList.remove("is-loading");
+      button.textContent = "Guardar";
+      setEditorBusy(false);
     }
   }
 
-  async function openQuote(id) {
+  async function openQuote(id, trigger) {
+    if (isLoadingQuote || isSaving || isLoadingQuotes || isDeleting) return;
     const quote = savedQuotes.find((entry) => entry.id === id);
     if (!quote) return;
+    isLoadingQuote = true;
+    if (trigger) {
+      trigger.disabled = true;
+      trigger.classList.add("is-loading");
+      trigger.setAttribute("aria-busy", "true");
+    }
+    setSaveStatus("Cargando presupuesto…");
+    setEditorBusy(true);
     try {
+      await new Promise((resolve) => requestAnimationFrame(resolve));
       state = normalizeState(JSON.parse(quote.payload));
       state.quoteId = id;
       render();
-      setSaveStatus(`Versión ${quote.version || 1} abierta`);
+      setSaveStatus(`Presupuesto cargado · versión ${quote.version || 1}`);
     } catch {
       setSaveStatus("El presupuesto guardado no es válido");
+    } finally {
+      isLoadingQuote = false;
+      setEditorBusy(false);
+      renderSavedQuotes();
     }
   }
 
   async function deleteQuote(id) {
+    if (isSaving || isLoadingQuote || isLoadingQuotes || isDeleting) return;
     const quote = savedQuotes.find((entry) => entry.id === id);
     if (!quote || !window.confirm(`¿Eliminar ${quote.quoteNumber || "este presupuesto"} y todo su historial? Esta acción no se puede deshacer.`)) return;
+    isDeleting = true;
+    setEditorBusy(true);
     setSaveStatus("Eliminando…");
     try {
       const quoteRef = doc(db, "quotes", id);
@@ -304,12 +399,22 @@ const db = getFirestore(app, "cbme-quotes");
       batch.delete(quoteRef);
       await batch.commit();
       if (state.quoteId === id) state = createInitialState();
-      await loadSavedQuotes();
+      try {
+        await loadSavedQuotes();
+      } catch (error) {
+        console.error(error);
+        render();
+        setSaveStatus("Presupuesto eliminado, pero no se ha podido actualizar el histórico");
+        return;
+      }
       render();
       setSaveStatus("Presupuesto eliminado");
     } catch (error) {
       console.error(error);
-      setSaveStatus("No se ha podido eliminar");
+      setSaveStatus(error.code === "permission-denied" ? "No tienes permisos para eliminar este presupuesto" : "No se ha podido eliminar");
+    } finally {
+      isDeleting = false;
+      setEditorBusy(false);
     }
   }
 
@@ -332,7 +437,10 @@ const db = getFirestore(app, "cbme-quotes");
     }
     if (target.dataset.item !== undefined) {
       const item = state.items[Number(target.dataset.item)];
+      if (!item) return false;
       item[target.dataset.field] = target.type === "number" ? Number(target.value) : target.value;
+      if (target.dataset.field === "name") item.nameEdited = true;
+      if (target.dataset.field === "description") item.descriptionEdited = true;
       updateItemLineTotal(target, item);
       schedulePreviewRender();
       return true;
@@ -340,20 +448,45 @@ const db = getFirestore(app, "cbme-quotes");
     return false;
   }
 
-  function bindEvents() {
-    document.addEventListener("input", (event) => updateFromTarget(event.target));
-    document.addEventListener("change", (event) => {
-      const target = event.target;
-      if (target.type === "checkbox" || target.tagName === "SELECT") updateFromTarget(target);
+  function syncStateFromForm() {
+    ["language", "quoteNumber", "quoteDate", "validUntil", "clientName", "clientEmail", "status", "eventName", "eventDate", "eventPlace", "guests", "intro"].forEach((field) => {
+      const target = $(`#${field}`);
+      if (!target) return;
+      state[field] = field === "guests" ? Number(target.value || 0) : target.value;
     });
+    state.includeTax = $("#includeTax").checked;
+    state.hideBranding = $("#hideBranding").checked;
+    state.terms = $("#terms").value.split("\n");
+    $("#itemsBody").querySelectorAll("[data-item]").forEach((target) => {
+      const item = state.items[Number(target.dataset.item)];
+      if (!item) return;
+      const value = target.type === "number" ? Number(target.value || 0) : target.value;
+      item[target.dataset.field] = value;
+      const base = allItems.find((entry) => entry.id === item.id);
+      if (base && target.dataset.field === "name") item.nameEdited = value !== itemText(base, currentLanguage()).name;
+      if (base && target.dataset.field === "description") item.descriptionEdited = value !== String(itemText(base, currentLanguage()).description || "");
+    });
+  }
+
+  function bindEvents() {
+    document.addEventListener("input", (event) => {
+      if (event.target.tagName !== "SELECT" && event.target.type !== "checkbox") updateFromTarget(event.target);
+    });
+    document.addEventListener("change", (event) => updateFromTarget(event.target));
     document.addEventListener("click", (event) => {
-      const remove = event.target.dataset.remove;
-      if (remove !== undefined) {
-        state.items.splice(Number(remove), 1);
+      const removeButton = event.target.closest("[data-remove]");
+      if (removeButton) {
+        state.items.splice(Number(removeButton.dataset.remove), 1);
         render();
+        return;
       }
-      if (event.target.dataset.openQuote) openQuote(event.target.dataset.openQuote);
-      if (event.target.dataset.deleteQuote) deleteQuote(event.target.dataset.deleteQuote);
+      const openButton = event.target.closest("[data-open-quote]");
+      if (openButton) {
+        openQuote(openButton.dataset.openQuote, openButton);
+        return;
+      }
+      const deleteButton = event.target.closest("[data-delete-quote]");
+      if (deleteButton) deleteQuote(deleteButton.dataset.deleteQuote);
     });
     $("#applyTemplate").addEventListener("click", () => {
       const template = data.templates.find((item) => item.id === $("#templateSelect").value);
@@ -369,7 +502,7 @@ const db = getFirestore(app, "cbme-quotes");
     $("#addItem").addEventListener("click", () => {
       const item = allItems.find((entry) => entry.id === $("#catalogItem").value);
       if (!item) return;
-      state.items.push({ ...item, ...itemText(item), qty: 1, custom: false });
+      state.items.push({ ...item, ...itemText(item), qty: 1, custom: false, nameEdited: false, descriptionEdited: false });
       render();
     });
     $("#addCustom").addEventListener("click", () => {
@@ -382,7 +515,10 @@ const db = getFirestore(app, "cbme-quotes");
       setSaveStatus("Nuevo presupuesto");
     });
     $("#saveQuote").addEventListener("click", saveQuote);
-    $("#refreshQuotes").addEventListener("click", () => loadSavedQuotes().catch(() => setSaveStatus("No se ha podido cargar el histórico")));
+    $("#refreshQuotes").addEventListener("click", () => loadSavedQuotes().catch((error) => {
+      console.error(error);
+      setSaveStatus(error.code === "permission-denied" ? "No tienes permisos para cargar el histórico" : "No se ha podido cargar el histórico");
+    }));
     $("#quoteSearch").addEventListener("input", renderSavedQuotes);
     $("#printQuote").addEventListener("click", printQuote);
     window.addEventListener("afterprint", finishPrinting);
@@ -426,8 +562,14 @@ const db = getFirestore(app, "cbme-quotes");
     $("#saveStatus").textContent = message;
   }
 
+  function setEditorBusy(busy) {
+    const appShell = $("#quoteApp");
+    appShell.classList.toggle("is-busy", busy);
+    appShell.setAttribute("aria-busy", String(busy));
+  }
+
   function printQuote() {
-    if (isPrinting) return;
+    if (isPrinting || isSaving || isLoadingQuote || isLoadingQuotes || isDeleting) return;
     isPrinting = true;
     const button = $("#printQuote");
     button.disabled = true;
@@ -435,9 +577,12 @@ const db = getFirestore(app, "cbme-quotes");
     button.textContent = "Preparando PDF…";
     button.setAttribute("aria-busy", "true");
     setSaveStatus("Preparando vista para imprimir…");
+    syncStateFromForm();
+    flushPreviewRender(true);
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      flushPreviewRender();
+      syncStateFromForm();
+      flushPreviewRender(true);
       const quote = $("#preview .quote-sheet");
       if (!quote) {
         setSaveStatus("No se ha podido preparar el presupuesto");
@@ -460,9 +605,10 @@ const db = getFirestore(app, "cbme-quotes");
   }
 
   function formatDate(value) {
-    if (!value) return "";
+    if (!isValidDateValue(value)) return "";
+    const date = new Date(`${value}T00:00:00`);
     const locales = { ca: "ca-ES", es: "es-ES", en: "en-GB" };
-    return new Intl.DateTimeFormat(locales[currentLanguage()] || "ca-ES", { day: "2-digit", month: "long", year: "numeric" }).format(new Date(`${value}T00:00:00`));
+    return new Intl.DateTimeFormat(locales[currentLanguage()] || "ca-ES", { day: "2-digit", month: "long", year: "numeric" }).format(date);
   }
 
   function formatSavedDate(value) {
@@ -500,7 +646,7 @@ const db = getFirestore(app, "cbme-quotes");
     try {
       await loadSavedQuotes();
     } catch (error) {
-      setSaveStatus("No se ha podido cargar el histórico");
+      setSaveStatus(error.code === "permission-denied" ? "No tienes permisos para cargar el histórico" : "No se ha podido cargar el histórico");
       console.error(error);
     }
   });
