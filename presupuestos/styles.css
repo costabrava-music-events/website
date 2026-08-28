@@ -81,10 +81,24 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: minmax(360px, 460px) 1fr;
   min-height: 100vh;
+}
+
+.app-shell.is-busy .workspace,
+.app-shell.is-busy .preview-toolbar {
+  pointer-events: none;
+}
+
+.app-shell.is-busy .workspace {
+  opacity: 0.72;
 }
 
 .workspace {
@@ -238,6 +252,21 @@ button {
 
 .quote-card-main:hover {
   background: #f0f9ff;
+}
+
+.quote-card-main.is-loading {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.quote-card-main.is-loading::after {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--sea);
+  border-right-color: transparent;
+  border-radius: 50%;
+  content: "";
+  animation: print-spinner 0.65s linear infinite;
 }
 
 .quote-card-top,
