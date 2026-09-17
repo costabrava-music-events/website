@@ -609,7 +609,10 @@ window.cbmeApp = function cbmeApp() {
     }
     try {
       const saved = localStorage.getItem("cbme_lang");
-      if (saved && translations[saved]) return saved;
+      if (saved && translations[saved]) {
+        goToCanonicalLocale(saved, "replace");
+        return saved;
+      }
     } catch (_error) {
       // ignore localStorage errors
     }
