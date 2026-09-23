@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Tu opinión | Costa Brava Music Events</title>
+    <meta name="description" content="Ayúdanos a mejorar contándonos brevemente por qué decidisteis no seguir adelante con nuestra propuesta." />
+    <link rel="canonical" href="https://costabravamusicevents.com/feedback.html" />
+    <link rel="icon" href="./assets/img/logo-transparente.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"], display: ["Manrope", "Inter", "ui-sans-serif", "system-ui"] }, colors: { cb: { deep: "#061428", aqua: "#22D3EE", dusk: "#A78BFA", amber: "#FBBF24" } } }
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body class="min-h-full bg-slate-50 text-slate-900 antialiased dark:bg-[#050B16] dark:text-slate-100">
+    <main class="relative min-h-screen overflow-hidden px-4 py-8 sm:px-6 lg:px-8">
+      <div class="absolute inset-0 bg-[radial-gradient(800px_circle_at_15%_0%,rgba(34,211,238,.16),transparent_45%),radial-gradient(700px_circle_at_85%_10%,rgba(167,139,250,.14),transparent_45%),linear-gradient(180deg,#020617_0%,#061428_100%)]"></div>
+      <div class="cbme-noise absolute inset-0"></div>
+      <div class="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-2xl items-center justify-center">
+        <section class="w-full rounded-[2rem] border border-white/15 bg-white/95 p-6 shadow-2xl shadow-black/20 sm:p-10 dark:bg-slate-950/90">
+          <div class="flex items-center gap-3">
+            <img src="./assets/img/logo-transparente-512.png" width="512" height="512" alt="Costa Brava Music Events" class="h-14 w-14 rounded-2xl object-contain" />
+            <div class="leading-tight">
+              <div class="font-display text-sm font-extrabold tracking-tight">Costa Brava</div>
+              <div class="text-xs text-slate-500 dark:text-slate-300">Music Events</div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <p class="text-xs font-extrabold uppercase tracking-[.18em] text-cyan-600 dark:text-cyan-300">Una breve opinión</p>
+            <h1 class="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">¿Nos ayudas a mejorar?</h1>
+            <p class="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">Gracias por haber valorado nuestra propuesta. Solo te llevará unos segundos y nos ayudará a mejorar.</p>
+          </div>
+
+          <form class="mt-8" action="https://formspree.io/f/xaqdrwdp" method="POST" data-form-sending="Enviando..." data-form-success="Gracias por tu tiempo. Hemos recibido tu respuesta." data-form-error="No se ha podido enviar la respuesta. Inténtalo de nuevo." data-cta-location="client_feedback_form">
+            <input type="hidden" name="_subject" value="Feedback de cliente — propuesta no aceptada" />
+            <input type="hidden" name="source" value="feedback.html" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-px w-px opacity-0" aria-hidden="true" />
+
+            <fieldset>
+              <legend class="text-base font-extrabold">¿Cuál fue principalmente el motivo por el que decidisteis no seguir adelante?</legend>
+              <div class="mt-4 grid gap-3">
+                <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-cyan-400 hover:bg-cyan-50/60 dark:border-slate-700 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30">
+                  <input class="mt-1 h-4 w-4 accent-cyan-500" type="radio" name="reason" value="El presupuesto" required />
+                  <span class="text-sm font-semibold">El presupuesto</span>
+                </label>
+                <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-cyan-400 hover:bg-cyan-50/60 dark:border-slate-700 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30">
+                  <input class="mt-1 h-4 w-4 accent-cyan-500" type="radio" name="reason" value="La propuesta musical o técnica" />
+                  <span class="text-sm font-semibold">La propuesta musical o técnica</span>
+                </label>
+                <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-cyan-400 hover:bg-cyan-50/60 dark:border-slate-700 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30">
+                  <input class="mt-1 h-4 w-4 accent-cyan-500" type="radio" name="reason" value="La fecha o disponibilidad" />
+                  <span class="text-sm font-semibold">La fecha o disponibilidad</span>
+                </label>
+                <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-cyan-400 hover:bg-cyan-50/60 dark:border-slate-700 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30">
+                  <input class="mt-1 h-4 w-4 accent-cyan-500" type="radio" name="reason" value="Hemos elegido otra opción o ubicación" />
+                  <span class="text-sm font-semibold">Hemos elegido otra opción o ubicación</span>
+                </label>
+                <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-cyan-400 hover:bg-cyan-50/60 dark:border-slate-700 dark:hover:border-cyan-400 dark:hover:bg-cyan-950/30">
+                  <input class="mt-1 h-4 w-4 accent-cyan-500" type="radio" name="reason" value="Otro motivo" />
+                  <span class="text-sm font-semibold">Otro motivo</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <label class="mt-7 grid gap-2 text-sm font-extrabold" for="feedback">¿Hay algo que podríamos haber planteado mejor? <span class="font-normal text-slate-500">Opcional</span>
+              <textarea id="feedback" name="feedback" rows="5" class="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-normal leading-6 shadow-sm outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/15 dark:border-slate-700 dark:bg-slate-950/40" placeholder="Si quieres, puedes contarnos un poco más..."></textarea>
+            </label>
+
+            <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-xs leading-5 text-slate-500 dark:text-slate-400">La respuesta es confidencial y se utilizará únicamente para mejorar nuestro servicio.</p>
+              <button type="submit" class="inline-flex shrink-0 items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-extrabold text-white shadow transition hover:bg-slate-800 dark:bg-white dark:text-slate-900">Enviar opinión</button>
+            </div>
+            <p data-form-status class="mt-4 text-sm text-slate-600 dark:text-slate-300" role="status" aria-live="polite"></p>
+          </form>
+
+          <a href="./index.html" class="mt-8 inline-flex text-sm font-bold text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-900 dark:hover:text-white">Volver a la web</a>
+        </section>
+      </div>
+    </main>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
