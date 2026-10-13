@@ -163,29 +163,22 @@ window.cbmeApp = function cbmeApp() {
   const selector = document.querySelector("#language-selector");
   const langButtons = Array.from(document.querySelectorAll("[data-lang]"));
   if (!selector || langButtons.length === 0) return;
-  const langSeo = {
-    es: {
-      locale: "es_ES",
-      url: "https://costabravamusicevents.com/",
-    },
-    ca: {
-      locale: "ca_ES",
-      url: "https://costabravamusicevents.com/ca/",
-    },
-    en: {
-      locale: "en_GB",
-      url: "https://costabravamusicevents.com/en/",
-    },
-  };
   const canUseCanonicalUrls = () =>
     window.location.protocol === "http:" || window.location.protocol === "https:";
   const isStaticLocalePath = (path) =>
     path.endsWith("/ca/") || path.endsWith("/ca/index.html") || path.endsWith("/en/") || path.endsWith("/en/index.html");
   const goToCanonicalLocale = (locale, mode = "assign") => {
     if (!canUseCanonicalUrls()) return false;
-    const target = langSeo[locale] && langSeo[locale].url;
-    if (!target || window.location.href === target) return false;
-    window.location[mode](target);
+    const localePath = { es: "/", ca: "/ca/", en: "/en/" }[locale];
+    if (!localePath) return false;
+    const current = new URL(window.location.href);
+    const target = new URL(localePath, current.origin);
+    current.searchParams.forEach((value, key) => {
+      if (key !== "lang") target.searchParams.append(key, value);
+    });
+    target.hash = current.hash;
+    if (target.href === current.href) return false;
+    window.location[mode](target.href);
     return true;
   };
   const localPrefix = () => {
@@ -516,7 +509,8 @@ window.cbmeApp = function cbmeApp() {
     langButtons.forEach((button) => {
       const isActive = button.getAttribute("data-lang") === locale;
       button.classList.toggle("is-active", isActive);
-      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      if (isActive) button.setAttribute("aria-current", "page");
+      else button.removeAttribute("aria-current");
     });
 
     document.title = dict.page_title;
@@ -538,14 +532,10 @@ window.cbmeApp = function cbmeApp() {
     const metaTwitterDescription = document.querySelector("#meta-twitter-description");
     if (metaTwitterDescription) metaTwitterDescription.setAttribute("content", dict.meta_og_description);
 
-    const canonical = document.querySelector("link[rel='canonical']");
-    if (canonical) canonical.setAttribute("href", langSeo[locale].url);
-
-    const metaOgUrl = document.querySelector("#meta-og-url");
-    if (metaOgUrl) metaOgUrl.setAttribute("content", langSeo[locale].url);
-
     const metaOgLocale = document.querySelector("#meta-og-locale");
-    if (metaOgLocale) metaOgLocale.setAttribute("content", langSeo[locale].locale);
+    if (metaOgLocale) {
+      metaOgLocale.setAttribute("content", { es: "es_ES", ca: "ca_ES", en: "en_GB" }[locale]);
+    }
 
     document.querySelectorAll("[data-i18n]").forEach((node) => {
       const key = node.getAttribute("data-i18n");
@@ -569,25 +559,6 @@ window.cbmeApp = function cbmeApp() {
       if (href) node.setAttribute("href", localHref(href));
     });
 
-    try {
-      localStorage.setItem("cbme_lang", locale);
-    } catch (_error) {
-      // ignore localStorage errors
-    }
-
-    try {
-      const url = new URL(window.location.href);
-      if (!canUseCanonicalUrls() && !isStaticLocalePath(url.pathname)) {
-        if (locale === "es") {
-          url.searchParams.delete("lang");
-        } else {
-          url.searchParams.set("lang", locale);
-        }
-        window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
-      }
-    } catch (_error) {
-      // ignore URL/history errors
-    }
   };
 
   const getInitialLanguage = () => {
@@ -607,32 +578,14 @@ window.cbmeApp = function cbmeApp() {
     } catch (_error) {
       // ignore path errors
     }
-    try {
-      const saved = localStorage.getItem("cbme_lang");
-      if (saved && translations[saved]) {
-        goToCanonicalLocale(saved, "replace");
-        return saved;
-      }
-    } catch (_error) {
-      // ignore localStorage errors
-    }
-    const nav = (navigator.language || "es").toLowerCase();
-    if (nav.startsWith("ca")) {
-      goToCanonicalLocale("ca", "replace");
-      return "ca";
-    }
-    if (nav.startsWith("en")) {
-      goToCanonicalLocale("en", "replace");
-      return "en";
-    }
     return "es";
   };
 
-  langButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const locale = button.getAttribute("data-lang");
-      if (goToCanonicalLocale(translations[locale] ? locale : "es")) return;
-      applyLanguage(locale);
+  langButtons.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (!window.location.search && !window.location.hash) return;
+      const locale = link.getAttribute("data-lang");
+      if (goToCanonicalLocale(translations[locale] ? locale : "es")) event.preventDefault();
     });
   });
 

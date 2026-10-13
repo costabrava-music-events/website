@@ -89,34 +89,7 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind (CDN) + config -->
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "ui-sans-serif", "system-ui"],
-              display: ["Manrope", "Inter", "ui-sans-serif", "system-ui"],
-            },
-            colors: {
-              cb: {
-                deep: "#061428", // deep Mediterranean night
-                sea: "#0EA5E9", // sea blue
-                aqua: "#22D3EE", // turquoise
-                dusk: "#A78BFA", // purple dusk
-                sunset: "#FB7185", // pink/sunset
-                amber: "#FBBF24", // gold accent
-              },
-            },
-            boxShadow: {
-              glow: "0 0 0 1px rgba(34,211,238,.25), 0 18px 60px -20px rgba(34,211,238,.45)",
-            },
-          },
-        },
-      };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/tailwind.css" />
 
     <!-- Swiper (gallery) -->
     <link
@@ -191,18 +164,18 @@
           role="group"
           aria-label="Seleccionar idioma"
         >
-          <button type="button" class="cbme-lang-btn" data-lang="es" aria-label="Español">
+          <a href="/" class="cbme-lang-btn" data-lang="es" aria-label="Español" aria-current="page">
             <span class="cbme-flag cbme-flag-es" aria-hidden="true"></span>
             <span>Español</span>
-          </button>
-          <button type="button" class="cbme-lang-btn" data-lang="ca" aria-label="Català">
+          </a>
+          <a href="/ca/" class="cbme-lang-btn" data-lang="ca" aria-label="Català">
             <span class="cbme-flag cbme-flag-ca" aria-hidden="true"></span>
             <span>Català</span>
-          </button>
-          <button type="button" class="cbme-lang-btn" data-lang="en" aria-label="English">
+          </a>
+          <a href="/en/" class="cbme-lang-btn" data-lang="en" aria-label="English">
             <span aria-hidden="true">🇬🇧</span>
             <span>English</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>
