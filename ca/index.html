@@ -1048,7 +1048,10 @@
                       class="h-11 rounded-2xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none transition focus:border-cb-aqua/60 focus:ring-4 focus:ring-cb-aqua/15 dark:border-slate-700/60 dark:bg-slate-950/20"
                     />
                   </label>
-                <label class="mt-4 grid gap-2 text-sm font-semibold">
+                <details class="mt-4 rounded-2xl border border-slate-200 px-4 py-3 dark:border-slate-700/60 sm:col-span-2">
+                  <summary class="cursor-pointer text-sm font-semibold" data-i18n="form_optional_details">Afegir detalls de l'esdeveniment (opcional)</summary>
+                  <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold">
                   <span data-i18n="form_phone">Telèfon</span>
                   <input
                     name="phone"
@@ -1057,7 +1060,7 @@
                     class="h-11 rounded-2xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none transition focus:border-cb-aqua/60 focus:ring-4 focus:ring-cb-aqua/15 dark:border-slate-700/60 dark:bg-slate-950/20"
                   />
                 </label>
-                <label class="mt-4 grid gap-2 text-sm font-semibold">
+                <label class="grid gap-2 text-sm font-semibold">
                   <span data-i18n="form_location">Ubicació de l'esdeveniment</span>
                   <input
                     name="event_location"
@@ -1066,7 +1069,7 @@
                     class="h-11 rounded-2xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none transition focus:border-cb-aqua/60 focus:ring-4 focus:ring-cb-aqua/15 dark:border-slate-700/60 dark:bg-slate-950/20"
                   />
                 </label>
-                <label class="mt-4 grid gap-2 text-sm font-semibold">
+                <label class="grid gap-2 text-sm font-semibold">
                   <span data-i18n="form_date">Data de l'esdeveniment</span>
                   <input
                     name="event_date"
@@ -1074,7 +1077,7 @@
                     class="h-11 rounded-2xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none transition focus:border-cb-aqua/60 focus:ring-4 focus:ring-cb-aqua/15 dark:border-slate-700/60 dark:bg-slate-950/20"
                   />
                 </label>
-                <label class="mt-4 grid gap-2 text-sm font-semibold">
+                <label class="grid gap-2 text-sm font-semibold">
                   <span data-i18n="form_guests">Nombre de convidats</span>
                   <input
                     name="guest_count"
@@ -1084,7 +1087,7 @@
                     class="h-11 rounded-2xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none transition focus:border-cb-aqua/60 focus:ring-4 focus:ring-cb-aqua/15 dark:border-slate-700/60 dark:bg-slate-950/20"
                   />
                 </label>
-                <label class="mt-4 grid gap-2 text-sm font-semibold">
+                <label class="grid gap-2 text-sm font-semibold">
                   <span data-i18n="form_event_type">Tipus d'esdeveniment</span>
                   <select
                     name="event_type"
@@ -1096,6 +1099,8 @@
                     <option data-i18n="event_fiesta">Festa major</option>
                   </select>
                 </label>
+                  </div>
+                </details>
               </div>
               <label class="mt-4 grid gap-2 text-sm font-semibold">
                 <span data-i18n="form_message">Missatge</span>
