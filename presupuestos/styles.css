@@ -570,6 +570,10 @@ textarea:focus {
   height: auto;
 }
 
+.quote-brand-logo--print {
+  display: none;
+}
+
 .quote-brand p {
   max-width: 360px;
   margin: 10px 0 0;
@@ -923,5 +927,42 @@ textarea:focus {
     max-width: none;
     min-height: 297mm;
     box-shadow: none;
+  }
+
+  .quote-head {
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    color: var(--night);
+  }
+
+  .quote-brand span {
+    border-color: var(--line);
+    color: var(--night);
+  }
+
+  .quote-brand-logo--screen {
+    display: none;
+  }
+
+  .quote-brand-logo--print {
+    display: block;
+  }
+
+  .quote-brand p,
+  .quote-meta-card dt {
+    color: var(--muted);
+  }
+
+  .quote-meta-card {
+    border-color: var(--line);
+    background: #f5f8fb;
+  }
+
+  .quote-meta-card strong {
+    color: var(--night);
+  }
+
+  .quote-meta-card div {
+    border-top-color: var(--line);
   }
 }
